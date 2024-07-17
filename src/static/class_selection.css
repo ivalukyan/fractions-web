@@ -47,7 +47,7 @@ body{
     color: #006400;
 }
 
-.card label select{
+.card form select{
     outline: none;
     padding: 5px;
     width: 100%;

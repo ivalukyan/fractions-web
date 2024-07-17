@@ -1,3 +1,4 @@
+from pathlib import Path
 from typing import Annotated
 
 from fastapi import FastAPI, Request, Form
@@ -8,7 +9,7 @@ app = FastAPI()
 
 templates = Jinja2Templates(directory="templates")
 
-app.mount("/static", StaticFiles(directory="static"), name='static')
+app.mount("/static", StaticFiles(directory='static'), name='static')
 
 
 @app.get("/")
@@ -21,6 +22,11 @@ async def class_selection(request: Request):
     return templates.TemplateResponse("class_selection.html", {'request': request})
 
 
-@app.post("/class_selection/{class_id}")
-async def class_selection_form(request: Request, class_id: Annotated[str, Form()]):
-    return templates.TemplateResponse('task_selection.html', {'request': request, 'class_id': class_id})
+# @app.post("/class_selection")
+# async def class_selection_form(request: Request, class_id: Annotated[str, Form()]):
+#     return templates.TemplateResponse('task_selection.html', {'request': request, 'class_id': class_id})
+#
+#
+# @app.get("/task_selection/{class_id}")
+# async def task_selection(request: Request):
+#     return templates.TemplateResponse('task_selection.html', {'request': request})
