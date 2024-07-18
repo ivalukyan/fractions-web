@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="{{ url_for('static', path='/css/arithmetic.css') }}">
+    <link href="{{ url_for('static', path='/css/arithmetic.css') }}" rel="stylesheet">
     <title>Arithmetic</title>
 </head>
 <body>
@@ -17,7 +17,7 @@
                 <textarea rows="3" placeholder="Ваш ответ" name="answer"></textarea>
             </label>
             <br>
-            <button type="submit">Отправить</button>
+            <button class="but-send" type="submit">Отправить</button>
         </form>
     </div>
 </div>
