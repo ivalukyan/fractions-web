@@ -41,15 +41,16 @@ async def arithmetic_operations(request: Request, class_id: str):
 
 @app.post('/task_selection/{class_id}/arithmetic_operations')
 async def arithmetic_operations(request: Request, class_id: str, answer: Annotated[str, Form()]):
-    ans = ''
     if answer == '1':
         ans = 'Верно'
+        return templates.TemplateResponse("completions/answered.html", {'request': request, 'class_id': class_id,
+                                                                        'answer': ans,
+                                                                        'arithmetic_operations': 'Арифметические задания'})
     else:
         ans = 'Ошибка'
-    return templates.TemplateResponse("completions/answered.html", {'request': request, 'class_id': class_id,
-                                                                      'ans': ans,
-                                                                      'arithmetic_operations': 'Арифметические задания',
-                                                                      'answer': answer})
+        return templates.TemplateResponse("completions/answered.html", {'request': request, 'class_id': class_id,
+                                                                        'answer': ans,
+                                                                        'arithmetic_operations': 'Арифметические задания'})
 
 
 @app.get('/task_selection/{class_id}/text_tasks')
