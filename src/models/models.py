@@ -11,4 +11,5 @@ class TasksSchema(BaseModel):
     type_task: str | None = None
     question: str | None = None
     answer: str | None = None
+    explanation: str | None = None
 

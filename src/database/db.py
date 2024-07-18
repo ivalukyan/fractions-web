@@ -20,6 +20,7 @@ class Task(Base):
     type_task = Column(String, nullable=True)
     question = Column(String, nullable=True)
     answer = Column(String, nullable=True)
+    explanation = Column(String, nullable=True)
 
 
 Base.metadata.create_all(engine)
