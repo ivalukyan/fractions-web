@@ -1,9 +1,10 @@
 from typing import Annotated
 
-from fastapi import FastAPI, Request, Form
+from fastapi import FastAPI, Request, Form, HTTPException
 from fastapi.staticfiles import StaticFiles
 from starlette.responses import RedirectResponse
 from starlette.templating import Jinja2Templates
+from database.db import Session, Task
 
 app = FastAPI()
 
@@ -35,8 +36,21 @@ async def task_selection(request: Request, class_id: str):
 
 @app.get('/task_selection/{class_id}/arithmetic_operations')
 async def arithmetic_operations(request: Request, class_id: str):
-    return templates.TemplateResponse("completions/arithmetic.html", {'request': request, 'class_id': class_id,
-                                                                      'arithmetic_operations': 'Арифметические задания'})
+    try:
+        db_session = Session()
+        db_task = db_session.query(Task).filter(Task.id == 1, Task.class_student == class_id,
+                                                Task.type_task == 'arithmetic_operation').first()
+    except HTTPException:
+        raise HTTPException(status_code=400, detail='Bad Request')
+
+    task = db_task
+
+    if task is None:
+        raise HTTPException(status_code=404, detail='Task not found')
+    return templates.TemplateResponse("completions/arithmetic.html", {'request': request,
+                                                                      'class_id': class_id,
+                                                                      'arithmetic_operations': 'Арифметические задания',
+                                                                      'task': task.question})
 
 
 @app.post('/task_selection/{class_id}/arithmetic_operations')
