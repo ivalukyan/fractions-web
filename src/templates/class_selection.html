@@ -2,8 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="{{ url_for('static', path='class_selection.css') }}">
-    <link rel="stylesheet" href="css/class_selection.css">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/class_selection.css') }}">
     <title>Class Selection</title>
 </head>
 <body>
@@ -14,14 +13,16 @@
     <div class="card">
         <h2>Программа изучения дробей</h2><br>
         <form method="post">
-            <select name="class_id">
+            <label>
+                <select name="class_id">
                     <option selected="selected">Выберите ваш текущий класс</option>
-                    <option>1-й класс</option>
-                    <option>2-й класс</option>
-                    <option>3-й класс</option>
-                    <option>4-й класс</option>
-            </select><br>
-            <button type="submit">Выбрать</button>
+                    <option value="first">1-й класс</option>
+                    <option value="second">2-й класс</option>
+                    <option value="third">3-й класс</option>
+                    <option value="four">4-й класс</option>
+                </select>
+            </label><br>
+            <button type="submit">Далее</button>
         </form>
 
     </div>

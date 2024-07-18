@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+body{
+    background-color: #ADD8E6;
+}
+
+.logo{
+    position: absolute;
+    top: 22px;
+    left: 22px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo a{
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #1E90FF;
+}
+
+.container{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    justify-content: center;
+}
+
+.container .card{
+    width: 500px;
+    height: 400px;
+    padding: 40px 32px;
+    border-radius: 16px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0 7px 29px 0;
+}
+
+h3{
+    font-weight: 600;
+    font-size: 24px;
+}
+
+.card .task-items{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.card .task-items a{
+    text-decoration: none;
+    color: #FFFFFF;
+    margin: 15px;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0 7px 29px 0;
+}
+
+.card .task-items .first{
+    background-color: #FF6347;
+}
+
+.card .task-items .second{
+    background-color: #00a456;
+}
+
+.card .task-items .third{
+    background-color: #9a53a4;
+}
+
+.card .task-items .four{
+    background-color: #5a68a4;
+}
+
+.card .task-items .five{
+    background-color: #a45062;
+}
+
+.card .task-items .six{
+    background-color: #a43933;
+}
