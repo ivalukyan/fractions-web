@@ -530,9 +530,32 @@ async def statistic(request: Request, task_type: str, count_correct: int):
     percent = count_correct * 100 / total_count
 
     if task_type == 'arithmetic_operation':
-        return templates.TemplateResponse("statistic_page.html", {'request': request,
-                                                                  'task_type': 'Арифметические задания',
-                                                                  'total_count': total_count,
-                                                                  'percent': percent,
-                                                                  'correct_count': count_correct,
-                                                                  'average_time': average_time})
+        if 90 < percent <= 100:
+            return templates.TemplateResponse("statistic_page.html", {'request': request,
+                                                                      'task_type': 'Арифметические задания',
+                                                                      'total_count': total_count,
+                                                                      'percent': percent,
+                                                                      'correct_count': count_correct,
+                                                                      'average_time': average_time,
+                                                                      'img_url': 'https://clck.ru/3Bznw6',
+                                                                      'color': '#32CD32'})
+        elif 60 < percent <= 89:
+            return templates.TemplateResponse("statistic_page.html", {'request': request,
+                                                                      'task_type': 'Арифметические задания',
+                                                                      'total_count': total_count,
+                                                                      'percent': percent,
+                                                                      'correct_count': count_correct,
+                                                                      'average_time': average_time,
+                                                                      'img_url': 'https://clck.ru/3Bznx9',
+                                                                      'color': '#652f27'})
+        else:
+            return templates.TemplateResponse("statistic_page.html", {'request': request,
+                                                                      'task_type': 'Арифметические задания',
+                                                                      'total_count': total_count,
+                                                                      'percent': percent,
+                                                                      'correct_count': count_correct,
+                                                                      'average_time': average_time,
+                                                                      'img_url': 'https://clck.ru/3Bznxr',
+                                                                      'color': '#652f27'})
+
+

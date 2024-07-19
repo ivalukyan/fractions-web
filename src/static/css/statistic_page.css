@@ -45,3 +45,16 @@ body {
     border-radius: 10px;
     text-align: center;
 }
+
+.container .custom-item img {
+    width: 32px;
+    height: 32px;
+}
+
+.container .custom-item .line{
+    display: flex;
+    margin-top: 5px;
+    width: 100%;
+    padding: 5px;
+    border-radius: 10px;
+}

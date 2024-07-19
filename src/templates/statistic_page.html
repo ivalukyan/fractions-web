@@ -13,6 +13,7 @@
     <h2>Отслеживание прогреса</h2>
     <div class="custom-item">
         <p>Процент правильных ответов: {{ percent }}%</p>
+        <div class="line" style="background-color: {{ color }}; width: {{ percent }}%"></div>
     </div>
 
     <div class="custom-item">
@@ -25,8 +26,7 @@
     </div>
     <div class="custom-item">
         <h4>Достижения</h4>
-        <img src="https://cdn.icon-icons.com/icons2/3768/PNG/512/star_favorite_icon_231631.png"
-             style="width: 32px; height: 32px">
+        <img src={{ img_url }}>
     </div>
 
     <div class="custom-item">
