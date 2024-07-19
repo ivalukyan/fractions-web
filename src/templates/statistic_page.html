@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <link href="{{ url_for('static', path='/css/statistic.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/statistic_page.css') }}">
     <title>Statistic</title>
 </head>
 <body>
@@ -10,23 +10,29 @@
     <a href="/">{{ task_type }}</a>
 </div>
 <div class="container">
-    <div class="card">
-        <h2>Отслеживание прогреса</h2>
-        <br>
+    <h2>Отслеживание прогреса</h2>
+    <div class="custom-item">
         <p>Процент правильных ответов: {{ percent }}%</p>
-        <br>
+    </div>
+
+    <div class="custom-item">
         <h4>Статистика:</h4>
         <p>Всего: {{ total_count }}</p>
-        <br>
+    </div>
+    <div class="custom-item">
         <p>Правильные ответы: {{ correct_count }}</p>
         <p>Среднее время {{ average_time }}</p>
-        <br>
+    </div>
+    <div class="custom-item">
         <h4>Достижения</h4>
         <img src="https://cdn.icon-icons.com/icons2/3768/PNG/512/star_favorite_icon_231631.png"
              style="width: 32px; height: 32px">
-        <br>
+    </div>
+
+    <div class="custom-item">
         <a href="/">Вернуться в меню</a>
     </div>
+
 </div>
 </body>
 </html>

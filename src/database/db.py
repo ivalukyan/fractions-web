@@ -17,7 +17,7 @@ Session = sessionmaker(bind=engine)
 class Task(Base):
     __tablename__ = 'tasks'
 
-    id = Column(UUID, primary_key=True, default=uuid4())
+    id = Column(UUID, primary_key=True, default=uuid4)
     class_student = Column(String, nullable=True)
     type_task = Column(String, nullable=True)
     question = Column(String, nullable=True)
@@ -28,7 +28,7 @@ class Task(Base):
 class Questions(Base):
     __tablename__ = 'questions'
 
-    id = Column(UUID, primary_key=True, default=uuid4())
+    id = Column(UUID, primary_key=True, default=uuid4)
     start_time = Column(DateTime, nullable=True)
     end_time = Column(DateTime, nullable=True)
 

@@ -2,14 +2,11 @@ from datetime import datetime
 
 from typing import Annotated
 
-from cleo.ui.question import Question
-from django.http import HttpResponseRedirect
 from fastapi import FastAPI, Request, Form, HTTPException
 from fastapi.staticfiles import StaticFiles
 from starlette.responses import RedirectResponse
 from starlette.templating import Jinja2Templates
 from database.db import Session, Task, Questions
-from models.models import TasksSchema
 
 app = FastAPI()
 
@@ -29,11 +26,12 @@ async def addquestions(request: Request):
 
 
 @app.post("/addquestions")
-async def addquestions(request: Request, task: TasksSchema = Form(...)):
-
+async def addquestions(request: Request, class_student: Annotated[str, Form()], type_task: Annotated[str, Form()],
+                       question: Annotated[str, Form()], answer: Annotated[str, Form()],
+                       explanation: Annotated[str, Form()]):
     db_session = Session()
-    new_task = Task(class_student=task.class_student, type_task=task.type_task, question=task.question,
-                    answer=task.answer, explanation=task.explanation)
+    new_task = Task(class_student=class_student, type_task=type_task, question=question,
+                    answer=answer, explanation=explanation)
     db_session.add(new_task)
     db_session.commit()
 
@@ -57,7 +55,8 @@ async def task_selection(request: Request, class_id: str):
     correct = 0
 
     db_session = Session()
-    db_session.add(Questions(start_time=datetime.now()))
+    new_question = Questions(start_time=datetime.now())
+    db_session.add(new_question)
     db_session.commit()
 
     return templates.TemplateResponse("task_selection.html", {'request': request, 'class_id': class_id,
@@ -66,7 +65,6 @@ async def task_selection(request: Request, class_id: str):
 
 @app.get('/task_selection/{class_id}/arithmetic_operation/{task_id}/{correct}')
 async def arithmetic_operations(request: Request, class_id: str, task_id: int, correct: int):
-
     try:
         db_session = Session()
         db_task = db_session.query(Task).filter(Task.class_student == class_id,
@@ -88,7 +86,7 @@ async def arithmetic_operations(request: Request, class_id: str, task_id: int, c
                                                                           'correct': correct})
     else:
 
-        db_session.query(Questions.end_time).update('end_time', datetime.now())
+        db_session.query(Questions).filter(Questions.end_time == None).update({'end_time': datetime.now()})
         db_session.commit()
 
         redirect_url = request.url_for('statistic', task_type='arithmetic_operation', count_correct=correct)
@@ -96,8 +94,8 @@ async def arithmetic_operations(request: Request, class_id: str, task_id: int, c
 
 
 @app.post('/task_selection/{class_id}/arithmetic_operation/{task_id}/{correct}')
-async def arithmetic_operations(request: Request, class_id: str, answer: Annotated[str, Form()], task_id: int, correct: int):
-
+async def arithmetic_operations(request: Request, class_id: str, answer: Annotated[str, Form()], task_id: int,
+                                correct: int):
     try:
         db_session = Session()
         db_task = db_session.query(Task).filter(Task.class_student == class_id,
@@ -122,7 +120,8 @@ async def arithmetic_operations(request: Request, class_id: str, answer: Annotat
                                                   {'request': request,
                                                    'class_id': class_id,
                                                    'answer': ans,
-                                                   'arithmetic_operations': 'Арифметические задания',
+                                                   'title': 'Арифметические задания',
+                                                   'type_task': 'arithmetic_operation',
                                                    'explanation': explanation,
                                                    'task_id': task_id,
                                                    'correct': correct})
@@ -134,7 +133,8 @@ async def arithmetic_operations(request: Request, class_id: str, answer: Annotat
                                                   {'request': request,
                                                    'class_id': class_id,
                                                    'answer': ans,
-                                                   'arithmetic_operations': 'Арифметические задания',
+                                                   'title': 'Арифметические задания',
+                                                   'type_task': 'arithmetic_operation',
                                                    'exp': explanation,
                                                    'task_id': task_id,
                                                    'correct': correct})
@@ -145,7 +145,6 @@ async def arithmetic_operations(request: Request, class_id: str, answer: Annotat
 
 @app.get('/task_selection/{class_id}/text_tasks/{task_id}/{correct}')
 async def arithmetic_operations(request: Request, class_id: str, task_id: int, correct: int):
-
     try:
         db_session = Session()
         db_task = db_session.query(Task).filter(Task.class_student == class_id,
@@ -171,8 +170,8 @@ async def arithmetic_operations(request: Request, class_id: str, task_id: int, c
 
 
 @app.post('/task_selection/{class_id}/text_tasks/{task_id}/{correct}')
-async def arithmetic_operations(request: Request, class_id: str, answer: Annotated[str, Form()], task_id: int, correct: int):
-
+async def arithmetic_operations(request: Request, class_id: str, answer: Annotated[str, Form()], task_id: int,
+                                correct: int):
     try:
         db_session = Session()
         db_task = db_session.query(Task).filter(Task.class_student == class_id,
@@ -220,7 +219,6 @@ async def arithmetic_operations(request: Request, class_id: str, answer: Annotat
 
 @app.get('/task_selection/{class_id}/equations/{task_id}/{correct}')
 async def arithmetic_operations(request: Request, class_id: str, task_id: int, correct: int):
-
     try:
         db_session = Session()
         db_task = db_session.query(Task).filter(Task.class_student == class_id,
@@ -246,8 +244,8 @@ async def arithmetic_operations(request: Request, class_id: str, task_id: int, c
 
 
 @app.post('/task_selection/{class_id}/equations/{task_id}/{correct}')
-async def arithmetic_operations(request: Request, class_id: str, answer: Annotated[str, Form()], task_id: int, correct: int):
-
+async def arithmetic_operations(request: Request, class_id: str, answer: Annotated[str, Form()], task_id: int,
+                                correct: int):
     try:
         db_session = Session()
         db_task = db_session.query(Task).filter(Task.class_student == class_id,
@@ -295,7 +293,6 @@ async def arithmetic_operations(request: Request, class_id: str, answer: Annotat
 
 @app.get('/task_selection/{class_id}/geometry/{task_id}/{correct}')
 async def arithmetic_operations(request: Request, class_id: str, task_id: int, correct: int):
-
     try:
         db_session = Session()
         db_task = db_session.query(Task).filter(Task.class_student == class_id,
@@ -321,8 +318,8 @@ async def arithmetic_operations(request: Request, class_id: str, task_id: int, c
 
 
 @app.post('/task_selection/{class_id}/geometry/{task_id}/{correct}')
-async def arithmetic_operations(request: Request, class_id: str, answer: Annotated[str, Form()], task_id: int, correct: int):
-
+async def arithmetic_operations(request: Request, class_id: str, answer: Annotated[str, Form()], task_id: int,
+                                correct: int):
     try:
         db_session = Session()
         db_task = db_session.query(Task).filter(Task.class_student == class_id,
@@ -370,7 +367,6 @@ async def arithmetic_operations(request: Request, class_id: str, answer: Annotat
 
 @app.get('/task_selection/{class_id}/task_increased_complexity/{task_id}/{correct}')
 async def arithmetic_operations(request: Request, class_id: str, task_id: int, correct: int):
-
     try:
         db_session = Session()
         db_task = db_session.query(Task).filter(Task.class_student == class_id,
@@ -396,8 +392,8 @@ async def arithmetic_operations(request: Request, class_id: str, task_id: int, c
 
 
 @app.post('/task_selection/{class_id}/task_increased_complexity/{task_id}/{correct}')
-async def arithmetic_operations(request: Request, class_id: str, answer: Annotated[str, Form()], task_id: int, correct: int):
-
+async def arithmetic_operations(request: Request, class_id: str, answer: Annotated[str, Form()], task_id: int,
+                                correct: int):
     try:
         db_session = Session()
         db_task = db_session.query(Task).filter(Task.class_student == class_id,
@@ -445,7 +441,6 @@ async def arithmetic_operations(request: Request, class_id: str, answer: Annotat
 
 @app.get('/task_selection/{class_id}/mixed_tasks/{task_id}/{correct}')
 async def arithmetic_operations(request: Request, class_id: str, task_id: int, correct: int):
-
     try:
         db_session = Session()
         db_task = db_session.query(Task).filter(Task.class_student == class_id,
@@ -471,8 +466,8 @@ async def arithmetic_operations(request: Request, class_id: str, task_id: int, c
 
 
 @app.post('/task_selection/{class_id}/mixed_tasks/{task_id}/{correct}')
-async def arithmetic_operations(request: Request, class_id: str, answer: Annotated[str, Form()], task_id: int, correct: int):
-
+async def arithmetic_operations(request: Request, class_id: str, answer: Annotated[str, Form()], task_id: int,
+                                correct: int):
     try:
         db_session = Session()
         db_task = db_session.query(Task).filter(Task.class_student == class_id,
@@ -520,7 +515,6 @@ async def arithmetic_operations(request: Request, class_id: str, answer: Annotat
 
 @app.get('/statistic/{task_type}/count/{count_correct}')
 async def statistic(request: Request, task_type: str, count_correct: int):
-
     try:
         db_session = Session()
         db_task = db_session.query(Task).filter(Task.type_task == task_type).all()
@@ -529,9 +523,9 @@ async def statistic(request: Request, task_type: str, count_correct: int):
     except HTTPException:
         raise HTTPException(status_code=400, detail="Bad Request")
 
-    total_count = len(db_task) - 1
+    total_count = len(db_task)
 
-    average_time = db_question.end_time - db_question.start_time / total_count
+    average_time = db_question.end_time - db_question.start_time
 
     percent = count_correct * 100 / total_count
 
