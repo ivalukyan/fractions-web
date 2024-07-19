@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/addquestions.css') }}">
+    <title>Add question</title>
+</head>
+<body>
+<div class="container">
+    <h3>Добавление вопросов</h3>
+    <form method="post">
+
+        <label>Выберите класс</label>
+        <div class="custom-input">
+            <select name="class_student">
+                <option selected="selected">Класс</option>
+                <option value="first">1-й класс</option>
+                <option value="second">2-й класс</option>
+                <option value="third">3-й класс</option>
+                <option value="four">4-й класс</option>
+            </select>
+        </div>
+
+        <label>Выберите задание</label>
+        <div class="custom-input">
+            <select name="type_task">
+                <option selected="selected">Задание</option>
+                <option value="arithmetic_operation">Арифметическое задание</option>
+                <option value="equations">Уравнения</option>
+                <option value="geometry">Геометрия</option>
+                <option value="text_tasks">Текстовые задачи</option>
+                <option value="task_increased_complexity">Задачи повышенной сложности</option>
+            </select>
+        </div>
+
+
+        <label>Вопрос/Задача</label>
+        <div class="custom-input">
+            <textarea name="question" type="text" placeholder="ваш вопрос или задание"></textarea>
+        </div>
+
+        <label>Ответ</label>
+        <div class="custom-input">
+            <input name="answer" type="text" placeholder="ваш ответ">
+        </div>
+
+        <label>Объяснение</label>
+        <div class="custom-input">
+            <textarea name="explanation" placeholder="ваше объяснение"></textarea>
+        </div>
+        <button class="add" type="submit">Добавить</button>
+    </form>
+</div>
+</body>
+</html>
