@@ -1,4 +1,5 @@
 from datetime import datetime
+from math import floor
 
 from typing import Annotated
 
@@ -518,19 +519,32 @@ async def statistic(request: Request, task_type: str, count_correct: int):
     try:
         db_session = Session()
         db_task = db_session.query(Task).filter(Task.type_task == task_type).all()
-
+        
         db_question = db_session.query(Questions).first()
     except HTTPException:
         raise HTTPException(status_code=400, detail="Bad Request")
-
+    
     total_count = len(db_task)
-
+    
     average_time = db_question.end_time - db_question.start_time
-
-    percent = count_correct * 100 / total_count
-
+    
+    hour = db_question.end_time.hour - db_question.start_time.hour
+    minute = db_question.end_time.minute - db_question.start_time.minute
+    second = db_question.end_time.second - db_question.start_time.second
+    
+    
+    average_time_second = round((hour * 3600 + minute * 60 + second) / total_count)
+    hour_ = floor(average_time_second/3600)
+    minute_ = floor((average_time_second - hour_ * 3600) / 60)
+    second_ = average_time_second - minute_ * 60
+    
+    average_time = f'{hour_}:{minute_}:{second_} - {average_time_second}'
+    
+    percent = round(count_correct * 100 / total_count)
+    
     if task_type == 'arithmetic_operation':
         if 90 < percent <= 100:
+            db_session.delete(db_question)
             return templates.TemplateResponse("statistic_page.html", {'request': request,
                                                                       'task_type': 'Арифметические задания',
                                                                       'total_count': total_count,
@@ -540,6 +554,7 @@ async def statistic(request: Request, task_type: str, count_correct: int):
                                                                       'img_url': 'https://clck.ru/3Bznw6',
                                                                       'color': '#32CD32'})
         elif 60 < percent <= 89:
+            db_session.delete(db_question)
             return templates.TemplateResponse("statistic_page.html", {'request': request,
                                                                       'task_type': 'Арифметические задания',
                                                                       'total_count': total_count,
@@ -549,6 +564,7 @@ async def statistic(request: Request, task_type: str, count_correct: int):
                                                                       'img_url': 'https://clck.ru/3Bznx9',
                                                                       'color': '#652f27'})
         else:
+            db_session.delete(db_question)
             return templates.TemplateResponse("statistic_page.html", {'request': request,
                                                                       'task_type': 'Арифметические задания',
                                                                       'total_count': total_count,
