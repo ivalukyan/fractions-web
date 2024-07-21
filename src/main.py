@@ -538,13 +538,14 @@ async def statistic(request: Request, task_type: str, count_correct: int):
     minute_ = floor((average_time_second - hour_ * 3600) / 60)
     second_ = average_time_second - minute_ * 60
     
-    average_time = f'{hour_}:{minute_}:{second_} - {average_time_second}'
+    average_time = f'{hour_} : {minute_} : {second_}'
     
     percent = round(count_correct * 100 / total_count)
     
     if task_type == 'arithmetic_operation':
         if 90 < percent <= 100:
             db_session.delete(db_question)
+            db_session.commit()
             return templates.TemplateResponse("statistic_page.html", {'request': request,
                                                                       'task_type': 'Арифметические задания',
                                                                       'total_count': total_count,
@@ -555,6 +556,7 @@ async def statistic(request: Request, task_type: str, count_correct: int):
                                                                       'color': '#32CD32'})
         elif 60 < percent <= 89:
             db_session.delete(db_question)
+            db_session.commit()
             return templates.TemplateResponse("statistic_page.html", {'request': request,
                                                                       'task_type': 'Арифметические задания',
                                                                       'total_count': total_count,
@@ -565,6 +567,7 @@ async def statistic(request: Request, task_type: str, count_correct: int):
                                                                       'color': '#652f27'})
         else:
             db_session.delete(db_question)
+            db_session.commit()
             return templates.TemplateResponse("statistic_page.html", {'request': request,
                                                                       'task_type': 'Арифметические задания',
                                                                       'total_count': total_count,
