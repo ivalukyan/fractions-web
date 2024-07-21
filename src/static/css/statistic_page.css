@@ -1,4 +1,4 @@
-*{
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
@@ -51,7 +51,7 @@ body {
     height: 32px;
 }
 
-.container .custom-item .line{
+.container .custom-item .line {
     display: flex;
     margin-top: 5px;
     width: 100%;
