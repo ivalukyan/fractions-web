@@ -1,16 +1,19 @@
-"""
- router Text Tasks
-"""
+from datetime import datetime
 from typing import Annotated
 
-from fastapi import Request, HTTPException, Form
+from fastapi import HTTPException, APIRouter
+from fastapi import Request, Form
 from starlette.responses import RedirectResponse
 
-from src.database.db import Session, Task
-from src.main import text_tasks_router, templates
+from database.db import Session, Task, Questions
+from starlette.templating import Jinja2Templates
+
+router = APIRouter()
+
+templates = Jinja2Templates(directory="templates")
 
 
-@text_tasks_router.get('/task_selection/{class_id}/text_tasks/{task_id}/{correct}')
+@router.get('/task_selection/{class_id}/arithmetic_operation/{task_id}/{correct}')
 async def arithmetic_operations(request: Request, class_id: str, task_id: int, correct: int):
     try:
         db_session = Session()
@@ -32,11 +35,15 @@ async def arithmetic_operations(request: Request, class_id: str, task_id: int, c
                                                                           'task_id': task_id,
                                                                           'correct': correct})
     else:
+        
+        db_session.query(Questions).filter(Questions.end_time == None).update({'end_time': datetime.now()})
+        db_session.commit()
+        
         redirect_url = request.url_for('statistic', task_type='arithmetic_operation', count_correct=correct)
         return RedirectResponse(redirect_url)
 
 
-@text_tasks_router.post('/task_selection/{class_id}/text_tasks/{task_id}/{correct}')
+@router.post('/task_selection/{class_id}/arithmetic_operation/{task_id}/{correct}')
 async def arithmetic_operations(request: Request, class_id: str, answer: Annotated[str, Form()], task_id: int,
                                 correct: int):
     try:
@@ -63,7 +70,8 @@ async def arithmetic_operations(request: Request, class_id: str, answer: Annotat
                                                   {'request': request,
                                                    'class_id': class_id,
                                                    'answer': ans,
-                                                   'arithmetic_operations': 'Арифметические задания',
+                                                   'title': 'Арифметические задания',
+                                                   'type_task': 'arithmetic_operation',
                                                    'explanation': explanation,
                                                    'task_id': task_id,
                                                    'correct': correct})
@@ -75,7 +83,8 @@ async def arithmetic_operations(request: Request, class_id: str, answer: Annotat
                                                   {'request': request,
                                                    'class_id': class_id,
                                                    'answer': ans,
-                                                   'arithmetic_operations': 'Арифметические задания',
+                                                   'title': 'Арифметические задания',
+                                                   'type_task': 'arithmetic_operation',
                                                    'exp': explanation,
                                                    'task_id': task_id,
                                                    'correct': correct})
