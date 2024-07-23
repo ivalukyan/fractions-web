@@ -8,7 +8,7 @@ from starlette.responses import RedirectResponse
 from database.db import Session, Task, Questions
 from starlette.templating import Jinja2Templates
 
-router = APIRouter()
+router = APIRouter(tags=['arithmetic'])
 
 templates = Jinja2Templates(directory="templates")
 

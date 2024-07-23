@@ -7,7 +7,7 @@ from database.db import Questions, Session
 
 templates = Jinja2Templates(directory="templates")
 
-router = APIRouter(prefix='/task_selection', tags=['task_selection'])
+router = APIRouter(prefix='/task_selection', tags=['task selection'])
 
 
 @router.post('/{class_id}')

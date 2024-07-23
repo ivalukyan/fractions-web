@@ -7,7 +7,7 @@ from starlette.templating import Jinja2Templates
 
 from database.db import Session, Task, Questions
 
-router = APIRouter()
+router = APIRouter(tags=['mixed tasks'])
 
 templates = Jinja2Templates(directory="templates")
 

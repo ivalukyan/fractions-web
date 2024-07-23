@@ -2,9 +2,39 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <link href="{{ url_for('static', path='/css/geometry.css') }}" rel="stylesheet">
     <title>Geometry</title>
 </head>
 <body>
-
+    <script>
+        function dragstart_handler(ev) {
+          // Добавить id целевого элемента в объект передачи данных
+          ev.dataTransfer.setData("application/my-app", ev.target.id);
+          ev.dataTransfer.effectAllowed = "move";
+        }
+        function dragover_handler(ev) {
+          ev.preventDefault();
+          ev.dataTransfer.dropEffect = "move";
+        }
+        function drop_handler(ev) {
+          ev.preventDefault();
+          // Получить id целевого элемента и добавить перемещаемый элемент в его DOM
+          const data = ev.dataTransfer.getData("application/my-app");
+          ev.target.appendChild(document.getElementById(data));
+        }
+      </script>
+      <div class="container">
+            <p id="p1" draggable="true" ondragstart="dragstart_handler(event)">
+            This element is draggable.
+            </p>
+            <div
+            class="drop-container"
+            id="target"
+            ondrop="drop_handler(event)"
+            ondragover="dragover_handler(event)">
+            Drop Zone
+            </div>
+      </div>
+      
 </body>
 </html>

@@ -4,7 +4,7 @@ from fastapi import Request, Form, APIRouter
 from starlette.responses import RedirectResponse
 from starlette.templating import Jinja2Templates
 
-router = APIRouter(prefix='/class_selection', tags=['class_selection'])
+router = APIRouter(prefix='/class_selection', tags=['class selection'])
 
 templates = Jinja2Templates(directory="templates")
 

@@ -6,7 +6,7 @@ from fastapi import Request, HTTPException, Form, APIRouter
 from starlette.responses import RedirectResponse
 from starlette.templating import Jinja2Templates
 
-router = APIRouter()
+router = APIRouter(tags=['equations'])
 
 templates = Jinja2Templates(directory="templates")
 

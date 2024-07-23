@@ -7,7 +7,7 @@ from fastapi import HTTPException, Form, Request, APIRouter
 from starlette.responses import RedirectResponse
 from starlette.templating import Jinja2Templates
 
-router = APIRouter()
+router = APIRouter(tags=['task incresed complexity'])
 
 templates = Jinja2Templates(directory="templates")
 

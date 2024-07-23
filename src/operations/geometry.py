@@ -1,18 +1,25 @@
+from datetime import datetime
 from typing import Annotated
 
-from fastapi import Request, HTTPException, Form
+from fastapi import HTTPException, APIRouter
+from fastapi import Request, Form
 from starlette.responses import RedirectResponse
 
-from src.database.db import Session, Task
-from src.main import geometry_router, templates
+from database.db import Session, Task, Questions
+from starlette.templating import Jinja2Templates
+
+router = APIRouter(tags=['geometry'])
+
+templates = Jinja2Templates(directory="templates")
 
 
-@geometry_router.get('/task_selection/{class_id}/geometry/{task_id}/{correct}')
+
+@router.get('/task_selection/{class_id}/geometry/{task_id}/{correct}')
 async def arithmetic_operations(request: Request, class_id: str, task_id: int, correct: int):
     try:
         db_session = Session()
         db_task = db_session.query(Task).filter(Task.class_student == class_id,
-                                                Task.type_task == 'arithmetic_operation').all()
+                                                Task.type_task == 'geometry').all()
     except HTTPException:
         raise HTTPException(status_code=400, detail='Bad Request')
     
@@ -22,24 +29,24 @@ async def arithmetic_operations(request: Request, class_id: str, task_id: int, c
         
         if task is None:
             raise HTTPException(status_code=404, detail='Task not found')
-        return templates.TemplateResponse("completions/arithmetic.html", {'request': request,
+        return templates.TemplateResponse("completions/geometry.html", {'request': request,
                                                                           'class_id': class_id,
-                                                                          'arithmetic_operations': 'Арифметические задания',
+                                                                          'arithmetic_operations': 'Геометрия',
                                                                           'task': task.question,
                                                                           'task_id': task_id,
                                                                           'correct': correct})
     else:
-        redirect_url = request.url_for('statistic', task_type='arithmetic_operation', count_correct=correct)
+        redirect_url = request.url_for('statistic', task_type='geometry', count_correct=correct)
         return RedirectResponse(redirect_url)
 
 
-@geometry_router.post('/task_selection/{class_id}/geometry/{task_id}/{correct}')
+@router.post('/task_selection/{class_id}/geometry/{task_id}/{correct}')
 async def arithmetic_operations(request: Request, class_id: str, answer: Annotated[str, Form()], task_id: int,
                                 correct: int):
     try:
         db_session = Session()
         db_task = db_session.query(Task).filter(Task.class_student == class_id,
-                                                Task.type_task == 'arithmetic_operation').all()
+                                                Task.type_task == 'geometry').all()
     except HTTPException:
         raise HTTPException(status_code=400, detail='Bad Request')
     
@@ -60,7 +67,7 @@ async def arithmetic_operations(request: Request, class_id: str, answer: Annotat
                                                   {'request': request,
                                                    'class_id': class_id,
                                                    'answer': ans,
-                                                   'arithmetic_operations': 'Арифметические задания',
+                                                   'arithmetic_operations': 'Геометрия',
                                                    'explanation': explanation,
                                                    'task_id': task_id,
                                                    'correct': correct})
@@ -72,10 +79,10 @@ async def arithmetic_operations(request: Request, class_id: str, answer: Annotat
                                                   {'request': request,
                                                    'class_id': class_id,
                                                    'answer': ans,
-                                                   'arithmetic_operations': 'Арифметические задания',
+                                                   'arithmetic_operations': 'Геометрия',
                                                    'exp': explanation,
                                                    'task_id': task_id,
                                                    'correct': correct})
     else:
-        redirect_url = request.url_for('statistic', task_type='arithmetic_operation', count_correct=correct)
+        redirect_url = request.url_for('statistic', task_type='geometry', count_correct=correct)
         return RedirectResponse(redirect_url)
