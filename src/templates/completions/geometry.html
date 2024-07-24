@@ -7,17 +7,21 @@
 </head>
 <body>
     <div class="logo">
-        <a href="/">Задание: {{arithmetic_operations}}</a>
+        <a href="/">Задание: {{ arithmetic_operations }}</a>
     </div>
 	<div class="container">
         <h3>{{ task }}</h3>
-        <img src="https://reshalka.com/uploads/book/task/205/task/297/1-20220206172617.png">
+        <span>
+            <img src="{{ url }}">
+        </span>
         <form method="post">
-            {% for el in list_ans %}
+
             <div id="initialContainer" class="draggable-container">
+                {% for el in list_ans %}
                 <p draggable="true" id="{{ el }}" class="draggable-item" ondragstart="dragstart_handler(event)">
                     {{ el }}
                 </p>
+                {% endfor %}
             </div>
             <div class="upload-zone-dragover" id="target" ondrop="drop_handler(event)" ondragover="dragover_handler(event)">
                 Перетащите элемент сюда

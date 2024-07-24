@@ -8,10 +8,9 @@ from starlette.responses import RedirectResponse
 from database.db import Session, Task, Questions
 from starlette.templating import Jinja2Templates
 
-router = APIRouter()
+router = APIRouter(tags=['geometry'])
 
 templates = Jinja2Templates(directory="templates")
-
 
 
 @router.get('/task_selection/{class_id}/geometry/{task_id}/{correct}')
@@ -22,19 +21,37 @@ async def arithmetic_operations(request: Request, class_id: str, task_id: int, c
                                                 Task.type_task == 'geometry').all()
     except HTTPException:
         raise HTTPException(status_code=400, detail='Bad Request')
-    
+
     if len(db_task) > task_id and task_id is not None:
-        
+
         task = db_task[task_id]
-        
+
         if task is None:
             raise HTTPException(status_code=404, detail='Task not found')
-        return templates.TemplateResponse("completions/geometry.html", {'request': request,
-                                                                          'class_id': class_id,
-                                                                          'arithmetic_operations': 'Геометрия',
-                                                                          'task': task.question,
-                                                                          'task_id': task_id,
-                                                                          'correct': correct})
+
+        else:
+            if task.url is None and task.var_ans is None:
+
+                return templates.TemplateResponse("completions/arithmetic.html", {
+                    'request': request,
+                    'class_id': class_id,
+                    'arithmetic_operations': 'Геометрия',
+                    'task': task.question,
+                    'task_id': task_id,
+                    'correct': correct
+                })
+            else:
+
+                list_ans = task.var_ans.split()
+
+                return templates.TemplateResponse("completions/geometry.html", {'request': request,
+                                                                                'class_id': class_id,
+                                                                                'arithmetic_operations': 'Геометрия',
+                                                                                'task': task.question,
+                                                                                'task_id': task_id,
+                                                                                'correct': correct,
+                                                                                'url': task.url,
+                                                                                'list_ans': list_ans})
     else:
 
         db_session.query(Questions).filter(Questions.end_time == None).update({'end_time': datetime.now()})
@@ -53,15 +70,15 @@ async def arithmetic_operations(request: Request, class_id: str, answer: Annotat
                                                 Task.type_task == 'geometry').all()
     except HTTPException:
         raise HTTPException(status_code=400, detail='Bad Request')
-    
+
     if len(db_task) > task_id and task_id is not None:
-        
+
         task = db_task[task_id]
-        
+
         if task is None:
             raise HTTPException(status_code=404, detail='Task not found')
         else:
-            
+
             if answer == task.answer:
                 ans = 'Правильно'
                 explanation = ''
@@ -71,7 +88,7 @@ async def arithmetic_operations(request: Request, class_id: str, answer: Annotat
                                                   {'request': request,
                                                    'class_id': class_id,
                                                    'answer': ans,
-                                                   'title': 'Арифметические задания',
+                                                   'title': 'Геометрия',
                                                    'type_task': 'geometry',
                                                    'explanation': explanation,
                                                    'task_id': task_id,
@@ -84,7 +101,7 @@ async def arithmetic_operations(request: Request, class_id: str, answer: Annotat
                                                   {'request': request,
                                                    'class_id': class_id,
                                                    'answer': ans,
-                                                   'title': 'Арифметические задания',
+                                                   'title': 'Геометрия',
                                                    'type_task': 'geometry',
                                                    'exp': explanation,
                                                    'task_id': task_id,
@@ -92,4 +109,3 @@ async def arithmetic_operations(request: Request, class_id: str, answer: Annotat
     else:
         redirect_url = request.url_for('statistic', task_type='geometry', count_correct=correct)
         return RedirectResponse(redirect_url)
-
