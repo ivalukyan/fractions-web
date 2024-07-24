@@ -13,18 +13,10 @@
         <h3>{{ task }}</h3>
         <img src="https://reshalka.com/uploads/book/task/205/task/297/1-20220206172617.png">
         <form method="post">
+            {% for el in list_ans %}
             <div id="initialContainer" class="draggable-container">
-                <p draggable="true" id="1" class="draggable-item" ondragstart="dragstart_handler(event)">
-                    1/2
-                </p>
-                <p draggable="true" id="2" class="draggable-item" ondragstart="dragstart_handler(event)">
-                    1/3
-                </p>
-                <p draggable="true" id="3" class="draggable-item" ondragstart="dragstart_handler(event)">
-                    1/4
-                </p>
-                <p draggable="true" id="4" class="draggable-item" ondragstart="dragstart_handler(event)">
-                    1
+                <p draggable="true" id="{{ el }}" class="draggable-item" ondragstart="dragstart_handler(event)">
+                    {{ el }}
                 </p>
             </div>
             <div class="upload-zone-dragover" id="target" ondrop="drop_handler(event)" ondragover="dragover_handler(event)">
