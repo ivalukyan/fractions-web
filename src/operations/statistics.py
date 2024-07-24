@@ -209,4 +209,39 @@ async def statistic(request: Request, task_type: str, count_correct: int):
                                                                       'average_time': average_time,
                                                                       'img_url': 'https://clck.ru/3Bznxr',
                                                                       'color': '#652f27'})
+        
+    elif task_type == 'geometry':
+        if 90 < percent <= 100:
+            db_session.delete(db_question)
+            db_session.commit()
+            return templates.TemplateResponse("statistic_page.html", {'request': request,
+                                                                      'task_type': 'Геометрия',
+                                                                      'total_count': total_count,
+                                                                      'percent': percent,
+                                                                      'correct_count': count_correct,
+                                                                      'average_time': average_time,
+                                                                      'img_url': 'https://clck.ru/3Bznw6',
+                                                                      'color': '#32CD32'})
+        elif 60 < percent <= 89:
+            db_session.delete(db_question)
+            db_session.commit()
+            return templates.TemplateResponse("statistic_page.html", {'request': request,
+                                                                      'task_type': 'Геометрия',
+                                                                      'total_count': total_count,
+                                                                      'percent': percent,
+                                                                      'correct_count': count_correct,
+                                                                      'average_time': average_time,
+                                                                      'img_url': 'https://clck.ru/3Bznx9',
+                                                                      'color': '#652f27'})
+        else:
+            db_session.delete(db_question)
+            db_session.commit()
+            return templates.TemplateResponse("statistic_page.html", {'request': request,
+                                                                      'task_type': 'Геометрия',
+                                                                      'total_count': total_count,
+                                                                      'percent': percent,
+                                                                      'correct_count': count_correct,
+                                                                      'average_time': average_time,
+                                                                      'img_url': 'https://clck.ru/3Bznxr',
+                                                                      'color': '#652f27'})
 

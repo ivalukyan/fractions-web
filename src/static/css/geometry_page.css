@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+body{
+    background-color: #ADD8E6;
+}
+
+.container{
+    margin: 200px auto;
+    width: 440px;
+    padding: 40px 32px;
+    border-radius: 16px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0 7px 29px 0;
+}
+
+.container form  .draggable-container p{
+    display: flex;
+    padding: 10px;
+    margin-top: 15px;
+    background-color: #1E90FF;
+    border-radius: 10px;
+}
+
+h3{
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.container form .upload-zone-dragover{
+    margin-top: 30px;
+    height: 200px;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    box-shadow: rgba(100, 100, 111, 0.2) 0 7px 29px 0;
+}
+
+.container form .form-upload-submit{
+    width: 100%;
+    margin-top: 50px;
+    padding: 10px;
+    background-color:#FF6347;
+    color: black;
+    border-radius: 10px;
+    border: none;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.container form .form-upload-submit:hover{
+    background-color:  #00a456;
+}
+
+.draggable-container {
+    display: flex;
+    gap: 10px;
+}
+
+.draggable-item {
+    margin-top: 10px;
+    padding: 5px;
+    background-color: #f0f0f0;
+    border: none;
+    border-radius: 10px;
+    cursor: grab;
+}
+
+.logo{
+    position: absolute;
+    top: 22px;
+    left: 22px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo a{
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #1E90FF;
+}
+
+img{
+    height: 150px;
+    width: 150px;
+    display: flex;
+    margin-top: 10px;
+}

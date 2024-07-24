@@ -8,7 +8,7 @@ from starlette.responses import RedirectResponse
 from database.db import Session, Task, Questions
 from starlette.templating import Jinja2Templates
 
-router = APIRouter(tags=['geometry'])
+router = APIRouter()
 
 templates = Jinja2Templates(directory="templates")
 
@@ -36,6 +36,10 @@ async def arithmetic_operations(request: Request, class_id: str, task_id: int, c
                                                                           'task_id': task_id,
                                                                           'correct': correct})
     else:
+
+        db_session.query(Questions).filter(Questions.end_time == None).update({'end_time': datetime.now()})
+        db_session.commit()
+
         redirect_url = request.url_for('statistic', task_type='geometry', count_correct=correct)
         return RedirectResponse(redirect_url)
 
@@ -67,7 +71,8 @@ async def arithmetic_operations(request: Request, class_id: str, answer: Annotat
                                                   {'request': request,
                                                    'class_id': class_id,
                                                    'answer': ans,
-                                                   'arithmetic_operations': 'Геометрия',
+                                                   'title': 'Арифметические задания',
+                                                   'type_task': 'geometry',
                                                    'explanation': explanation,
                                                    'task_id': task_id,
                                                    'correct': correct})
@@ -79,10 +84,12 @@ async def arithmetic_operations(request: Request, class_id: str, answer: Annotat
                                                   {'request': request,
                                                    'class_id': class_id,
                                                    'answer': ans,
-                                                   'arithmetic_operations': 'Геометрия',
+                                                   'title': 'Арифметические задания',
+                                                   'type_task': 'geometry',
                                                    'exp': explanation,
                                                    'task_id': task_id,
                                                    'correct': correct})
     else:
         redirect_url = request.url_for('statistic', task_type='geometry', count_correct=correct)
         return RedirectResponse(redirect_url)
+

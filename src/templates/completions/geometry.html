@@ -2,39 +2,38 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <link href="{{ url_for('static', path='/css/geometry.css') }}" rel="stylesheet">
+	<link rel="stylesheet" href="{{ url_for('static', path='/css/geometry_page.css') }}">
     <title>Geometry</title>
 </head>
 <body>
-    <script>
-        function dragstart_handler(ev) {
-          // Добавить id целевого элемента в объект передачи данных
-          ev.dataTransfer.setData("application/my-app", ev.target.id);
-          ev.dataTransfer.effectAllowed = "move";
-        }
-        function dragover_handler(ev) {
-          ev.preventDefault();
-          ev.dataTransfer.dropEffect = "move";
-        }
-        function drop_handler(ev) {
-          ev.preventDefault();
-          // Получить id целевого элемента и добавить перемещаемый элемент в его DOM
-          const data = ev.dataTransfer.getData("application/my-app");
-          ev.target.appendChild(document.getElementById(data));
-        }
-      </script>
-      <div class="container">
-            <p id="p1" draggable="true" ondragstart="dragstart_handler(event)">
-            This element is draggable.
-            </p>
-            <div
-            class="drop-container"
-            id="target"
-            ondrop="drop_handler(event)"
-            ondragover="dragover_handler(event)">
-            Drop Zone
+    <div class="logo">
+        <a href="/">Задание: {{arithmetic_operations}}</a>
+    </div>
+	<div class="container">
+        <h3>{{ task }}</h3>
+        <img src="https://reshalka.com/uploads/book/task/205/task/297/1-20220206172617.png">
+        <form method="post">
+            <div id="initialContainer" class="draggable-container">
+                <p draggable="true" id="1" class="draggable-item" ondragstart="dragstart_handler(event)">
+                    1/2
+                </p>
+                <p draggable="true" id="2" class="draggable-item" ondragstart="dragstart_handler(event)">
+                    1/3
+                </p>
+                <p draggable="true" id="3" class="draggable-item" ondragstart="dragstart_handler(event)">
+                    1/4
+                </p>
+                <p draggable="true" id="4" class="draggable-item" ondragstart="dragstart_handler(event)">
+                    1
+                </p>
             </div>
-      </div>
-      
+            <div class="upload-zone-dragover" id="target" ondrop="drop_handler(event)" ondragover="dragover_handler(event)">
+                Перетащите элемент сюда
+            </div>
+            <input type="hidden" id="droppedElements" name="answer" value="">
+            <button type="submit" class="form-upload-submit">Отправить</button>
+        </form>
+	</div>
+<script src="{{ url_for('static', path='/scripts/script.js') }}"></script>
 </body>
 </html>

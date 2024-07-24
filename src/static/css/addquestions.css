@@ -6,7 +6,7 @@
 }
 
 .container{
-    margin: 100px auto;
+    margin: 200px auto;
     width: 440px;
     padding: 40px 32px;
     border-radius: 16px;
@@ -97,3 +97,19 @@ h3{
     box-shadow: rgba(100, 100, 111, 0.2) 0 5px 29px 0
 }
 
+.container a{
+    display: flex;
+    padding: 10px;
+    background-color: rgb(95, 92, 141);
+    border-radius: 10px;
+    margin-top: 30px;
+    text-decoration: none;
+    color: #FFFFFF;
+    height: 40px;
+    width: 70px;
+}
+
+.container a:hover{
+    background-color: #ffe604;
+    color: #1d1d1d;
+}
