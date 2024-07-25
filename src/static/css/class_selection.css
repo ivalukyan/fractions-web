@@ -36,8 +36,8 @@ body{
 }
 
 .container .card{
-    width: 400px;
-    height: 300px;
+    width: 800px;
+    height: 450px;
     padding: 40px 32px;
     border-radius: 16px;
     box-shadow: rgba(100, 100, 111, 0.2) 0 7px 29px 0;
@@ -49,7 +49,7 @@ body{
     color: #006400;
 }
 
-.card label select{
+.card .form-sel .sel label select{
     outline: none;
     padding: 5px;
     width: 100%;
@@ -62,10 +62,14 @@ body{
     font-weight: 500;
 }
 
-.card button{
+.but-sub{
+    width: 500px;
+}
+
+.card .form-sel .but-sub button{
     width: 100%;
-    height: 45px;
-    margin-top: 30px;
+    height: 40px;
+    margin-top: 35px;
     background: #FF6347;
     color: #FFFFFF;
     border: none;
@@ -77,6 +81,15 @@ body{
     transition: all 0.3s ease;
 }
 
-.card button:hover{
+.card .form-sel .but-sub button:hover{
     background-color: #006400;
+}
+
+
+.form-sel{
+    margin-top: 60px;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    width: 150px 150px;
 }

@@ -12,19 +12,24 @@
 <div class="container">
     <div class="card">
         <h2>Программа изучения дробей</h2><br>
-        <form method="post">
-            <label>
-                <select name="class_id">
-                    <option selected="selected">Выберите ваш текущий класс</option>
-                    <option value="first">1-й класс</option>
-                    <option value="second">2-й класс</option>
-                    <option value="third">3-й класс</option>
-                    <option value="four">4-й класс</option>
-                </select>
-            </label><br>
-            <button type="submit">Далее</button>
-        </form>
-
+        <div class="form-sel">
+            <form method="post">
+                <div class="sel">
+                    <label>
+                        <select name="class_id">
+                            <option selected="selected">Выберите ваш текущий класс</option>
+                            <option value="first">1-й класс</option>
+                            <option value="second">2-й класс</option>
+                            <option value="third">3-й класс</option>
+                            <option value="four">4-й класс</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="but-sub">
+                    <button type="submit">Далее</button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 </body>

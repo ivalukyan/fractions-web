@@ -11,14 +11,17 @@
 </div>
 <div class="container">
     <div class="card">
-        <h3>{{ task }}</h3>
+        <div class="title">
+            <h3>{{ task }}</h3>
+        </div>
+        <div class="area">
         <form method="post">
-            <label>
-                <textarea rows="3" placeholder="Ваш ответ" name="answer"></textarea>
-            </label>
-            <br>
-            <button class="but-send" type="submit">Отправить</button>
+                <label>
+                    <textarea rows="3" placeholder="Ваш ответ" name="answer"></textarea>
+                </label>
+                <button class="but-send" type="submit">Отправить</button>
         </form>
+    </div>
     </div>
 </div>
 </body>

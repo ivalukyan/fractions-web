@@ -62,27 +62,31 @@ async def arithmetic_operations(request: Request, class_id: str, answer: Annotat
         else:
             
             if answer == task.answer:
-                ans = 'Правильно'
+                is_correct = 'Правильно'
                 explanation = ''
                 task_id += 1
                 correct += 1
                 return templates.TemplateResponse("completions/answer_page.html",
                                                   {'request': request,
                                                    'class_id': class_id,
-                                                   'answer': ans,
+                                                   'is_correct': is_correct,
+                                                   'answer': answer,
+                                                   'correct_answer': task.answer,
                                                    'title': 'Арифметические задания',
                                                    'type_task': 'arithmetic_operation',
                                                    'explanation': explanation,
                                                    'task_id': task_id,
                                                    'correct': correct})
             else:
-                ans = 'Неправильно'
+                is_correct = 'Неправильно'
                 explanation = task.explanation
                 task_id += 1
                 return templates.TemplateResponse("completions/answer_page.html",
                                                   {'request': request,
                                                    'class_id': class_id,
-                                                   'answer': ans,
+                                                   'is_correct': is_correct,
+                                                   'answer': answer,
+                                                   'correct_answer': task.answer,
                                                    'title': 'Арифметические задания',
                                                    'type_task': 'arithmetic_operation',
                                                    'exp': explanation,

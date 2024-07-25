@@ -36,32 +36,35 @@ body{
 }
 
 .container .card{
-    width: 400px;
-    height: 300px;
-    padding: 40px 32px;
+    width: 800px;
+    height: 450px;
+    padding: 40px;
     border-radius: 16px;
+    display: grid;
+    justify-content: center;
     box-shadow: rgba(100, 100, 111, 0.2) 0 7px 29px 0;
 }
 
-h3{
-    font-size: 16px;
+.title h3{
+    font-size: 20px;
     font-weight: 500;
 }
 
-.container .card form textarea{
+.container .card .area textarea{
     width: 100%;
     margin-top: 45px;
     border: none;
+    outline: none;
     padding: 5px;
     border-radius: 10px;
     font-size: 16px;
     font-weight: 400;
-    max-width: 350px;
+    max-width: 400px;
     max-height: 80px;
     text-indent: 10px
 }
 
-.card form .but-send{
+.card .area .but-send{
     width: 100%;
     height: 45px;
     margin-top: 30px;
@@ -76,6 +79,11 @@ h3{
     transition: all 0.3s ease;
 }
 
-.card button:hover{
+.card .area button:hover{
     background-color: #00a456;
+}
+
+.area{
+    margin-top: 30px;
+    width: 400px;
 }

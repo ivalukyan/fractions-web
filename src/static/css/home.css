@@ -39,35 +39,44 @@ nav .logo a{
 }
 
 .container .card{
-    width: 400px;
-    height: 250px;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    width: 800px;
+    height: 450px;
     padding: 40px 32px;
     border-radius: 16px;
     box-shadow: rgba(100, 100, 111, 0.2) 0 7px 29px 0;
 }
 
-h2{
+.container .card .title{
+    padding: 15px;
+}
+
+.container .card .content h2{
     padding: 10px;
     font-size: 1.9rem;
 }
 
-.container .card a{
-
+.container .card .content a{
+    display: flex;
+    margin-top: 10px;
+    height: 50px;
+    width: 100px;
     background: #FFA500;
     color: #FFFFFF;
     border: none;
-    line-height: 50px;
-    padding: 10px;
+    padding: 15px;
     font-size: 18px;
-    letter-spacing: 0.025em;
     cursor: pointer;
     font-weight: 800;
     border-radius: 10px;
     box-shadow: 0 5px 10px rgba(0,0,0, 0.15);
     transition: all 0.3s ease;
+    justify-content: center;
 }
 
-.container .card a:hover{
+.container .card .content a:hover{
     background-color: #1E90FF;
 }
 
