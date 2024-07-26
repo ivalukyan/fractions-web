@@ -31,6 +31,7 @@ class Questions(Base):
     __tablename__ = 'questions'
 
     id = Column(UUID, primary_key=True, default=uuid4)
+    count_task = Column(Integer, nullable=True)
     start_time = Column(DateTime, nullable=True)
     end_time = Column(DateTime, nullable=True)
 

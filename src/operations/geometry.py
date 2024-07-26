@@ -13,16 +13,19 @@ router = APIRouter(tags=['geometry'])
 templates = Jinja2Templates(directory="templates")
 
 
-@router.get('/task_selection/{class_id}/geometry/{task_id}/{correct}')
-async def arithmetic_operations(request: Request, class_id: str, task_id: int, correct: int):
+@router.get('/task_selection/{class_id}/geometry/{task_id}/{correct}/{count_task}')
+async def arithmetic_operations(request: Request, class_id: str, task_id: int, correct: int, count_task: int):
     try:
         db_session = Session()
         db_task = db_session.query(Task).filter(Task.class_student == class_id,
                                                 Task.type_task == 'geometry').all()
+
+        cnt_tsk = db_session.query(Questions).first()
+
     except HTTPException:
         raise HTTPException(status_code=400, detail='Bad Request')
 
-    if len(db_task) > task_id and task_id is not None:
+    if len(db_task) > task_id and task_id is not None and cnt_tsk.count_task >= count_task:
 
         task = db_task[task_id]
 
@@ -38,7 +41,8 @@ async def arithmetic_operations(request: Request, class_id: str, task_id: int, c
                     'arithmetic_operations': 'Геометрия',
                     'task': task.question,
                     'task_id': task_id,
-                    'correct': correct
+                    'correct': correct,
+                    'count_task': count_task,
                 })
             else:
 
@@ -51,7 +55,8 @@ async def arithmetic_operations(request: Request, class_id: str, task_id: int, c
                                                                                 'task_id': task_id,
                                                                                 'correct': correct,
                                                                                 'url': task.url,
-                                                                                'list_ans': list_ans})
+                                                                                'list_ans': list_ans,
+                                                                                'count_task': count_task})
     else:
 
         db_session.query(Questions).filter(Questions.end_time == None).update({'end_time': datetime.now()})
@@ -61,9 +66,9 @@ async def arithmetic_operations(request: Request, class_id: str, task_id: int, c
         return RedirectResponse(redirect_url)
 
 
-@router.post('/task_selection/{class_id}/geometry/{task_id}/{correct}')
+@router.post('/task_selection/{class_id}/geometry/{task_id}/{correct}/{count_task}')
 async def arithmetic_operations(request: Request, class_id: str, answer: Annotated[str, Form()], task_id: int,
-                                correct: int):
+                                correct: int, count_task: int):
     try:
         db_session = Session()
         db_task = db_session.query(Task).filter(Task.class_student == class_id,
@@ -84,28 +89,34 @@ async def arithmetic_operations(request: Request, class_id: str, answer: Annotat
                 explanation = ''
                 task_id += 1
                 correct += 1
+                count_task += 1
                 return templates.TemplateResponse("completions/answer_page.html",
                                                   {'request': request,
                                                    'class_id': class_id,
                                                    'answer': ans,
+                                                   'correct_answer': task.answer,
                                                    'title': 'Геометрия',
                                                    'type_task': 'geometry',
                                                    'explanation': explanation,
                                                    'task_id': task_id,
-                                                   'correct': correct})
+                                                   'correct': correct,
+                                                   'count_task': count_task})
             else:
                 ans = 'Неправильно'
                 explanation = task.explanation
                 task_id += 1
+                count_task += 1
                 return templates.TemplateResponse("completions/answer_page.html",
                                                   {'request': request,
                                                    'class_id': class_id,
                                                    'answer': ans,
+                                                   'correct_answer': task.answer,
                                                    'title': 'Геометрия',
                                                    'type_task': 'geometry',
                                                    'exp': explanation,
                                                    'task_id': task_id,
-                                                   'correct': correct})
+                                                   'correct': correct,
+                                                   'count_task': count_task})
     else:
         redirect_url = request.url_for('statistic', task_type='geometry', count_correct=correct)
         return RedirectResponse(redirect_url)
