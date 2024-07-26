@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/count_selection.css') }}">
+    <title>Count task selection</title>
+</head>
+<body>
+<div class="logo">
+    <a href="/">Дроби</a>
+</div>
+<div class="container">
+    <div class="card">
+        <h2>Выберите количество заданий</h2>
+        <div class="count-item">
+            <a href="/class_selection/10">10 заданий</a>
+        </div>
+                <div class="count-item">
+            <a href="/class_selection/15">15 заданий</a>
+        </div>
+                <div class="count-item">
+            <a href="/class_selection/20">20 заданий</a>
+        </div>
+                <div class="count-item">
+            <a href="/class_selection/25">25 заданий</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

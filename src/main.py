@@ -12,6 +12,7 @@ from operations.task_incresed_complexity import router as task_incresed_complexi
 from operations.text_task import router as text_task_router
 from operations.mixed_tasks import router as mixed_tasks_router
 from operations.geometry import router as geometry_router
+from operations.count_select import router as count_select_router
 
 app = FastAPI(
     title="Fractions Web API",
@@ -38,3 +39,4 @@ app.include_router(task_incresed_complexity_router)
 app.include_router(text_task_router)
 app.include_router(mixed_tasks_router)
 app.include_router(geometry_router)
+app.include_router(count_select_router)
