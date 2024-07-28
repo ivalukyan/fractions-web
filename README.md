@@ -6,7 +6,7 @@
 
 <h3>Tasks</h3>
 
-<p style="font-size: 14px; font-weight: 600;"><input type="checkbox" class="custom" style=".custom {border-radius: 0.25em}"> - Начальная страница</p>
+<p style="font-size: 14px; font-weight: 600;"><input type="checkbox"> - Начальная страница</p>
 <p style="font-size: 14px; font-weight: 600;"><input type="checkbox"> - Страница выбора класса</p>
 <p style="font-size: 14px; font-weight: 600;"><input type="checkbox"> - Страница выбора задания</p>
 <p style="font-size: 14px; font-weight: 600;"><input type="checkbox"> - Страница выполнения задания</p>
