@@ -1,11 +1,9 @@
-from fastapi import FastAPI, Request, APIRouter, Form, HTTPException, Depends
-from fastapi.staticfiles import StaticFiles
+from fastapi import Request, APIRouter, Form
 from starlette.responses import RedirectResponse
 from starlette.templating import Jinja2Templates
 from typing import Annotated
 
 from database.db import Session, Student
-from models.models import AddStudentSchema
 
 router = APIRouter(prefix='/home_teacher', tags=['Home Teacher'])
 

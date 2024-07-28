@@ -1,22 +1,20 @@
-from fastapi import FastAPI, Request, APIRouter, Form
+from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
-from starlette.responses import RedirectResponse
 from starlette.templating import Jinja2Templates
-from typing import Annotated
 
-from operations.class_selection import router as class_selection_router
-from operations.task_selection import router as task_selection_router
-from operations.addquestions import router as addquestions_router
-from operations.arithmetic import router as arithmetic_router
-from operations.equation import router as equation_router
-from operations.statistics import router as statistics_router
-from operations.task_incresed_complexity import router as task_incresed_complexity_router
-from operations.text_task import router as text_task_router
-from operations.mixed_tasks import router as mixed_tasks_router
-from operations.geometry import router as geometry_router
-from operations.count_select import router as count_select_router
-from operations.home_teacher import router as home_teacher_router
-from operations.home_user import router as home_user_router
+from src.operations.student.class_selection import router as class_selection_router
+from src.operations.student.task_selection import router as task_selection_router
+from src.operations.teacher.addquestions import router as addquestions_router
+from src.operations.student.arithmetic import router as arithmetic_router
+from src.operations.student.equation import router as equation_router
+from src.operations.student.statistics import router as statistics_router
+from src.operations.student.task_incresed_complexity import router as task_incresed_complexity_router
+from src.operations.student.text_task import router as text_task_router
+from src.operations.student.mixed_tasks import router as mixed_tasks_router
+from src.operations.student.geometry import router as geometry_router
+from src.operations.student.count_select import router as count_select_router
+from src.operations.teacher.home_teacher import router as home_teacher_router
+from src.operations.student.home_user import router as home_user_router
 from auth.auth import router as auth_router
 
 app = FastAPI(

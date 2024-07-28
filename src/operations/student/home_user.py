@@ -1,5 +1,4 @@
 from fastapi import FastAPI, Request, APIRouter, Form
-from fastapi.staticfiles import StaticFiles
 from starlette.templating import Jinja2Templates
 from typing import Annotated
 
