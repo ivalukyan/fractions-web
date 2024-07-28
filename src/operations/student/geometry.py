@@ -5,12 +5,11 @@ from fastapi import HTTPException, APIRouter
 from fastapi import Request, Form
 from starlette.responses import RedirectResponse
 
-from database.db import Session, Task, Questions
-from starlette.templating import Jinja2Templates
+from database.db import Task, Questions
+from src.operations.student.__init__ import templates
+from database.__init__ import Session
 
 router = APIRouter(tags=['geometry'])
-
-templates = Jinja2Templates(directory="templates")
 
 
 @router.get('/task_selection/{class_id}/geometry/{task_id}/{correct}/{count_task}')

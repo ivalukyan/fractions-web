@@ -5,12 +5,12 @@ from fastapi import HTTPException, APIRouter
 from fastapi import Request, Form
 from starlette.responses import RedirectResponse
 
-from database.db import Session, Task, Questions
-from starlette.templating import Jinja2Templates
+from database.db import Task, Questions
+from database.__init__ import Session
+
+from src.operations.student.__init__ import templates
 
 router = APIRouter(tags=['arithmetic'])
-
-templates = Jinja2Templates(directory="templates")
 
 
 @router.get('/task_selection/{class_id}/arithmetic_operation/{task_id}/{correct}/{count_task}')

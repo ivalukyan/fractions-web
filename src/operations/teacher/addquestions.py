@@ -1,13 +1,14 @@
 from typing import Annotated
 
-from starlette.templating import Jinja2Templates
+
 from fastapi import Request, Form, APIRouter
 
-from database.db import Session, Task
+from database.db import Task
+from database.__init__ import Session
+
+from src.operations.teacher.__init__ import templates
 
 router = APIRouter(prefix='/addquestions', tags=['addquestions'])
-
-templates = Jinja2Templates(directory="templates")
 
 
 @router.get("/")

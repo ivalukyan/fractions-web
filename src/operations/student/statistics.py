@@ -1,13 +1,12 @@
 from math import floor
 
 from fastapi import Request, HTTPException, APIRouter
-from starlette.templating import Jinja2Templates
 
-from database.db import Session, Task, Questions
+from database.__init__ import Session
+from database.db import Task, Questions
+from src.operations.student.__init__ import templates
 
 router = APIRouter(prefix='/statistic', tags=['statistic'])
-
-templates = Jinja2Templates(directory="templates")
 
 
 @router.get('/{task_type}/count/{count_correct}')

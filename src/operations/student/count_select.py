@@ -1,12 +1,8 @@
-from typing import Annotated
+from fastapi import Request, APIRouter
 
-from fastapi import Request, Form, APIRouter
-from starlette.responses import RedirectResponse
-from starlette.templating import Jinja2Templates
+from src.operations.student.__init__ import templates
 
 router = APIRouter(prefix='/count_selection', tags=['count task selection'])
-
-templates = Jinja2Templates(directory="templates")
 
 
 @router.get('/')

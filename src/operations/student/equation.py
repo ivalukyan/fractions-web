@@ -1,14 +1,16 @@
 from datetime import datetime
 from typing import Annotated
 
-from database.db import Session, Task, Questions
+from database.db import Task, Questions
+from database.__init__ import Session
+
 from fastapi import Request, HTTPException, Form, APIRouter
+
 from starlette.responses import RedirectResponse
-from starlette.templating import Jinja2Templates
+
+from src.operations.student.__init__ import templates
 
 router = APIRouter(tags=['equations'])
-
-templates = Jinja2Templates(directory="templates")
 
 
 @router.get('/task_selection/{class_id}/equations/{task_id}/{correct}')

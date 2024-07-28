@@ -3,7 +3,8 @@ from typing import Annotated
 from fastapi import Request, Form, APIRouter
 from starlette.responses import RedirectResponse
 from starlette.templating import Jinja2Templates
-from database.db import Session, Questions
+from database.__init__ import Session
+from database.db import Questions
 
 router = APIRouter(prefix='/class_selection', tags=['class selection'])
 

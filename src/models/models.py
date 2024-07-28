@@ -7,6 +7,7 @@ from fastapi import Form
 from pydantic import BaseModel
 from typing import Annotated
 
+
 class TasksSchema(BaseModel):
     id: int
     class_student: str | None = None

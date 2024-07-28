@@ -1,17 +1,8 @@
-from sqlalchemy import create_engine, Column, Integer, String, DateTime, UUID, Boolean
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
-
-from src.env import Postgres
-
 from uuid import uuid4
 
-Base = declarative_base()
+from sqlalchemy import Column, Integer, String, DateTime, UUID
 
-postgres = Postgres()
-
-engine = create_engine(f'postgresql://{postgres.user}:{postgres.password}@{postgres.host}/{postgres.db}')
-Session = sessionmaker(bind=engine)
+from database.__init__ import Base, engine
 
 
 class Task(Base):

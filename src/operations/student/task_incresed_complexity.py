@@ -1,15 +1,14 @@
 from datetime import datetime
 from typing import Annotated
 
-from database.db import Questions
-from database.db import Session, Task
 from fastapi import HTTPException, Form, Request, APIRouter
 from starlette.responses import RedirectResponse
-from starlette.templating import Jinja2Templates
+
+from database.__init__ import Session
+from database.db import Questions, Task
+from src.operations.student.__init__ import templates
 
 router = APIRouter(tags=['task incresed complexity'])
-
-templates = Jinja2Templates(directory="templates")
 
 
 @router.get('/task_selection/{class_id}/task_increased_complexity/{task_id}/{correct}')

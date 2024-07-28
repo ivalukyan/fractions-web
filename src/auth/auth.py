@@ -1,12 +1,9 @@
-from fastapi import Request, APIRouter, Form, HTTPException
-from starlette.responses import RedirectResponse
-from starlette.templating import Jinja2Templates
 from typing import Annotated
 
+from fastapi import Request, Form
+from starlette.responses import RedirectResponse
 
-router = APIRouter(tags=["auth"])
-
-templates = Jinja2Templates(directory="templates")
+from src.auth.__init__ import router, templates
 
 
 @router.get("/")

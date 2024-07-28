@@ -1,10 +1,11 @@
-from fastapi import FastAPI, Request, APIRouter, Form
-from starlette.templating import Jinja2Templates
 from typing import Annotated
 
-router = APIRouter(prefix='/home_user', tags=['Home User'])
+from fastapi import Request, APIRouter, Form
+from starlette.templating import Jinja2Templates
 
-templates = Jinja2Templates(directory="templates")
+from src.operations.student.__init__ import templates
+
+router = APIRouter(prefix='/home_user', tags=['Home User'])
 
 
 @router.get("/{email}/")

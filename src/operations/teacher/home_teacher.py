@@ -1,13 +1,13 @@
-from fastapi import Request, APIRouter, Form
-from starlette.responses import RedirectResponse
-from starlette.templating import Jinja2Templates
 from typing import Annotated
 
-from database.db import Session, Student
+from fastapi import Request, APIRouter, Form
+from starlette.responses import RedirectResponse
+
+from database.__init__ import Session
+from database.db import Student
+from src.operations.teacher.__init__ import templates
 
 router = APIRouter(prefix='/home_teacher', tags=['Home Teacher'])
-
-templates = Jinja2Templates(directory="templates")
 
 
 @router.get("/")
@@ -16,8 +16,6 @@ async def home_teacher(request: Request):
     db_session = Session()
     students = db_session.query(Student).all()
 
-    # if not students:
-    #     raise HTTPException(status_code=404)
     return templates.TemplateResponse("home.html", {"request": request, 'data': students})
 
 
@@ -27,8 +25,6 @@ async def home_teacher(request: Request):
     db_session = Session()
     students = db_session.query(Student).all()
 
-    # if not students:
-    #     raise HTTPException(status_code=404)
     return templates.TemplateResponse("home.html", {"request": request, 'data': students})
 
 

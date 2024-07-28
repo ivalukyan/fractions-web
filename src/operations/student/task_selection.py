@@ -3,7 +3,8 @@ from datetime import datetime
 from fastapi import Request, APIRouter
 from starlette.templating import Jinja2Templates
 
-from database.db import Questions, Session
+from database.db import Questions
+from database.__init__ import Session
 
 templates = Jinja2Templates(directory="templates")
 
