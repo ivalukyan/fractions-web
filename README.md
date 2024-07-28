@@ -6,7 +6,11 @@
 
 <h3>Tasks</h3>
 
-<p style="font-size: 14px; font-weight: 600;"><input type="checkbox"> - Начальная страница</p>
+<div class="custom-input">
+    <input type="checkbox">
+    <label> - Начальная страница</label>
+</div>
+
 <p style="font-size: 14px; font-weight: 600;"><input type="checkbox"> - Страница выбора класса</p>
 <p style="font-size: 14px; font-weight: 600;"><input type="checkbox"> - Страница выбора задания</p>
 <p style="font-size: 14px; font-weight: 600;"><input type="checkbox"> - Страница выполнения задания</p>
