@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link href="{{ url_for('static', path='/css/account_pg.css') }}" rel="stylesheet">
+    <title>Account</title>
+</head>
+<body>
+<div class="container">
+    <div class="card">
+        <h2>Статистика Имя пользователя</h2>
+        <div class="line-procent"></div>
+        <div class="all-correct">
+            <p>Всего правмльных заданий: ЧИСЛО</p>
+        </div>
+        <div class="stars">
+            <div class="gold">
+                <p>Количество золотых звезд: ЧИСЛО</p>
+            </div>
+            <div class="silver">
+                <p>Количетсво серебрянных звезд: ЧИСЛО</p>
+            </div>
+            <div class="bronze">
+                <p>Количество бронзовых звезд: ЧИСЛО</p>
+            </div>
+        </div>
+        <div class="table">
+            <table>
+                <tr>
+                    <th scope="col">Тип задания</th>
+                    <th scope="col">Количество</th>
+                    <th scope="col">Процент правильных</th>
+                </tr>
+                <tr>
+                    <td>Арифметические операции</td>
+                    <td>10</td>
+                    <td>50%</td>
+                </tr>
+                <tr>
+                    <td>Уравнения</td>
+                    <td>10</td>
+                    <td>50%</td>
+                </tr>
+                <tr>
+                    <td>Геометрия</td>
+                    <td>10</td>
+                    <td>50%</td>
+                </tr>
+                <tr>
+                    <td>Текстовые задачи</td>
+                    <td>10</td>
+                    <td>50%</td>
+                </tr>
+                <tr>
+                    <td>Задания повышенной сложности</td>
+                    <td>10</td>
+                    <td>50%</td>
+                </tr>
+                <tr>
+                    <td>Смешанные задачи</td>
+                    <td>10</td>
+                    <td>50%</td>
+                </tr>
+            </table>
+        </div>
+        <a href="/home_user/{{ email }}/">Назад</a>
+    </div>
+</div>
+</body>
+</html>

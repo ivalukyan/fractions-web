@@ -2,13 +2,20 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="{{ url_for('static', path='/css/home_user.css') }}">
+    <link href="/css/home_user.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/home_user_pg.css') }}">
     <title>Home</title>
 </head>
 <body>
 <nav>
     <div class="logo">
-        <a href="/">Дроби</a>
+        <a href="/home_user/{{ email }}/">Дроби</a>
+    </div>
+    <div class="but">
+        <a class="but" href="/">Выйти</a>
+    </div>
+    <div class="email">
+        <a href="/home_user/account/{{ email }}/">{{ email }}</a>
     </div>
 </nav>
 <div class="container">

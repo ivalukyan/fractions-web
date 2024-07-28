@@ -3,43 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/css/auth.css" rel="stylesheet">
-    <link href="{{ url_for('static', path='/css/auth.css') }}" rel="stylesheet">
+    <link href="/css/auth_page.css" rel="stylesheet">
+    <link href="{{ url_for('static', path='/css/auth_page.css') }}" rel="stylesheet">
     <title>Auth</title>
 </head>
 <body>
-    <div class="container" id="container">
-        <div class="form-container sign-up">
-            <form method="post">
-                <h1>Войдите</h1>
-                <input type="email" name="email_teacher" placeholder="Email">
-                <input type="password" name="password_teacher" placeholder="Password">
-                <button type="submit">Вход</button>
-            </form>
-        </div>
-        <div class="form-container sign-in">
-            <form method="post">
-                <h1>Войдите</h1>
-                <input type="email" name="email_user" placeholder="Email">
-                <input type="password" name="password_user" placeholder="Password">
-                <button type="submit">Вход</button>
-            </form>
-        </div>
-        <div class="toggle-container">
-            <div class="toggle">
-                <div class="toggle-panel toggle-left">
-                    <h1>Привет, Друг!</h1>
-                    <p>Если ты ученик, то воспользуйся кнопкой ниже</p>
-                        <button class="hidden" id="login">Я Ученик</button>
-                </div>
-                <div class="toggle-panel toggle-right">
-                    <h1>Добро Пожаловать!</h1>
-                    <p>Если ты учитель, то воспользуйся кнопкой ниже</p>
-                        <button class="hidden" id="register">Я Учитель</button>
-                </div>
+<div class="container" id="container">
+    <div class="form-container sign-up">
+        <form method="post">
+            <h1>Войдите</h1>
+            <input type="email" name="email_teacher" placeholder="Email">
+            <input type="password" name="password_teacher" placeholder="Password">
+            <button type="submit">Вход</button>
+            <span>
+                <p>{{ msg }}</p>
+            </span>
+
+        </form>
+    </div>
+    <div class="form-container sign-in">
+        <form method="post">
+            <h1>Войдите</h1>
+            <input type="email" name="email_student" placeholder="Email">
+            <input type="password" name="password_student" placeholder="Password">
+            <button type="submit">Вход</button>
+            <p>{{ msg }}</p>
+        </form>
+    </div>
+    <div class="toggle-container">
+        <div class="toggle">
+            <div class="toggle-panel toggle-left">
+                <h1>Привет, Друг!</h1>
+                <p>Если ты ученик, то воспользуйся кнопкой ниже</p>
+                <button class="hidden" id="login">Я Ученик</button>
+            </div>
+            <div class="toggle-panel toggle-right">
+                <h1>Добро Пожаловать!</h1>
+                <p>Если ты учитель, то воспользуйся кнопкой ниже</p>
+                <button class="hidden" id="register">Я Учитель</button>
             </div>
         </div>
     </div>
-    <script src="{{ url_for('static', path='/scripts/auth.js') }}"></script>
+</div>
+<script src="{{ url_for('static', path='/scripts/auth.js') }}"></script>
 </body>
 </html>

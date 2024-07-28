@@ -2,25 +2,73 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="{{ url_for('static', path='/css/home.css') }}">
+    <link href="/css/home_pg.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/home_pg.css') }}">
     <title>Home</title>
 </head>
 <body>
 <nav>
     <div class="logo">
-        <a href="/">Дроби</a>
+        <a href="/home_teacher/">Админ панель</a>
     </div>
     <div class="but">
         <a class="but" href="/addquestions">Добавление вопросов</a>
     </div>
-</nav>
-<div class="container">
-    <div class="card">
-        <div class="content">
-            <h2>Математика для начальных классов</h2>
-            <a href="/count_selection">Начать</a>
-        </div>
+    <div class="but-one">
+        <a class="but" href="/">Выйти</a>
     </div>
+    <div class="user-email">
+        <p>example@gmail.com</p>
+    </div>
+</nav>
+
+
+<div class="statistics">
+    <div class="stats-card">
+        <h2>Средняя успеваемость</h2>
+        <div class="line-stats"></div>
+    </div>
+    <div class="stats-card">
+        <h2>Выполнение заданий</h2>
+        <div class="line-stats"></div>
+    </div>
+    <div class="stats-card">
+        <h2>Ср. кол. золотых звезд</h2>
+        <div class="line-stats"></div>
+    </div>
+</div>
+
+<div class="crud-student">
+    <div class="add">
+        <a href="/home_teacher/addstudent/">Добавить ученика</a>
+    </div>
+    <div class="del">
+            <a href="/home_teacher/deletestudent/">Удалить ученика</a>
+    </div>
+</div>
+
+<div class="title-table">
+    <h1>Ученики</h1>
+</div>
+
+<div class="students">
+
+    <table>
+        <tr>
+            <th scope="col">Имя</th>
+            <th scope="col">Email</th>
+            <th scope="col">Класс</th>
+            <th scope="col">Статистика</th>
+        </tr>
+        {% for el in data %}
+        <tr>
+            <td>{{ el.name }}</td>
+            <td>{{ el.email }}</td>
+            <td>{{ el.class_student }}</td>
+            <td>{{ el.all_time_tasks }}%</td>
+        </tr>
+        {% endfor %}
+    </table>
 </div>
 </body>
 </html>

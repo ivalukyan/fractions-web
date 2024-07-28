@@ -79,3 +79,38 @@ nav .logo a{
 .container .card .content a:hover{
     background-color: #1E90FF;
 }
+
+nav .but a{
+    background-color: #9a53a4;
+    color: #FFFFFF;
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 16px;
+    box-shadow: 0 5px 10px rgba(0,0,0, 0.15);
+    transition: all 0.3s ease;
+}
+
+nav .but a:hover{
+    background-color: #5a68a4;
+}
+
+.email{
+    display: flex;
+    width: 100%;
+    justify-content: right;
+}
+
+.email a{
+    padding: 5px;
+    text-decoration: none;
+    color: #000;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.email a:hover{
+    color: #ADD8E6;
+}
