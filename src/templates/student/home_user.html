@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link href="/css/home_user.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', path='/css/home_user_pg.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/student/home_user_pg.css') }}">
     <title>Home</title>
 </head>
 <body>
@@ -12,7 +12,7 @@
         <a href="/home_user/{{ email }}/">Дроби</a>
     </div>
     <div class="but">
-        <a class="but" href="/src/static">Выйти</a>
+        <a class="but" href="/">Выйти</a>
     </div>
     <div class="email">
         <a href="/home_user/account/{{ email }}/">{{ email }}</a>
@@ -22,7 +22,7 @@
     <div class="card">
         <div class="content">
             <h2>Математика для начальных классов</h2>
-            <a href="/count_selection">Начать</a>
+            <a href="/count_selection/{{ email }}">Начать</a>
         </div>
     </div>
 </div>

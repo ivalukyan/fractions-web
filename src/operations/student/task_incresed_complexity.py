@@ -11,8 +11,8 @@ from src.operations.student.__init__ import templates
 router = APIRouter(tags=['task incresed complexity'])
 
 
-@router.get('/task_selection/{class_id}/task_increased_complexity/{task_id}/{correct}')
-async def arithmetic_operations(request: Request, class_id: str, task_id: int, correct: int):
+@router.get('/task_selection/{email}/{class_id}/task_increased_complexity/{task_id}/{correct}')
+async def arithmetic_operations(request: Request, class_id: str, task_id: int, correct: int, email: str):
     try:
         db_session = Session()
         db_task = db_session.query(Task).filter(Task.class_student == class_id,
@@ -26,25 +26,27 @@ async def arithmetic_operations(request: Request, class_id: str, task_id: int, c
 
         if task is None:
             raise HTTPException(status_code=404, detail='Task not found')
-        return templates.TemplateResponse("completions/arithmetic.html", {'request': request,
-                                                                          'class_id': class_id,
-                                                                          'arithmetic_operations': 'Задачи повышенной '
-                                                                                                   'сложности',
-                                                                          'task': task.question,
-                                                                          'task_id': task_id,
-                                                                          'correct': correct})
+        return templates.TemplateResponse("student/completions/arithmetic.html", {'request': request,
+                                                                                  'class_id': class_id,
+                                                                                  'arithmetic_operations': 'Задачи повышенной '
+                                                                                                           'сложности',
+                                                                                  'task': task.question,
+                                                                                  'task_id': task_id,
+                                                                                  'correct': correct,
+                                                                                  'email': email})
     else:
 
         db_session.query(Questions).filter(Questions.end_time == None).update({'end_time': datetime.now()})
         db_session.commit()
 
-        redirect_url = request.url_for('statistic', task_type='task_increased_complexity', count_correct=correct)
+        redirect_url = request.url_for('statistic', task_type='task_increased_complexity', count_correct=correct,
+                                       email=email)
         return RedirectResponse(redirect_url)
 
 
-@router.post('/task_selection/{class_id}/task_increased_complexity/{task_id}/{correct}')
+@router.post('/task_selection/{email}/{class_id}/task_increased_complexity/{task_id}/{correct}')
 async def arithmetic_operations(request: Request, class_id: str, answer: Annotated[str, Form()], task_id: int,
-                                correct: int):
+                                correct: int, email: str):
     try:
         db_session = Session()
         db_task = db_session.query(Task).filter(Task.class_student == class_id,
@@ -65,7 +67,7 @@ async def arithmetic_operations(request: Request, class_id: str, answer: Annotat
                 explanation = ''
                 task_id += 1
                 correct += 1
-                return templates.TemplateResponse("completions/answer_page.html",
+                return templates.TemplateResponse("student/completions/answer_page.html",
                                                   {'request': request,
                                                    'class_id': class_id,
                                                    'answer': ans,
@@ -73,12 +75,13 @@ async def arithmetic_operations(request: Request, class_id: str, answer: Annotat
                                                    'type_task': 'task_increased_complexity',
                                                    'explanation': explanation,
                                                    'task_id': task_id,
-                                                   'correct': correct})
+                                                   'correct': correct,
+                                                   'email': email})
             else:
                 ans = 'Неправильно'
                 explanation = task.explanation
                 task_id += 1
-                return templates.TemplateResponse("completions/answer_page.html",
+                return templates.TemplateResponse("student/completions/answer_page.html",
                                                   {'request': request,
                                                    'class_id': class_id,
                                                    'answer': ans,
@@ -86,7 +89,8 @@ async def arithmetic_operations(request: Request, class_id: str, answer: Annotat
                                                    'type_task': 'task_increased_complexity',
                                                    'exp': explanation,
                                                    'task_id': task_id,
-                                                   'correct': correct})
+                                                   'correct': correct,
+                                                   'email': email})
     else:
         redirect_url = request.url_for('statistic', task_type='task_increased_complexity', count_correct=correct)
         return RedirectResponse(redirect_url)

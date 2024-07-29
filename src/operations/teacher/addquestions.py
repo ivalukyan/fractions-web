@@ -11,13 +11,13 @@ from src.operations.teacher.__init__ import templates
 router = APIRouter(prefix='/addquestions', tags=['addquestions'])
 
 
-@router.get("/")
-async def addquestions(request: Request):
-    return templates.TemplateResponse("addquestions.html", {'request': request})
+@router.get("/{email}")
+async def addquestions(request: Request, email: str):
+    return templates.TemplateResponse("teacher/addquestions.html", {'request': request, 'email': email})
 
 
-@router.post("/")
-async def addquestions(request: Request, class_student: Annotated[str, Form()], type_task: Annotated[str, Form()],
+@router.post("/{email}")
+async def addquestions(request: Request, email: str, class_student: Annotated[str, Form()], type_task: Annotated[str, Form()],
                        question: Annotated[str, Form()], url: Annotated[str, Form()] | None = None,
                        var_ans: Annotated[str, Form()] | None = None, answer: Annotated[str, Form()] = None,
                        explanation: Annotated[str, Form()] = None):
@@ -27,4 +27,4 @@ async def addquestions(request: Request, class_student: Annotated[str, Form()], 
     db_session.add(new_task)
     db_session.commit()
 
-    return templates.TemplateResponse("home.html", {'request': request})
+    return templates.TemplateResponse("teacher/home.html", {'request': request, 'email_teacher': email})

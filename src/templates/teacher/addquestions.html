@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="{{ url_for('static', path='/css/addquestions.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/teacher/addquestions.css') }}">
     <title>Add question</title>
 </head>
 <body>
@@ -60,7 +60,7 @@
         </div>
         <button class="add" type="submit">Добавить</button>
     </form>
-    <a href="/home_teacher/">Назад</a>
+    <a href="/home_teacher/{{ email }}">Назад</a>
 </div>
 </body>
 </html>

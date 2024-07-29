@@ -35,12 +35,13 @@ class Student(Base):
     email = Column(String, nullable=False)
     password = Column(String, nullable=False)
     class_student = Column(String, nullable=True)
-    all_times_tasks = Column(Integer, nullable=True)
-    all_is_correct = Column(Integer, nullable=True)
-    all_is_uncorrect = Column(Integer, nullable=True)
-    count_bronze = Column(Integer, nullable=True)
-    count_silver = Column(Integer, nullable=True)
-    count_gold = Column(Integer, nullable=True)
+    percent = Column(Integer, nullable=True, default=0)
+    all_times_tasks = Column(Integer, nullable=True, default=0)
+    all_is_correct = Column(Integer, nullable=True, default=0)
+    all_is_uncorrect = Column(Integer, nullable=True, default=0)
+    count_bronze = Column(Integer, nullable=True, default=0)
+    count_silver = Column(Integer, nullable=True, default=0)
+    count_gold = Column(Integer, nullable=True, default=0)
     email_teacher = Column(String, nullable=False)
 
 
@@ -49,8 +50,8 @@ class Test(Base):
     id = Column(UUID, primary_key=True, default=uuid4)
     email = Column(String, nullable=False)
     type_task = Column(String, nullable=True)
-    count_task = Column(Integer, nullable=True)
-    is_correct = Column(Integer, nullable=True)
+    count_task = Column(Integer, nullable=True, default=0)
+    is_correct = Column(Integer, nullable=True, default=0)
 
 
 Base.metadata.create_all(engine)

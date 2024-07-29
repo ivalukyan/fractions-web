@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <link href="{{ url_for('static', path='/css/addstudent.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', path='/css/teacher/addstudent.css') }}" rel="stylesheet">
     <title>Add student</title>
 </head>
 <body>
@@ -32,11 +32,11 @@
                     <option value="four">4-й класс</option>
                 </select>
             </div>
-            <input type="hidden" value="example@gmail.com" name="email_teacher">
+            <input type="hidden" value="{{ email_teach }}" name="email_teacher">
             <button type="submit" class="but-add">Добавить</button>
         </form>
     </div>
-    <a href="/home_teacher/">Назад</a>
+    <a href="/home_teacher/{{ email_teach }}">Назад</a>
 </div>
 </body>
 </html>

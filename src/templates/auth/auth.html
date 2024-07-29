@@ -3,26 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/css/teacher/auth_page.css" rel="stylesheet">
-    <link href="{{ url_for('static', path='/css/auth_page.css') }}" rel="stylesheet">
+    <link href="/css/auth/auth_page.css" rel="stylesheet">
+    <link href="{{ url_for('static', path='/css/auth/auth_page.css') }}" rel="stylesheet">
     <title>Auth</title>
 </head>
 <body>
 <div class="container" id="container">
     <div class="form-container sign-up">
-        <form method="post">
+        <form method="post" action="/auth_teacher">
             <h1>Войдите</h1>
             <input type="email" name="email_teacher" placeholder="Email">
             <input type="password" name="password_teacher" placeholder="Password">
             <button type="submit">Вход</button>
-            <span>
-                <p>{{ msg }}</p>
-            </span>
-
+            <p>{{ msg }}</p>
         </form>
     </div>
     <div class="form-container sign-in">
-        <form method="post">
+        <form method="post" action="/auth_student">
             <h1>Войдите</h1>
             <input type="email" name="email_student" placeholder="Email">
             <input type="password" name="password_student" placeholder="Password">

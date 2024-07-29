@@ -3,14 +3,14 @@ from math import floor
 from fastapi import Request, HTTPException, APIRouter
 
 from database.__init__ import Session
-from database.db import Task, Questions
+from database.db import Task, Questions, Student
 from src.operations.student.__init__ import templates
 
 router = APIRouter(prefix='/statistic', tags=['statistic'])
 
 
-@router.get('/{task_type}/count/{count_correct}')
-async def statistic(request: Request, task_type: str, count_correct: int):
+@router.get('/{email}/{task_type}/count/{count_correct}')
+async def statistic(request: Request, task_type: str, count_correct: int, email: str):
     try:
         db_session = Session()
         if task_type == 'mixed_tasks':
@@ -41,206 +41,385 @@ async def statistic(request: Request, task_type: str, count_correct: int):
         if 90 < percent <= 100:
             db_session.delete(db_question)
             db_session.commit()
-            return templates.TemplateResponse("statistic_page.html", {'request': request,
-                                                                      'task_type': 'Арифметические задания',
-                                                                      'total_count': total_count,
-                                                                      'percent': percent,
-                                                                      'correct_count': count_correct,
-                                                                      'average_time': average_time,
-                                                                      'img_url': 'https://clck.ru/3Bznw6',
-                                                                      'color': '#32CD32'})
+
+            student = db_session.query(Student).filter(Student.email == email).first()
+            if student is not None:
+
+                gold_stars = student.count_gold + 1
+
+                db_session.query(Student).filter(Student.email == email).update({'count_gold': gold_stars})
+                db_session.commit()
+
+            return templates.TemplateResponse("student/statistic_page.html", {'request': request,
+                                                                              'task_type': 'Арифметические задания',
+                                                                              'total_count': total_count,
+                                                                              'percent': percent,
+                                                                              'correct_count': count_correct,
+                                                                              'average_time': average_time,
+                                                                              'img_url': 'https://clck.ru/3Bznw6',
+                                                                              'color': '#32CD32',
+                                                                              'email': email})
         elif 60 < percent <= 89:
             db_session.delete(db_question)
             db_session.commit()
-            return templates.TemplateResponse("statistic_page.html", {'request': request,
-                                                                      'task_type': 'Арифметические задания',
-                                                                      'total_count': total_count,
-                                                                      'percent': percent,
-                                                                      'correct_count': count_correct,
-                                                                      'average_time': average_time,
-                                                                      'img_url': 'https://clck.ru/3Bznx9',
-                                                                      'color': '#652f27'})
+
+            student = db_session.query(Student).filter(Student.email == email).first()
+            if student is not None:
+
+                silver_stars = student.count_silver + 1
+
+                db_session.query(Student).filter(Student.email == email).update({'count_silver': silver_stars})
+                db_session.commit()
+
+            return templates.TemplateResponse("student/statistic_page.html", {'request': request,
+                                                                              'task_type': 'Арифметические задания',
+                                                                              'total_count': total_count,
+                                                                              'percent': percent,
+                                                                              'correct_count': count_correct,
+                                                                              'average_time': average_time,
+                                                                              'img_url': 'https://clck.ru/3Bznx9',
+                                                                              'color': '#652f27',
+                                                                              'email': email})
         else:
             db_session.delete(db_question)
             db_session.commit()
-            return templates.TemplateResponse("statistic_page.html", {'request': request,
-                                                                      'task_type': 'Арифметические задания',
-                                                                      'total_count': total_count,
-                                                                      'percent': percent,
-                                                                      'correct_count': count_correct,
-                                                                      'average_time': average_time,
-                                                                      'img_url': 'https://clck.ru/3Bznxr',
-                                                                      'color': '#652f27'})
+
+            student = db_session.query(Student).filter(Student.email == email).first()
+            if student is not None:
+
+                bronze_stars = student.count_bronze + 1
+
+                db_session.query(Student).filter(Student.email == email).update({'count_bronze': bronze_stars})
+                db_session.commit()
+
+            return templates.TemplateResponse("student/statistic_page.html", {'request': request,
+                                                                              'task_type': 'Арифметические задания',
+                                                                              'total_count': total_count,
+                                                                              'percent': percent,
+                                                                              'correct_count': count_correct,
+                                                                              'average_time': average_time,
+                                                                              'img_url': 'https://clck.ru/3Bznxr',
+                                                                              'color': '#652f27',
+                                                                              'email': email})
     elif task_type == 'equations':
         if 90 < percent <= 100:
             db_session.delete(db_question)
             db_session.commit()
-            return templates.TemplateResponse("statistic_page.html", {'request': request,
-                                                                      'task_type': 'Уравнения',
-                                                                      'total_count': total_count,
-                                                                      'percent': percent,
-                                                                      'correct_count': count_correct,
-                                                                      'average_time': average_time,
-                                                                      'img_url': 'https://clck.ru/3Bznw6',
-                                                                      'color': '#32CD32'})
+
+            student = db_session.query(Student).filter(Student.email == email).first()
+            if student is not None:
+
+                gold_stars = student.count_gold + 1
+
+                db_session.query(Student).filter(Student.email == email).update({'count_gold': gold_stars})
+                db_session.commit()
+
+            return templates.TemplateResponse("student/statistic_page.html", {'request': request,
+                                                                              'task_type': 'Уравнения',
+                                                                              'total_count': total_count,
+                                                                              'percent': percent,
+                                                                              'correct_count': count_correct,
+                                                                              'average_time': average_time,
+                                                                              'img_url': 'https://clck.ru/3Bznw6',
+                                                                              'color': '#32CD32',
+                                                                              'email': email})
         elif 60 < percent <= 89:
             db_session.delete(db_question)
             db_session.commit()
-            return templates.TemplateResponse("statistic_page.html", {'request': request,
-                                                                      'task_type': 'Уравнения',
-                                                                      'total_count': total_count,
-                                                                      'percent': percent,
-                                                                      'correct_count': count_correct,
-                                                                      'average_time': average_time,
-                                                                      'img_url': 'https://clck.ru/3Bznx9',
-                                                                      'color': '#652f27'})
+
+            student = db_session.query(Student).filter(Student.email == email).first()
+            if student is not None:
+
+                silver_stars = student.count_silver + 1
+
+                db_session.query(Student).filter(Student.email == email).update({'count_silver': silver_stars})
+                db_session.commit()
+
+            return templates.TemplateResponse("student/statistic_page.html", {'request': request,
+                                                                              'task_type': 'Уравнения',
+                                                                              'total_count': total_count,
+                                                                              'percent': percent,
+                                                                              'correct_count': count_correct,
+                                                                              'average_time': average_time,
+                                                                              'img_url': 'https://clck.ru/3Bznx9',
+                                                                              'color': '#652f27',
+                                                                              'email': email})
         else:
             db_session.delete(db_question)
             db_session.commit()
-            return templates.TemplateResponse("statistic_page.html", {'request': request,
-                                                                      'task_type': 'Уравнения',
-                                                                      'total_count': total_count,
-                                                                      'percent': percent,
-                                                                      'correct_count': count_correct,
-                                                                      'average_time': average_time,
-                                                                      'img_url': 'https://clck.ru/3Bznxr',
-                                                                      'color': '#652f27'})
+
+            student = db_session.query(Student).filter(Student.email == email).first()
+            if student is not None:
+
+                bronze_stars = student.count_bronze + 1
+
+                db_session.query(Student).filter(Student.email == email).update({'count_bronze': bronze_stars})
+                db_session.commit()
+
+            return templates.TemplateResponse("student/statistic_page.html", {'request': request,
+                                                                              'task_type': 'Уравнения',
+                                                                              'total_count': total_count,
+                                                                              'percent': percent,
+                                                                              'correct_count': count_correct,
+                                                                              'average_time': average_time,
+                                                                              'img_url': 'https://clck.ru/3Bznxr',
+                                                                              'color': '#652f27',
+                                                                              'email': email})
     elif task_type == 'text_tasks':
         if 90 < percent <= 100:
             db_session.delete(db_question)
             db_session.commit()
-            return templates.TemplateResponse("statistic_page.html", {'request': request,
-                                                                      'task_type': 'Текстовые задачи',
-                                                                      'total_count': total_count,
-                                                                      'percent': percent,
-                                                                      'correct_count': count_correct,
-                                                                      'average_time': average_time,
-                                                                      'img_url': 'https://clck.ru/3Bznw6',
-                                                                      'color': '#32CD32'})
+
+            student = db_session.query(Student).filter(Student.email == email).first()
+            if student is not None:
+
+                gold_stars = student.count_gold + 1
+
+                db_session.query(Student).filter(Student.email == email).update({'count_gold': gold_stars})
+                db_session.commit()
+
+            return templates.TemplateResponse("student/statistic_page.html", {'request': request,
+                                                                              'task_type': 'Текстовые задачи',
+                                                                              'total_count': total_count,
+                                                                              'percent': percent,
+                                                                              'correct_count': count_correct,
+                                                                              'average_time': average_time,
+                                                                              'img_url': 'https://clck.ru/3Bznw6',
+                                                                              'color': '#32CD32',
+                                                                              'email': email})
         elif 60 < percent <= 89:
             db_session.delete(db_question)
             db_session.commit()
-            return templates.TemplateResponse("statistic_page.html", {'request': request,
-                                                                      'task_type': 'Текстовые задачи',
-                                                                      'total_count': total_count,
-                                                                      'percent': percent,
-                                                                      'correct_count': count_correct,
-                                                                      'average_time': average_time,
-                                                                      'img_url': 'https://clck.ru/3Bznx9',
-                                                                      'color': '#652f27'})
+
+            student = db_session.query(Student).filter(Student.email == email).first()
+            if student is not None:
+
+                silver_stars = student.count_silver + 1
+
+                db_session.query(Student).filter(Student.email == email).update({'count_silver': silver_stars})
+                db_session.commit()
+
+            return templates.TemplateResponse("student/statistic_page.html", {'request': request,
+                                                                              'task_type': 'Текстовые задачи',
+                                                                              'total_count': total_count,
+                                                                              'percent': percent,
+                                                                              'correct_count': count_correct,
+                                                                              'average_time': average_time,
+                                                                              'img_url': 'https://clck.ru/3Bznx9',
+                                                                              'color': '#652f27',
+                                                                              'email': email})
         else:
             db_session.delete(db_question)
             db_session.commit()
-            return templates.TemplateResponse("statistic_page.html", {'request': request,
-                                                                      'task_type': 'Текстовые задачи',
-                                                                      'total_count': total_count,
-                                                                      'percent': percent,
-                                                                      'correct_count': count_correct,
-                                                                      'average_time': average_time,
-                                                                      'img_url': 'https://clck.ru/3Bznxr',
-                                                                      'color': '#652f27'})
+
+            student = db_session.query(Student).filter(Student.email == email).first()
+            if student is not None:
+
+                bronze_stars = student.count_bronze + 1
+
+                db_session.query(Student).filter(Student.email == email).update({'count_bronze': bronze_stars})
+                db_session.commit()
+
+            return templates.TemplateResponse("student/statistic_page.html", {'request': request,
+                                                                              'task_type': 'Текстовые задачи',
+                                                                              'total_count': total_count,
+                                                                              'percent': percent,
+                                                                              'correct_count': count_correct,
+                                                                              'average_time': average_time,
+                                                                              'img_url': 'https://clck.ru/3Bznxr',
+                                                                              'color': '#652f27',
+                                                                              'email': email})
     elif task_type == 'task_increased_complexity':
         if 90 < percent <= 100:
             db_session.delete(db_question)
             db_session.commit()
-            return templates.TemplateResponse("statistic_page.html", {'request': request,
-                                                                      'task_type': 'Задания повышенной сложности',
-                                                                      'total_count': total_count,
-                                                                      'percent': percent,
-                                                                      'correct_count': count_correct,
-                                                                      'average_time': average_time,
-                                                                      'img_url': 'https://clck.ru/3Bznw6',
-                                                                      'color': '#32CD32'})
+
+            student = db_session.query(Student).filter(Student.email == email).first()
+            if student is not None:
+
+                gold_stars = student.count_gold + 1
+
+                db_session.query(Student).filter(Student.email == email).update({'count_gold': gold_stars})
+                db_session.commit()
+
+            return templates.TemplateResponse("student/statistic_page.html", {'request': request,
+                                                                              'task_type': 'Задания повышенной сложности',
+                                                                              'total_count': total_count,
+                                                                              'percent': percent,
+                                                                              'correct_count': count_correct,
+                                                                              'average_time': average_time,
+                                                                              'img_url': 'https://clck.ru/3Bznw6',
+                                                                              'color': '#32CD32',
+                                                                              'email': email})
         elif 60 < percent <= 89:
             db_session.delete(db_question)
             db_session.commit()
-            return templates.TemplateResponse("statistic_page.html", {'request': request,
-                                                                      'task_type': 'Задания повышенной сложности',
-                                                                      'total_count': total_count,
-                                                                      'percent': percent,
-                                                                      'correct_count': count_correct,
-                                                                      'average_time': average_time,
-                                                                      'img_url': 'https://clck.ru/3Bznx9',
-                                                                      'color': '#652f27'})
+
+            student = db_session.query(Student).filter(Student.email == email).first()
+            if student is not None:
+
+                silver_stars = student.count_silver + 1
+
+                db_session.query(Student).filter(Student.email == email).update({'count_silver': silver_stars})
+                db_session.commit()
+
+            return templates.TemplateResponse("student/statistic_page.html", {'request': request,
+                                                                              'task_type': 'Задания повышенной сложности',
+                                                                              'total_count': total_count,
+                                                                              'percent': percent,
+                                                                              'correct_count': count_correct,
+                                                                              'average_time': average_time,
+                                                                              'img_url': 'https://clck.ru/3Bznx9',
+                                                                              'color': '#652f27',
+                                                                              'email': email})
         else:
             db_session.delete(db_question)
             db_session.commit()
-            return templates.TemplateResponse("statistic_page.html", {'request': request,
-                                                                      'task_type': 'Задания повышенной сложности',
-                                                                      'total_count': total_count,
-                                                                      'percent': percent,
-                                                                      'correct_count': count_correct,
-                                                                      'average_time': average_time,
-                                                                      'img_url': 'https://clck.ru/3Bznxr',
-                                                                      'color': '#652f27'})
+
+            student = db_session.query(Student).filter(Student.email == email).first()
+            if student is not None:
+
+                bronze_stars = student.count_bronze + 1
+
+                db_session.query(Student).filter(Student.email == email).update({'count_bronze': bronze_stars})
+                db_session.commit()
+
+            return templates.TemplateResponse("student/statistic_page.html", {'request': request,
+                                                                              'task_type': 'Задания повышенной сложности',
+                                                                              'total_count': total_count,
+                                                                              'percent': percent,
+                                                                              'correct_count': count_correct,
+                                                                              'average_time': average_time,
+                                                                              'img_url': 'https://clck.ru/3Bznxr',
+                                                                              'color': '#652f27',
+                                                                              'email': email})
 
     elif task_type == 'mixed_tasks':
         if 90 < percent <= 100:
             db_session.delete(db_question)
             db_session.commit()
-            return templates.TemplateResponse("statistic_page.html", {'request': request,
-                                                                      'task_type': 'Смешанные задания',
-                                                                      'total_count': total_count,
-                                                                      'percent': percent,
-                                                                      'correct_count': count_correct,
-                                                                      'average_time': average_time,
-                                                                      'img_url': 'https://clck.ru/3Bznw6',
-                                                                      'color': '#32CD32'})
+
+            student = db_session.query(Student).filter(Student.email == email).first()
+            if student is not None:
+
+                gold_stars = student.count_gold + 1
+
+                db_session.query(Student).filter(Student.email == email).update({'count_gold': gold_stars})
+                db_session.commit()
+
+            return templates.TemplateResponse("student/statistic_page.html", {'request': request,
+                                                                              'task_type': 'Смешанные задания',
+                                                                              'total_count': total_count,
+                                                                              'percent': percent,
+                                                                              'correct_count': count_correct,
+                                                                              'average_time': average_time,
+                                                                              'img_url': 'https://clck.ru/3Bznw6',
+                                                                              'color': '#32CD32',
+                                                                              'email': email})
         elif 60 < percent <= 89:
             db_session.delete(db_question)
             db_session.commit()
-            return templates.TemplateResponse("statistic_page.html", {'request': request,
-                                                                      'task_type': 'Смешанные задания',
-                                                                      'total_count': total_count,
-                                                                      'percent': percent,
-                                                                      'correct_count': count_correct,
-                                                                      'average_time': average_time,
-                                                                      'img_url': 'https://clck.ru/3Bznx9',
-                                                                      'color': '#652f27'})
+
+            student = db_session.query(Student).filter(Student.email == email).first()
+            if student is not None:
+
+                silver_stars = student.count_silver + 1
+
+                db_session.query(Student).filter(Student.email == email).update({'count_silver': silver_stars})
+                db_session.commit()
+
+            return templates.TemplateResponse("student/statistic_page.html", {'request': request,
+                                                                              'task_type': 'Смешанные задания',
+                                                                              'total_count': total_count,
+                                                                              'percent': percent,
+                                                                              'correct_count': count_correct,
+                                                                              'average_time': average_time,
+                                                                              'img_url': 'https://clck.ru/3Bznx9',
+                                                                              'color': '#652f27',
+                                                                              'email': email})
         else:
             db_session.delete(db_question)
             db_session.commit()
-            return templates.TemplateResponse("statistic_page.html", {'request': request,
-                                                                      'task_type': 'Смешанные задания',
-                                                                      'total_count': total_count,
-                                                                      'percent': percent,
-                                                                      'correct_count': count_correct,
-                                                                      'average_time': average_time,
-                                                                      'img_url': 'https://clck.ru/3Bznxr',
-                                                                      'color': '#652f27'})
-        
+
+            student = db_session.query(Student).filter(Student.email == email).first()
+            if student is not None:
+
+                bronze_stars = student.count_bronze + 1
+
+                db_session.query(Student).filter(Student.email == email).update({'count_bronze': bronze_stars})
+                db_session.commit()
+
+            return templates.TemplateResponse("student/statistic_page.html", {'request': request,
+                                                                              'task_type': 'Смешанные задания',
+                                                                              'total_count': total_count,
+                                                                              'percent': percent,
+                                                                              'correct_count': count_correct,
+                                                                              'average_time': average_time,
+                                                                              'img_url': 'https://clck.ru/3Bznxr',
+                                                                              'color': '#652f27',
+                                                                              'email': email})
+
     elif task_type == 'geometry':
         if 90 < percent <= 100:
             db_session.delete(db_question)
             db_session.commit()
-            return templates.TemplateResponse("statistic_page.html", {'request': request,
-                                                                      'task_type': 'Геометрия',
-                                                                      'total_count': total_count,
-                                                                      'percent': percent,
-                                                                      'correct_count': count_correct,
-                                                                      'average_time': average_time,
-                                                                      'img_url': 'https://clck.ru/3Bznw6',
-                                                                      'color': '#32CD32'})
+
+            student = db_session.query(Student).filter(Student.email == email).first()
+            if student is not None:
+
+                gold_stars = student.count_gold + 1
+
+                db_session.query(Student).filter(Student.email == email).update({'count_gold': gold_stars})
+                db_session.commit()
+
+            return templates.TemplateResponse("student/statistic_page.html", {'request': request,
+                                                                              'task_type': 'Геометрия',
+                                                                              'total_count': total_count,
+                                                                              'percent': percent,
+                                                                              'correct_count': count_correct,
+                                                                              'average_time': average_time,
+                                                                              'img_url': 'https://clck.ru/3Bznw6',
+                                                                              'color': '#32CD32',
+                                                                              'email': email})
         elif 60 < percent <= 89:
             db_session.delete(db_question)
             db_session.commit()
-            return templates.TemplateResponse("statistic_page.html", {'request': request,
-                                                                      'task_type': 'Геометрия',
-                                                                      'total_count': total_count,
-                                                                      'percent': percent,
-                                                                      'correct_count': count_correct,
-                                                                      'average_time': average_time,
-                                                                      'img_url': 'https://clck.ru/3Bznx9',
-                                                                      'color': '#652f27'})
+
+            student = db_session.query(Student).filter(Student.email == email).first()
+            if student is not None:
+
+                silver_stars = student.count_silver + 1
+
+                db_session.query(Student).filter(Student.email == email).update({'count_silver': silver_stars})
+                db_session.commit()
+
+            return templates.TemplateResponse("student/statistic_page.html", {'request': request,
+                                                                              'task_type': 'Геометрия',
+                                                                              'total_count': total_count,
+                                                                              'percent': percent,
+                                                                              'correct_count': count_correct,
+                                                                              'average_time': average_time,
+                                                                              'img_url': 'https://clck.ru/3Bznx9',
+                                                                              'color': '#652f27',
+                                                                              'email': email})
         else:
             db_session.delete(db_question)
             db_session.commit()
-            return templates.TemplateResponse("statistic_page.html", {'request': request,
-                                                                      'task_type': 'Геометрия',
-                                                                      'total_count': total_count,
-                                                                      'percent': percent,
-                                                                      'correct_count': count_correct,
-                                                                      'average_time': average_time,
-                                                                      'img_url': 'https://clck.ru/3Bznxr',
-                                                                      'color': '#652f27'})
 
+            student = db_session.query(Student).filter(Student.email == email).first()
+            if student is not None:
+
+                bronze_stars = student.count_bronze + 1
+
+                db_session.query(Student).filter(Student.email == email).update({'count_bronze': bronze_stars})
+                db_session.commit()
+
+            return templates.TemplateResponse("student/statistic_page.html", {'request': request,
+                                                                              'task_type': 'Геометрия',
+                                                                              'total_count': total_count,
+                                                                              'percent': percent,
+                                                                              'correct_count': count_correct,
+                                                                              'average_time': average_time,
+                                                                              'img_url': 'https://clck.ru/3Bznxr',
+                                                                              'color': '#652f27',
+                                                                              'email': email})

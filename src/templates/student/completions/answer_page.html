@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <link href="{{ url_for('static', path='/css/answer.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', path='/css/student/answer.css') }}" rel="stylesheet">
     <title>Answer</title>
 </head>
 <body>
@@ -21,7 +21,7 @@
             <p> {{ exp }}</p>
         </div>
         <div class="but">
-            <a href="/task_selection/{{ class_id }}/{{ type_task }}/{{ task_id }}/{{ correct }}/{{ count_task }}">Далee</a>
+            <a href="/task_selection/{{ email }}/{{ class_id }}/{{ type_task }}/{{ task_id }}/{{ correct }}/{{ count_task }}">Далee</a>
         </div>
     </div>
 </div>

@@ -3,22 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <link href="/css/teacher/home_pg.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', path='/css/home_pg.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/teacher/home_pg.css') }}">
     <title>Home</title>
 </head>
 <body>
 <nav>
     <div class="logo">
-        <a href="/home_teacher/">Админ панель</a>
+        <a href="/home_teacher/{{ email_teacher }}">Админ панель</a>
     </div>
     <div class="but">
-        <a class="but" href="/addquestions">Добавление вопросов</a>
+        <a class="but" href="/addquestions/{{ email_teacher }}">Добавление вопросов</a>
     </div>
     <div class="but-one">
-        <a class="but" href="/src/static">Выйти</a>
+        <a class="but" href="/">Выйти</a>
     </div>
     <div class="user-email">
-        <p>example@gmail.com</p>
+        <p>{{ email_teacher }}</p>
     </div>
 </nav>
 
@@ -40,10 +40,10 @@
 
 <div class="crud-student">
     <div class="add">
-        <a href="/home_teacher/addstudent/">Добавить ученика</a>
+        <a href="/home_teacher/{{ email_teacher }}/addstudent/">Добавить ученика</a>
     </div>
     <div class="del">
-            <a href="/home_teacher/deletestudent/">Удалить ученика</a>
+            <a href="/home_teacher/{{ email_teacher }}/deletestudent/">Удалить ученика</a>
     </div>
 </div>
 
@@ -65,7 +65,7 @@
             <td>{{ el.name }}</td>
             <td>{{ el.email }}</td>
             <td>{{ el.class_student }}</td>
-            <td>{{ el.all_time_tasks }}%</td>
+            <td>{{ el.percent }}%</td>
         </tr>
         {% endfor %}
     </table>

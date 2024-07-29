@@ -11,8 +11,8 @@ templates = Jinja2Templates(directory="templates")
 router = APIRouter(prefix='/task_selection', tags=['task selection'])
 
 
-@router.post('/{class_id}')
-async def task_selection(request: Request, class_id: str):
+@router.post('/{email}/{class_id}')
+async def task_selection(request: Request, class_id: str, email: str):
     task_id = 0
     correct = 0
     count_task = 0
@@ -21,6 +21,7 @@ async def task_selection(request: Request, class_id: str):
     db_session.query(Questions).filter(Questions.start_time == None).update({'start_time': datetime.now()})
     db_session.commit()
 
-    return templates.TemplateResponse("task_selection.html", {'request': request, 'class_id': class_id,
-                                                              'task_id': task_id, 'correct': correct,
-                                                              'count_task': count_task})
+    return templates.TemplateResponse("student/task_selection.html", {'request': request, 'class_id': class_id,
+                                                                      'task_id': task_id, 'correct': correct,
+                                                                      'count_task': count_task,
+                                                                      'email': email})

@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="{{ url_for('static', path='/css/task_selection.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/student/task_selection.css') }}">
     <title>Task Selection</title>
 </head>
 <body>
@@ -13,18 +13,18 @@
     <div class="card">
         <h3>Выберите задание</h3>
         <div class="task-items">
-            <a href="/task_selection/{{ class_id }}/arithmetic_operation/{{ task_id }}/{{ correct }}/{{ count_task }}" class="first">Арифметические операции</a>
-            <a href="/task_selection/{{ class_id }}/equations/{{ task_id }}/{{ correct }}/{{ count_task }}" class="second">Уравнения</a>
+            <a href="/task_selection/{{ email }}/{{ class_id }}/arithmetic_operation/{{ task_id }}/{{ correct }}/{{ count_task }}" class="first">Арифметические операции</a>
+            <a href="/task_selection/{{ email }}/{{ class_id }}/equations/{{ task_id }}/{{ correct }}/{{ count_task }}" class="second">Уравнения</a>
         </div>
         <br>
         <div class="task-items">
-            <a href="/task_selection/{{ class_id }}/geometry/{{ task_id }}/{{ correct }}/{{ count_task }}" class="third">Геометрия</a>
-            <a href="/task_selection/{{ class_id }}/text_tasks/{{ task_id }}/{{ correct }}/{{ count_task }}" class="four">Текстовые задачи</a>
+            <a href="/task_selection/{{ email }}/{{ class_id }}/geometry/{{ task_id }}/{{ correct }}/{{ count_task }}" class="third">Геометрия</a>
+            <a href="/task_selection/{{ email }}/{{ class_id }}/text_tasks/{{ task_id }}/{{ correct }}/{{ count_task }}" class="four">Текстовые задачи</a>
         </div>
         <br>
         <div class="task-items">
-            <a href="/task_selection/{{ class_id }}/task_increased_complexity/{{ task_id }}/{{ correct }}/{{ count_task }}" class="five">Задания повышенной сложности</a>
-            <a href="/task_selection/{{ class_id }}/mixed_tasks/{{ task_id }}/{{ correct }}/{{ count_task }}" class="six">Смешанные задачи</a>
+            <a href="/task_selection/{{ email }}/{{ class_id }}/task_increased_complexity/{{ task_id }}/{{ correct }}/{{ count_task }}" class="five">Задания повышенной сложности</a>
+            <a href="/task_selection/{{ email }}/{{ class_id }}/mixed_tasks/{{ task_id }}/{{ correct }}/{{ count_task }}" class="six">Смешанные задачи</a>
         </div>
     </div>
 </div>
