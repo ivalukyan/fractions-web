@@ -18,9 +18,9 @@ a{
 nav{
     display: flex;
     align-items: center;
-    justify-content: left;
+    justify-content: center;
     padding: 20px;
-    gap: 20px;
+    gap: 10px;
     background-color: #2c0b58;
 }
 
@@ -58,7 +58,6 @@ nav .logo a:hover{
     font-size: 16px;
     font-weight: 500;
 }
-
 
 nav .but a{
     background-color: #9a53a4;
@@ -214,7 +213,7 @@ nav .logo{
 }
 
 nav .but{
-    width: 300px;
+    width: 600px;
 }
 
 .students{
@@ -269,4 +268,22 @@ nav .but{
 
 .crud-student .del a:hover{
     background-color: #7e2727;
+}
+
+nav .questions{
+    width: 600px;
+}
+
+nav .questions a{
+    padding: 10px;
+    text-decoration: none;
+    color: #f0f0f0;
+    background-color: #a45a5a;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+nav .questions a:hover{
+    background-color: #cdc554;
 }

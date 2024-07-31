@@ -6,6 +6,8 @@ from database.__init__ import Session
 from database.db import Task, Questions, Student
 from src.operations.student.__init__ import templates
 
+from src.operations.utils.utils import add_test
+
 router = APIRouter(prefix='/statistic', tags=['statistic'])
 
 
@@ -50,6 +52,8 @@ async def statistic(request: Request, task_type: str, count_correct: int, email:
                 db_session.query(Student).filter(Student.email == email).update({'count_gold': gold_stars})
                 db_session.commit()
 
+            await add_test(email, 'arithmetic_operation', total_count, count_correct)
+
             return templates.TemplateResponse("student/statistic_page.html", {'request': request,
                                                                               'task_type': 'Арифметические задания',
                                                                               'total_count': total_count,
@@ -71,6 +75,8 @@ async def statistic(request: Request, task_type: str, count_correct: int, email:
                 db_session.query(Student).filter(Student.email == email).update({'count_silver': silver_stars})
                 db_session.commit()
 
+            await add_test(email, 'arithmetic_operation', total_count, count_correct)
+
             return templates.TemplateResponse("student/statistic_page.html", {'request': request,
                                                                               'task_type': 'Арифметические задания',
                                                                               'total_count': total_count,
@@ -91,6 +97,8 @@ async def statistic(request: Request, task_type: str, count_correct: int, email:
 
                 db_session.query(Student).filter(Student.email == email).update({'count_bronze': bronze_stars})
                 db_session.commit()
+
+            await add_test(email, 'arithmetic_operation', total_count, count_correct)
 
             return templates.TemplateResponse("student/statistic_page.html", {'request': request,
                                                                               'task_type': 'Арифметические задания',
@@ -114,6 +122,8 @@ async def statistic(request: Request, task_type: str, count_correct: int, email:
                 db_session.query(Student).filter(Student.email == email).update({'count_gold': gold_stars})
                 db_session.commit()
 
+            await add_test(email, 'equations', total_count, count_correct)
+
             return templates.TemplateResponse("student/statistic_page.html", {'request': request,
                                                                               'task_type': 'Уравнения',
                                                                               'total_count': total_count,
@@ -135,6 +145,8 @@ async def statistic(request: Request, task_type: str, count_correct: int, email:
                 db_session.query(Student).filter(Student.email == email).update({'count_silver': silver_stars})
                 db_session.commit()
 
+            await add_test(email, 'equations', total_count, count_correct)
+
             return templates.TemplateResponse("student/statistic_page.html", {'request': request,
                                                                               'task_type': 'Уравнения',
                                                                               'total_count': total_count,
@@ -155,6 +167,8 @@ async def statistic(request: Request, task_type: str, count_correct: int, email:
 
                 db_session.query(Student).filter(Student.email == email).update({'count_bronze': bronze_stars})
                 db_session.commit()
+
+            await add_test(email, 'equations', total_count, count_correct)
 
             return templates.TemplateResponse("student/statistic_page.html", {'request': request,
                                                                               'task_type': 'Уравнения',
@@ -178,6 +192,8 @@ async def statistic(request: Request, task_type: str, count_correct: int, email:
                 db_session.query(Student).filter(Student.email == email).update({'count_gold': gold_stars})
                 db_session.commit()
 
+            await add_test(email, 'text_tasks', total_count, count_correct)
+
             return templates.TemplateResponse("student/statistic_page.html", {'request': request,
                                                                               'task_type': 'Текстовые задачи',
                                                                               'total_count': total_count,
@@ -199,6 +215,8 @@ async def statistic(request: Request, task_type: str, count_correct: int, email:
                 db_session.query(Student).filter(Student.email == email).update({'count_silver': silver_stars})
                 db_session.commit()
 
+            await add_test(email, 'text_tasks', total_count, count_correct)
+
             return templates.TemplateResponse("student/statistic_page.html", {'request': request,
                                                                               'task_type': 'Текстовые задачи',
                                                                               'total_count': total_count,
@@ -219,6 +237,8 @@ async def statistic(request: Request, task_type: str, count_correct: int, email:
 
                 db_session.query(Student).filter(Student.email == email).update({'count_bronze': bronze_stars})
                 db_session.commit()
+
+            await add_test(email, 'text_tasks', total_count, count_correct)
 
             return templates.TemplateResponse("student/statistic_page.html", {'request': request,
                                                                               'task_type': 'Текстовые задачи',
@@ -242,6 +262,8 @@ async def statistic(request: Request, task_type: str, count_correct: int, email:
                 db_session.query(Student).filter(Student.email == email).update({'count_gold': gold_stars})
                 db_session.commit()
 
+            await add_test(email, 'task_increased_complexity', total_count, count_correct)
+
             return templates.TemplateResponse("student/statistic_page.html", {'request': request,
                                                                               'task_type': 'Задания повышенной сложности',
                                                                               'total_count': total_count,
@@ -263,6 +285,8 @@ async def statistic(request: Request, task_type: str, count_correct: int, email:
                 db_session.query(Student).filter(Student.email == email).update({'count_silver': silver_stars})
                 db_session.commit()
 
+            await add_test(email, 'task_increased_complexity', total_count, count_correct)
+
             return templates.TemplateResponse("student/statistic_page.html", {'request': request,
                                                                               'task_type': 'Задания повышенной сложности',
                                                                               'total_count': total_count,
@@ -283,6 +307,8 @@ async def statistic(request: Request, task_type: str, count_correct: int, email:
 
                 db_session.query(Student).filter(Student.email == email).update({'count_bronze': bronze_stars})
                 db_session.commit()
+
+            await add_test(email, 'task_increased_complexity', total_count, count_correct)
 
             return templates.TemplateResponse("student/statistic_page.html", {'request': request,
                                                                               'task_type': 'Задания повышенной сложности',
@@ -307,6 +333,8 @@ async def statistic(request: Request, task_type: str, count_correct: int, email:
                 db_session.query(Student).filter(Student.email == email).update({'count_gold': gold_stars})
                 db_session.commit()
 
+            await add_test(email, 'mixed_tasks', total_count, count_correct)
+
             return templates.TemplateResponse("student/statistic_page.html", {'request': request,
                                                                               'task_type': 'Смешанные задания',
                                                                               'total_count': total_count,
@@ -328,6 +356,8 @@ async def statistic(request: Request, task_type: str, count_correct: int, email:
                 db_session.query(Student).filter(Student.email == email).update({'count_silver': silver_stars})
                 db_session.commit()
 
+            await add_test(email, 'mixed_tasks', total_count, count_correct)
+
             return templates.TemplateResponse("student/statistic_page.html", {'request': request,
                                                                               'task_type': 'Смешанные задания',
                                                                               'total_count': total_count,
@@ -348,6 +378,8 @@ async def statistic(request: Request, task_type: str, count_correct: int, email:
 
                 db_session.query(Student).filter(Student.email == email).update({'count_bronze': bronze_stars})
                 db_session.commit()
+
+            await add_test(email, 'mixed_tasks', total_count, count_correct)
 
             return templates.TemplateResponse("student/statistic_page.html", {'request': request,
                                                                               'task_type': 'Смешанные задания',
@@ -372,6 +404,8 @@ async def statistic(request: Request, task_type: str, count_correct: int, email:
                 db_session.query(Student).filter(Student.email == email).update({'count_gold': gold_stars})
                 db_session.commit()
 
+            await add_test(email, 'geometry', total_count, count_correct)
+
             return templates.TemplateResponse("student/statistic_page.html", {'request': request,
                                                                               'task_type': 'Геометрия',
                                                                               'total_count': total_count,
@@ -393,6 +427,8 @@ async def statistic(request: Request, task_type: str, count_correct: int, email:
                 db_session.query(Student).filter(Student.email == email).update({'count_silver': silver_stars})
                 db_session.commit()
 
+            await add_test(email, 'geometry', total_count, count_correct)
+
             return templates.TemplateResponse("student/statistic_page.html", {'request': request,
                                                                               'task_type': 'Геометрия',
                                                                               'total_count': total_count,
@@ -413,6 +449,8 @@ async def statistic(request: Request, task_type: str, count_correct: int, email:
 
                 db_session.query(Student).filter(Student.email == email).update({'count_bronze': bronze_stars})
                 db_session.commit()
+
+            await add_test(email, 'geometry', total_count, count_correct)
 
             return templates.TemplateResponse("student/statistic_page.html", {'request': request,
                                                                               'task_type': 'Геометрия',

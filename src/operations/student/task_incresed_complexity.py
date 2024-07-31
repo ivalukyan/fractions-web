@@ -5,14 +5,15 @@ from fastapi import HTTPException, Form, Request, APIRouter
 from starlette.responses import RedirectResponse
 
 from database.__init__ import Session
-from database.db import Questions, Task
+from database.db import Questions, Task, Student
 from src.operations.student.__init__ import templates
 
 router = APIRouter(tags=['task incresed complexity'])
 
 
-@router.get('/task_selection/{email}/{class_id}/task_increased_complexity/{task_id}/{correct}')
-async def arithmetic_operations(request: Request, class_id: str, task_id: int, correct: int, email: str):
+@router.get('/task_selection/{email}/{class_id}/task_increased_complexity/{task_id}/{correct}/{count_task}')
+async def arithmetic_operations(request: Request, class_id: str, task_id: int, correct: int, email: str,
+                                count_task: int):
     try:
         db_session = Session()
         db_task = db_session.query(Task).filter(Task.class_student == class_id,
@@ -33,20 +34,34 @@ async def arithmetic_operations(request: Request, class_id: str, task_id: int, c
                                                                                   'task': task.question,
                                                                                   'task_id': task_id,
                                                                                   'correct': correct,
+                                                                                  'count_task': count_task,
                                                                                   'email': email})
     else:
 
         db_session.query(Questions).filter(Questions.end_time == None).update({'end_time': datetime.now()})
         db_session.commit()
 
+        student = db_session.query(Student).filter(Student.email == email).first()
+        if student is not None:
+
+            cnt_all_tsk = student.all_times_tasks + count_task
+            cnt_correct = student.all_is_correct + correct
+
+            percent = round(cnt_correct/cnt_all_tsk * 100)
+
+            db_session.query(Student).filter(Student.email == email).update({'all_times_tasks': cnt_all_tsk,
+                                                                             'all_is_correct': cnt_correct,
+                                                                             'percent': percent})
+            db_session.commit()
+
         redirect_url = request.url_for('statistic', task_type='task_increased_complexity', count_correct=correct,
                                        email=email)
         return RedirectResponse(redirect_url)
 
 
-@router.post('/task_selection/{email}/{class_id}/task_increased_complexity/{task_id}/{correct}')
+@router.post('/task_selection/{email}/{class_id}/task_increased_complexity/{task_id}/{correct}/{count_task}')
 async def arithmetic_operations(request: Request, class_id: str, answer: Annotated[str, Form()], task_id: int,
-                                correct: int, email: str):
+                                correct: int, email: str, count_task: int):
     try:
         db_session = Session()
         db_task = db_session.query(Task).filter(Task.class_student == class_id,
@@ -63,33 +78,41 @@ async def arithmetic_operations(request: Request, class_id: str, answer: Annotat
         else:
 
             if answer == task.answer:
-                ans = 'Правильно'
+                is_correct = 'Правильно'
                 explanation = ''
                 task_id += 1
                 correct += 1
+                count_task += 1
                 return templates.TemplateResponse("student/completions/answer_page.html",
                                                   {'request': request,
                                                    'class_id': class_id,
-                                                   'answer': ans,
+                                                   'is_correct': is_correct,
+                                                   'answer': answer,
+                                                   'correct_answer': task.answer,
                                                    'title': 'Задания повышенной сложности',
                                                    'type_task': 'task_increased_complexity',
                                                    'explanation': explanation,
                                                    'task_id': task_id,
                                                    'correct': correct,
+                                                   'count_task': count_task,
                                                    'email': email})
             else:
-                ans = 'Неправильно'
+                is_correct = 'Неправильно'
                 explanation = task.explanation
                 task_id += 1
+                count_task += 1
                 return templates.TemplateResponse("student/completions/answer_page.html",
                                                   {'request': request,
                                                    'class_id': class_id,
-                                                   'answer': ans,
+                                                   'is_correct': is_correct,
+                                                   'answer': answer,
+                                                   'correct_answer': task.answer,
                                                    'title': 'Задания повышенной сложности',
                                                    'type_task': 'task_increased_complexity',
                                                    'exp': explanation,
                                                    'task_id': task_id,
                                                    'correct': correct,
+                                                   'count_task': count_task,
                                                    'email': email})
     else:
         redirect_url = request.url_for('statistic', task_type='task_increased_complexity', count_correct=correct)

@@ -5,7 +5,7 @@ from fastapi import HTTPException, APIRouter
 from fastapi import Request, Form
 from starlette.responses import RedirectResponse
 
-from database.db import Task, Questions
+from database.db import Task, Questions, Student
 from src.operations.student.__init__ import templates
 from database.__init__ import Session
 
@@ -63,6 +63,19 @@ async def arithmetic_operations(request: Request, class_id: str, task_id: int, c
 
         db_session.query(Questions).filter(Questions.end_time == None).update({'end_time': datetime.now()})
         db_session.commit()
+
+        student = db_session.query(Student).filter(Student.email == email).first()
+        if student is not None:
+
+            cnt_all_tsk = student.all_times_tasks + count_task
+            cnt_correct = student.all_is_correct + correct
+
+            percent = round(cnt_correct/cnt_all_tsk * 100)
+
+            db_session.query(Student).filter(Student.email == email).update({'all_times_tasks': cnt_all_tsk,
+                                                                             'all_is_correct': cnt_correct,
+                                                                             'percent': percent})
+            db_session.commit()
 
         redirect_url = request.url_for('statistic', task_type='geometry', count_correct=correct, email=email)
         return RedirectResponse(redirect_url)

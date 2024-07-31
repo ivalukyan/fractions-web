@@ -10,10 +10,10 @@
 <body>
 <div class="container" id="container">
     <div class="form-container sign-up">
-        <form method="post" action="/auth_teacher">
+        <form method="post" action="/auth_teacher" name="user">
             <h1>Войдите</h1>
-            <input type="email" name="email_teacher" placeholder="Email">
-            <input type="password" name="password_teacher" placeholder="Password">
+            <input type="email" name="email" placeholder="Email">
+            <input type="password" name="password" placeholder="Password">
             <button type="submit">Вход</button>
             <p>{{ msg }}</p>
         </form>
@@ -21,8 +21,8 @@
     <div class="form-container sign-in">
         <form method="post" action="/auth_student">
             <h1>Войдите</h1>
-            <input type="email" name="email_student" placeholder="Email">
-            <input type="password" name="password_student" placeholder="Password">
+            <input type="email" name="email" placeholder="Email">
+            <input type="password" name="password" placeholder="Password">
             <button type="submit">Вход</button>
             <p>{{ msg }}</p>
         </form>

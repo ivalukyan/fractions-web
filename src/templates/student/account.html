@@ -8,20 +8,20 @@
 <body>
 <div class="container">
     <div class="card">
-        <h2>Статистика Имя пользователя</h2>
-        <div class="line-procent"></div>
+        <h2>Статистика <i>{{ username }}</i></h2>
+        <div class="line-procent" style="width: {{ percent }}%"></div>
         <div class="all-correct">
-            <p>Всего правмльных заданий: ЧИСЛО</p>
+            <p>Всего правильных заданий: {{ all_is_correct }}</p>
         </div>
         <div class="stars">
             <div class="gold">
-                <p>Количество золотых звезд: ЧИСЛО</p>
+                <p>Количество золотых звезд: {{ count_gold }}</p>
             </div>
             <div class="silver">
-                <p>Количетсво серебрянных звезд: ЧИСЛО</p>
+                <p>Количетсво серебрянных звезд: {{ count_silver }}</p>
             </div>
             <div class="bronze">
-                <p>Количество бронзовых звезд: ЧИСЛО</p>
+                <p>Количество бронзовых звезд: {{ count_bronze }}</p>
             </div>
         </div>
         <div class="table">
@@ -33,33 +33,34 @@
                 </tr>
                 <tr>
                     <td>Арифметические операции</td>
-                    <td>10</td>
-                    <td>50%</td>
+                    <td>{{ arithmetic_operation.count_task }}</td>
+                    <td>{{ percent_arith }}</td>
                 </tr>
+
                 <tr>
                     <td>Уравнения</td>
-                    <td>10</td>
-                    <td>50%</td>
+                    <td>{{ equations.count_task }}</td>
+                    <td>{{ percent_equ }}%</td>
                 </tr>
                 <tr>
                     <td>Геометрия</td>
-                    <td>10</td>
-                    <td>50%</td>
+                    <td>{{ geometry.count_task }}</td>
+                    <td>{{ percent_geometry }}%</td>
                 </tr>
                 <tr>
                     <td>Текстовые задачи</td>
-                    <td>10</td>
-                    <td>50%</td>
+                    <td>{{ text_tasks.count_task }}</td>
+                    <td>{{ percent_text_task }}%</td>
                 </tr>
                 <tr>
                     <td>Задания повышенной сложности</td>
-                    <td>10</td>
-                    <td>50%</td>
+                    <td>{{ task_increased_complexity.count_task }}</td>
+                    <td>{{ percent_task_increased }}%</td>
                 </tr>
                 <tr>
                     <td>Смешанные задачи</td>
-                    <td>10</td>
-                    <td>50%</td>
+                    <td>{{ mixed_tasks.count_task }}</td>
+                    <td>{{ percent_mixed }}%</td>
                 </tr>
             </table>
         </div>

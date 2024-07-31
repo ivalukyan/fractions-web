@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link href="{{ url_for('static', path='/css/teacher/viewquestions.css') }}" rel="stylesheet">
+    <title>Questions</title>
+</head>
+<body>
+<div class="container">
+    <div class="questions">
+        <table>
+            <tr>
+                <th scope="col">Класс</th>
+                <th scope="col">Тип задания</th>
+                <th scope="col">Вопрос</th>
+                <th scope="col">Ответ</th>
+                <th scope="col">Объяснение</th>
+            </tr>
+            {% for el in data %}
+            <tr>
+                <td>{{ el.class_student }}</td>
+                <td>{{ el.type_task }}</td>
+                <td>{{ el.question }}</td>
+                <td>{{ el.answer }}</td>
+                <td>{{ el.explanation }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div class="back-but">
+        <div class="but">
+            <a href="/home_teacher/{{ email_teacher }}">Назад</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

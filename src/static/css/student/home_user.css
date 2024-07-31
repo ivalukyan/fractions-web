@@ -114,3 +114,9 @@ nav .but a:hover{
 .email a:hover{
     color: #ADD8E6;
 }
+
+nav .exp p{
+    color: #7e2727;
+    font-size: 16px;
+    font-weight: 600;
+}

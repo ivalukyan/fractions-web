@@ -14,6 +14,9 @@
     <div class="but">
         <a class="but" href="/addquestions/{{ email_teacher }}">Добавление вопросов</a>
     </div>
+    <div class="questions">
+        <a href="/home_teacher/viewquestions/{{ email_teacher }}">Просмотр таблицы вопросов</a>
+    </div>
     <div class="but-one">
         <a class="but" href="/">Выйти</a>
     </div>
@@ -26,15 +29,15 @@
 <div class="statistics">
     <div class="stats-card">
         <h2>Средняя успеваемость</h2>
-        <div class="line-stats"></div>
+        <div class="line-stats" style="width: {{ academic_percent }}%"></div>
     </div>
     <div class="stats-card">
         <h2>Выполнение заданий</h2>
-        <div class="line-stats"></div>
+        <div class="line-stats" style="width: {{ completed_task }}%"></div>
     </div>
     <div class="stats-card">
         <h2>Ср. кол. золотых звезд</h2>
-        <div class="line-stats"></div>
+        <div class="line-stats" style="width: {{ gold_stars }}%"></div>
     </div>
 </div>
 
