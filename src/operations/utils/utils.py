@@ -1,7 +1,5 @@
-import asyncio
-
 from database.db import Test, Student
-from database.__init__ import Session
+from database import Session
 
 from env import Admin
 

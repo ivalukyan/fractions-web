@@ -1,6 +1,6 @@
 from fastapi import Request, APIRouter
 
-from src.operations.student.__init__ import templates
+from src import templates
 
 router = APIRouter(prefix='/count_selection', tags=['count task selection'])
 

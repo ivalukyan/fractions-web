@@ -4,9 +4,9 @@ from typing import Annotated
 from fastapi import Request, Form, APIRouter
 
 from database.db import Task
-from database.__init__ import Session
+from database import Session
 
-from src.operations.teacher.__init__ import templates
+from src.operations.teacher import templates
 
 router = APIRouter(prefix='/addquestions', tags=['addquestions'])
 

@@ -6,8 +6,8 @@ from fastapi import Request, Form
 from starlette.responses import RedirectResponse
 
 from database.db import Task, Questions, Student
-from src.operations.student.__init__ import templates
-from database.__init__ import Session
+from src import templates
+from database import Session
 
 router = APIRouter(tags=['geometry'])
 

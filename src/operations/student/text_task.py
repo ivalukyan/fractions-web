@@ -4,9 +4,9 @@ from typing import Annotated
 from fastapi import Request, HTTPException, Form, APIRouter
 from starlette.responses import RedirectResponse
 
-from database.__init__ import Session
+from database import Session
 from database.db import Task, Questions, Student
-from src.operations.student.__init__ import templates
+from src import templates
 
 router = APIRouter(tags=['text task'])
 

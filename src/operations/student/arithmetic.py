@@ -6,9 +6,9 @@ from fastapi import Request, Form
 from starlette.responses import RedirectResponse
 
 from database.db import Task, Questions, Student
-from database.__init__ import Session
+from database import Session
 
-from src.operations.student.__init__ import templates
+from src import templates
 
 router = APIRouter(tags=['arithmetic'])
 

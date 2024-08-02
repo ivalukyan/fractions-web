@@ -1,0 +1,51 @@
+version: '3'
+
+networks:
+  my-network:
+    driver: bridge
+
+services:
+
+  db:
+    image: postgres:16-alpine
+    restart: always
+    container_name: db
+    env_file:
+      - .env
+    environment:
+      POSTGRES_DB: 'web'
+      POSTGRES_USER: 'postgres'
+      POSTGRES_PASSWORD: 'postgres'
+    ports:
+      - '5432:5432'
+    networks:
+      - my-network
+
+  web:
+    build:
+      context: .
+    container_name: web
+    command: >
+      sh -c "python main.py run"
+    volumes:
+      - .:/app
+    env_file:
+      - .env
+    ports:
+      - '8000:8000'
+    depends_on:
+      - db
+    networks:
+      - my-network
+
+  nginx:
+    container_name: nginx
+    image: nginx:alpine
+    depends_on:
+      - web
+    ports:
+      - '8080:80'
+    volumes:
+      - /etc/nginx/conf.d
+    networks:
+      - my-network

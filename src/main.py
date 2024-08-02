@@ -24,8 +24,7 @@ app = FastAPI(
 
 templates = Jinja2Templates(directory="templates")
 
-app.mount("/static", StaticFiles(directory='static'), name='static')
-
+app.mount("static", StaticFiles(directory='static'), name='static')
 
 app.include_router(class_selection_router)
 app.include_router(task_selection_router)
@@ -43,4 +42,4 @@ app.include_router(home_user_router)
 app.include_router(auth_router)
 
 if __name__ == '__main__':
-    uvicorn.run(app, host='localhost', port=8000)
+    uvicorn.run(app, host='localhost', port=8000, workers=1, log_level='info')

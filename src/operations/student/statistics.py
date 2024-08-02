@@ -2,9 +2,9 @@ from math import floor
 
 from fastapi import Request, HTTPException, APIRouter
 
-from database.__init__ import Session
+from database import Session
 from database.db import Task, Questions, Student
-from src.operations.student.__init__ import templates
+from src import templates
 
 from src.operations.utils.utils import add_test
 

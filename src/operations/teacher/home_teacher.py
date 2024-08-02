@@ -3,9 +3,9 @@ from typing import Annotated
 from fastapi import Request, APIRouter, Form
 from starlette.responses import RedirectResponse
 
-from database.__init__ import Session
+from database import Session
 from database.db import Student, Test, Task, Teacher
-from src.operations.teacher.__init__ import templates
+from src.operations.teacher import templates
 from src.operations.utils.utils import academic_performance, completed_tasks, gold_stars
 
 from env import Admin

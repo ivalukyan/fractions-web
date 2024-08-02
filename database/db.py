@@ -2,7 +2,7 @@ from uuid import uuid4
 
 from sqlalchemy import Column, Integer, String, DateTime, UUID, Boolean
 
-from database.__init__ import Base, engine
+from database import Base, engine
 
 
 class Task(Base):

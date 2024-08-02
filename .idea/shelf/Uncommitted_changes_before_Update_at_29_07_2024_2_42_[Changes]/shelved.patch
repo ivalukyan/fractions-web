@@ -1,0 +1,17 @@
+Index: README.md
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><h1>Web Fractions</h1>\r\n\r\n---\r\n\r\n✅ - выполнено\r\n\r\n<h3>Tasks</h3>\r\n\r\n<p style=\"font-size: 14px; font-weight: 600;\"><input type=\"checkbox\" class=\"custom\" style=\".custom {border-radius: 0.25em}\"> - Начальная страница</p>\r\n<p style=\"font-size: 14px; font-weight: 600;\"><input type=\"checkbox\"> - Страница выбора класса</p>\r\n<p style=\"font-size: 14px; font-weight: 600;\"><input type=\"checkbox\"> - Страница выбора задания</p>\r\n<p style=\"font-size: 14px; font-weight: 600;\"><input type=\"checkbox\"> - Страница выполнения задания</p>\r\n<p style=\"font-size: 14px; font-weight: 600;\"><input type=\"checkbox\"> - Страница обратной связи и объяснений</p>\r\n<p style=\"font-size: 14px; font-weight: 600;\"><input type=\"checkbox\"> - Страница отслеживания прогресса</p>\r\n<p style=\"font-size: 14px; font-weight: 600;\"><input type=\"checkbox\"> - Страница геометрических заданий</p>\r\n\r\n---\r\n\r\n<h3>Структура прложения</h3>\r\n```\r\n└───Начальная старница\r\n    └───Страница выбора класса\r\n        └───Страница выбора задания\r\n            └───Страница выполнения задания\r\n                └───Страница обратной связи и объяснений\r\n                    └───Страница отслеживания прогресса\r\n```\r\n\r\n\r\n    
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/README.md b/README.md
+--- a/README.md	(revision 74e0608c7e51ad2f6293743e6b53246804b0aa99)
++++ b/README.md	(date 1722210056740)
+@@ -27,4 +27,4 @@
+ ```
+ 
+ 
+-    
+\ No newline at end of file
++    

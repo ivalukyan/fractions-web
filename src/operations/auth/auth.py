@@ -3,7 +3,7 @@ from typing import Annotated
 from fastapi import Request, APIRouter, HTTPException, status, Form
 from starlette.responses import RedirectResponse
 
-from database.__init__ import Session
+from database import Session
 from database.db import Student, Teacher
 from src.operations.auth import templates
 

@@ -2,13 +2,13 @@ from datetime import datetime
 from typing import Annotated
 
 from database.db import Task, Questions, Student
-from database.__init__ import Session
+from database import Session
 
 from fastapi import Request, HTTPException, Form, APIRouter
 
 from starlette.responses import RedirectResponse
 
-from src.operations.student.__init__ import templates
+from src import templates
 
 router = APIRouter(tags=['equations'])
 

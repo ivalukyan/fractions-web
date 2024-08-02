@@ -1,8 +1,8 @@
 from fastapi import Request, APIRouter
 
-from src.operations.student.__init__ import templates
+from src import templates
 
-from database.__init__ import Session
+from database import Session
 from database.db import Student, Test
 
 router = APIRouter(prefix='/home_user', tags=['Home User'])

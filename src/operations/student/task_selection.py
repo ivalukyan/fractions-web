@@ -4,7 +4,7 @@ from fastapi import Request, APIRouter
 from starlette.templating import Jinja2Templates
 
 from database.db import Questions
-from database.__init__ import Session
+from database import Session
 
 templates = Jinja2Templates(directory="templates")
 
