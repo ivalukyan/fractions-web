@@ -67,7 +67,7 @@ nav {
 }
 
 .logo a {
-    color: #000;
+    color: #62aafd;
     font-size: 18px;
     font-weight: 600;
 }
@@ -100,7 +100,7 @@ nav {
 }
 
 .but a {
-    color: #000;
+    color: #62aafd;
     font-size: 18px;
     font-weight: 500;
 }
@@ -121,7 +121,7 @@ nav {
 }
 
 .questions a {
-    color: #000;
+    color: #62aafd;
     font-size: 18px;
     font-weight: 500;
 }
@@ -142,7 +142,7 @@ nav {
 }
 
 .questions-teach a {
-    color: #000;
+    color: #62aafd;
     font-size: 18px;
     font-weight: 500;
 }
@@ -151,7 +151,7 @@ nav {
     padding: 10px;
     text-align: center;
     max-height: 42px;
-    max-width: 200px;
+    min-width: 300px;
 }
 
 .user-email p {
@@ -269,6 +269,7 @@ nav {
     align-items: center;
     justify-content: center;
     margin-top: 5vh;
+    color: #62aafd;
 }
 
 .students {

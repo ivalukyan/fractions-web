@@ -6,7 +6,7 @@
 }
 
 body{
-    background-color: #c9d6ff;
+    background-color: #1d1d1d;
 }
 
 .container{
@@ -14,12 +14,12 @@ body{
     width: 440px;
     padding: 40px 32px;
     border-radius: 16px;
-    background-color: #512da8;
-    box-shadow: rgba(100, 100, 111, 0.2) 0 7px 29px 0;
+    background-color: #5a68a4;
+    box-shadow: rgba(0, 0, 0, 0.25) 0 7px 15px 0;
 }
 
 .container form label{
-    color: #9b9b9b;
+    color: #f0f0f0;
     font-size: 14px;
     font-weight: bold;
     letter-spacing: 0.03rem;
@@ -40,27 +40,12 @@ body{
     height: 46px;
     letter-spacing: 0.03rem;
     border: none;
-    background: transparent;
     outline: none;
     border-radius: 10px;
     text-indent: 10px;
     margin-top: 6px;
     transition: all 0.3s ease;
-    background-color: #00000048;
-    box-shadow: rgba(100, 100, 111, 0.2) 0 5px 29px 0
-}
-
-
-.container form .custom-input select{
-    width: 100%;
-    border: none;
-    font-size: 18px;
-    font-weight: 500;
-    border-radius: 10px;
-    padding: 6px;
-    outline: none;
-    color: #000000;
-    background-color: #00000048;
+    background-color: #f0f0f0;
     box-shadow: rgba(100, 100, 111, 0.2) 0 5px 29px 0
 }
 
@@ -70,9 +55,11 @@ body{
     width: 100%;
     border-radius: 10px;
     border: none;
-    background-color: #4b2266;
+    background-color: #232325;
     font-size: 18px;
-    font-weight: 700;
+    font-weight: 500;
+    color: #f0f0f0;
+    box-shadow: rgba(0, 0, 0, 0.25) 0 5px 15px 0;
 }
 
 .container form .but-del:hover{
@@ -83,15 +70,16 @@ body{
     display: flex;
     margin-top: 30px;
     padding: 10px;
-    background-color: #cdc554;
+    background-color: #232325;
     text-decoration: none;
     justify-content: center;
     border-radius: 10px;
-    color: #1d1d1d;
+    color: #f0f0f0;
     font-size: 18px;
     font-weight: 700;
+    box-shadow: rgba(0, 0, 0, 0.25) 0 5px 15px 0;;
 }
 
 .container a:hover{
-    background-color: #5a68a4;
+    background-color: #cdc554;
 }

@@ -85,8 +85,6 @@ async def gold_stars(email: str):
         db_session = Session()
         all_gold_stars = db_session.query(Student.count_gold).filter(Student.email_teacher == email).all()
 
-    print(all_gold_stars)
-
     count = 0
 
     for _ in all_gold_stars:

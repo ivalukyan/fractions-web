@@ -62,13 +62,14 @@ body{
     justify-content: center;
     text-align: center;
     width: 100%;
-    background-color: #cdc554;
+    background-color: #232325;
     border-radius: 10px;
-    color: #1d1d1d;
+    color: #f0f0f0;
     font-size: 16px;
     font-weight: 600;
 }
 
 .back-but .but a:hover{
-    background-color: #a45a5a;
+    color: #1d1d1d;
+    background-color: #cdc554;
 }

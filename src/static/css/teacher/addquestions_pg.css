@@ -5,23 +5,29 @@
     font-family: 'Roboto', sans-serif;
 }
 
+body{
+    background-color: #161617;
+}
+
 .container{
     margin: 200px auto;
     width: 440px;
     padding: 40px 32px;
     border-radius: 16px;
-    box-shadow: rgba(100, 100, 111, 0.2) 0 7px 29px 0;
+    background-color: #232325;
+    box-shadow: rgba(0, 0, 0, 0.25) 0 7px 15px 0;
 }
 
 h3{
     font-size: 20px;
     font-weight: 500;
+    color: #f0f0f0;
 }
 
 .container form label{
-    color: #1d1d1d;
+    color: #f0f0f0;
     font-size: 14px;
-    font-weight: bold;
+    font-weight: 400;
     letter-spacing: 0.03rem;
     display: block;
     margin-top: 12px;
@@ -39,7 +45,7 @@ h3{
     height: 46px;
     letter-spacing: 0.03rem;
     border: none;
-    background: transparent;
+    background-color: #f0f0f0;
     outline: none;
     border-radius: 10px;
     text-indent: 10px;
@@ -56,7 +62,7 @@ h3{
     height: 46px;
     letter-spacing: 0.03rem;
     border: none;
-    background: transparent;
+    background-color: #f0f0f0;
     outline: none;
     border-radius: 10px;
     text-indent: 10px;
@@ -69,8 +75,8 @@ h3{
 .container form .add{
     width: 100%;
     margin-top: 20px;
-    background: #9a53a4;
-    color: #FFFFFF;
+    background: #62aafd;
+    color: #f0f0f0;
     border: none;
     line-height: 50px;
     font-size: 18px;
@@ -94,22 +100,29 @@ h3{
     border-radius: 10px;
     padding: 6px;
     outline: none;
-    box-shadow: rgba(100, 100, 111, 0.2) 0 5px 29px 0
+    box-shadow: rgba(0, 0, 0, 0.2) 0 5px 29px 0
 }
 
 .container a{
+    font-size: 16px;
+    font-weight: 500;
     display: flex;
     padding: 10px;
-    background-color: rgb(95, 92, 141);
+    background-color: #232325;
     border-radius: 10px;
     margin-top: 30px;
     text-decoration: none;
     color: #FFFFFF;
     height: 40px;
-    width: 70px;
+    width: 100%;
+    justify-content: center;
+    box-shadow: rgba(0, 0, 0, 0.25) 0 5px 15px 0;
 }
 
 .container a:hover{
+    font-size: 16px;
+    font-weight: 500;
     background-color: #ffe604;
     color: #1d1d1d;
+    box-shadow: rgba(0, 0, 0, 0.25) 0 5px 15px 0;
 }
