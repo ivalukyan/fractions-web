@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link href="{{ url_for('static', path='/css/teacher/viewteachers.css') }}" rel="stylesheet">
+    <title>Questions</title>
+</head>
+<body>
+<div class="container">
+    <div class="questions">
+        <table>
+            <tr>
+                <th scope="col">Имя</th>
+                <th scope="col">Почта</th>
+                <th scope="col">Суперпользователь</th>
+            </tr>
+            {% for el in data %}
+            <tr>
+                <td>{{ el.name }}</td>
+                <td>{{ el.email }}</td>
+                <td>{{ el.is_superuser }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div class="back-but">
+        <div class="but">
+            <a class="add" href="/home_teacher/addnewteacher/{{ email_teacher }}">Добавить учителя</a>
+            <a class="back" href="/home_teacher/{{ email_teacher }}">Назад</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,6 +1,6 @@
 from uuid import uuid4
 
-from sqlalchemy import Column, Integer, String, DateTime, UUID
+from sqlalchemy import Column, Integer, String, DateTime, UUID, Boolean
 
 from database.__init__ import Base, engine
 
@@ -52,6 +52,15 @@ class Test(Base):
     type_task = Column(String, nullable=True)
     count_task = Column(Integer, nullable=True, default=0)
     is_correct = Column(Integer, nullable=True, default=0)
+
+
+class Teacher(Base):
+    __tablename__ = 'teachers'
+    id = Column(UUID, primary_key=True, default=uuid4)
+    name = Column(String, nullable=False)
+    email = Column(String, nullable=False)
+    password = Column(String, nullable=False)
+    is_superuser = Column(Boolean, nullable=False, default=False)
 
 
 Base.metadata.create_all(engine)

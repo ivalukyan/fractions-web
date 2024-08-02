@@ -12,3 +12,9 @@ class Postgres:
         self.password = os.getenv("POSTGRES_PASSWORD")
         self.host = os.getenv("POSTGRES_HOST")
         self.db = os.getenv("POSTGRES_DB")
+
+
+class Admin:
+    def __init__(self):
+        self.username = os.getenv("EMAIL")
+        self.password = os.getenv("PASSWORD")

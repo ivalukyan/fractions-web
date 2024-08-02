@@ -4,10 +4,14 @@ from fastapi import Request, APIRouter, HTTPException, status, Form
 from starlette.responses import RedirectResponse
 
 from database.__init__ import Session
-from database.db import Student
+from database.db import Student, Teacher
 from src.operations.auth import templates
 
+from env import Admin
+
 router = APIRouter(tags=["auth"])
+
+admin = Admin()
 
 
 @router.get("/")
@@ -20,27 +24,39 @@ async def auth_student(request: Request, email: Annotated[str, Form()], password
 
     db_session = Session()
     student = db_session.query(Student).filter(Student.email == email).first()
-    is_password = db_session.query(Student).filter(Student.email == email).first().password
 
-    unauth = HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='Invalid email or password')
+    unauth = HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail='Bad request')
+    msg = 'Ivalid email or password'
 
-    if student is None:
-        raise unauth
-    else:
-        if password in is_password:
+    if student is not None:
+        if password in student.password:
             redirect_url = request.url_for('home_user', email_student=email)
             return RedirectResponse(redirect_url)
         else:
-            raise unauth
+            return templates.TemplateResponse("auth/auth.html", {'request': request, 'msg': msg})
+    else:
+        raise unauth
 
 
 @router.post("/auth_teacher")
 async def auth_teacher(request: Request, email: Annotated[str, Form()], password: Annotated[str, Form()]):
 
-    unauth = HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='Invalid email or password')
+    db_session = Session()
+    teacher = db_session.query(Teacher).filter(Teacher.email == email).first()
 
-    if email == 'example@gmail.com' and password == 'admin':
+    unauth = HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail='Bad request')
+    msg = 'Ivalid email or password'
+
+    if email in admin.username and password in admin.password:
         redirect_url = request.url_for('home_teacher', email_teacher=email)
         return RedirectResponse(redirect_url)
     else:
-        raise unauth
+        if teacher is not None:
+
+            if password in teacher.password:
+                redirect_url = request.url_for('home_teacher', email_teacher=email)
+                return RedirectResponse(redirect_url)
+            else:
+                return templates.TemplateResponse('auth/auth.html', {'request': request, 'msg': msg})
+        else:
+            raise unauth

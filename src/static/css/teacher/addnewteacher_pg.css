@@ -1,0 +1,120 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+body{
+    background-color: #232325;
+}
+
+.container{
+    margin: 200px auto;
+    width: 440px;
+    padding: 40px 32px;
+    border-radius: 16px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0 7px 29px 0;
+}
+
+h3{
+    font-size: 20px;
+    font-weight: 500;
+    color: #c2c1c1;
+}
+
+.container form label{
+    color: #c2c1c1;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 0.03rem;
+    display: block;
+    margin-top: 12px;
+}
+
+.container form .custom-input{
+    position: relative;
+}
+
+.container form .custom-input input{
+    color: #1d1d1d;
+    font-size: 14px;
+    font-weight: 500;
+    width: 100%;
+    height: 46px;
+    letter-spacing: 0.03rem;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    text-indent: 10px;
+    margin-top: 6px;
+    transition: all 0.3s ease;
+    background-color: #e9e8e8;
+    box-shadow: rgba(100, 100, 111, 0.2) 0 5px 29px 0
+}
+
+.container form .custom-input textarea{
+    color: #1d1d1d;
+    font-size: 14px;
+    font-weight: 500;
+    width: 100%;
+    height: 46px;
+    letter-spacing: 0.03rem;
+    border: none;
+    background: transparent;
+    outline: none;
+    border-radius: 10px;
+    text-indent: 10px;
+    margin-top: 6px;
+    max-height: 200px;
+    max-width: 380px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0 5px 29px 0;
+}
+
+.container form .add{
+    width: 100%;
+    margin-top: 20px;
+    background: #9a53a4;
+    color: #FFFFFF;
+    border: none;
+    line-height: 50px;
+    font-size: 18px;
+    letter-spacing: 0.025em;
+    cursor: pointer;
+    font-weight: 500;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px rgba(0,0,0, 0.15);
+    transition: all 0.3s ease;
+}
+
+.container form .add:hover{
+    background-color: #00a456;
+}
+
+
+.container form select{
+    width: 100%;
+    border: none;
+    font-size: 16px;
+    border-radius: 10px;
+    padding: 6px;
+    outline: none;
+    box-shadow: rgba(100, 100, 111, 0.2) 0 5px 29px 0
+}
+
+.container a{
+    display: flex;
+    padding: 10px;
+    background-color: rgb(95, 92, 141);
+    border-radius: 10px;
+    margin-top: 30px;
+    text-decoration: none;
+    color: #FFFFFF;
+    height: 40px;
+    width: 70px;
+}
+
+.container a:hover{
+    background-color: #ffe604;
+    color: #1d1d1d;
+}

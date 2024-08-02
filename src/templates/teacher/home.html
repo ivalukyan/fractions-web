@@ -2,42 +2,65 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <link href="/css/teacher/home_pg.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', path='/css/teacher/home_pg.css') }}">
+    <link href="/css/teacher/home.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/teacher/home.css') }}">
     <title>Home</title>
 </head>
 <body>
 <nav>
-    <div class="logo">
-        <a href="/home_teacher/{{ email_teacher }}">Админ панель</a>
-    </div>
-    <div class="but">
-        <a class="but" href="/addquestions/{{ email_teacher }}">Добавление вопросов</a>
-    </div>
-    <div class="questions">
-        <a href="/home_teacher/viewquestions/{{ email_teacher }}">Просмотр таблицы вопросов</a>
-    </div>
-    <div class="but-one">
-        <a class="but" href="/">Выйти</a>
-    </div>
-    <div class="user-email">
-        <p>{{ email_teacher }}</p>
+    <div class="toolbar">
+        <div class="left-tool">
+            <div class="logotype">
+                <div class="icon">
+                    <img src="https://cdn1.iconfinder.com/data/icons/user-110/24/setting_account_admin_role_setup_system_settings_user_profile_people_options-256.png"
+                         style="width: 32px; height: 32px;">
+                </div>
+                <div class="logo">
+                    <a href="/home_teacher/{{ email_teacher }}">Админ панель</a>
+                </div>
+            </div>
+
+            <div class="but">
+                <a href="/addquestions/{{ email_teacher }}">Добавление вопросов</a>
+            </div>
+            <div class="questions">
+                <a href="/home_teacher/viewquestions/{{ email_teacher }}">Просмотр таблицы вопросов</a>
+            </div>
+            <div class="questions-teach">
+                <a href="/home_teacher/viewteachers/{{ email_teacher }}">Просмотр таблицы учителей</a>
+            </div>
+        </div>
+        <div class="right-tool">
+            <div class="user-email">
+                <p>{{ email_teacher }}</p>
+            </div>
+            <div class="but-one">
+                <a href="/">Выйти</a>
+            </div>
+        </div>
+
     </div>
 </nav>
 
 
 <div class="statistics">
     <div class="stats-card">
-        <h2>Средняя успеваемость</h2>
-        <div class="line-stats" style="width: {{ academic_percent }}%"></div>
+        <div class="card">
+            <h2>Средняя успеваемость</h2>
+            <div class="line-stats" style="width: {{ academic_percent }}%"></div>
+        </div>
     </div>
     <div class="stats-card">
-        <h2>Выполнение заданий</h2>
-        <div class="line-stats" style="width: {{ completed_task }}%"></div>
+        <div class="card">
+            <h2>Выполнение заданий</h2>
+            <div class="line-stats" style="width: {{ completed_task }}%"></div>
+        </div>
     </div>
     <div class="stats-card">
-        <h2>Ср. кол. золотых звезд</h2>
-        <div class="line-stats" style="width: {{ gold_stars }}%"></div>
+        <div class="card">
+            <h2>Ср. кол. золотых звезд</h2>
+            <div class="line-stats" style="width: {{ gold_stars }}%"></div>
+        </div>
     </div>
 </div>
 
@@ -46,7 +69,7 @@
         <a href="/home_teacher/{{ email_teacher }}/addstudent/">Добавить ученика</a>
     </div>
     <div class="del">
-            <a href="/home_teacher/{{ email_teacher }}/deletestudent/">Удалить ученика</a>
+        <a href="/home_teacher/{{ email_teacher }}/deletestudent/">Удалить ученика</a>
     </div>
 </div>
 
