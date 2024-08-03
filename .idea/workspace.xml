@@ -5,34 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9185646c-6034-4097-b9b4-df3fd645fbd4" name="Changes" comment="fix">
-      <change afterPath="$PROJECT_DIR$/.idea/material_theme_project_new.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_29_07_2024_2_42_[Changes]/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_29_07_2024_2_42__Changes_.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app.conf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/db.py" beforeDir="false" afterPath="$PROJECT_DIR$/database/db.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/operations/auth/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/operations/auth/auth.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/operations/student/arithmetic.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/operations/student/arithmetic.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/operations/student/class_selection.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/operations/student/class_selection.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/operations/student/count_select.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/operations/student/count_select.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/operations/student/equation.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/operations/student/equation.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/operations/student/geometry.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/operations/student/geometry.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/operations/student/home_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/operations/student/home_user.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/operations/student/mixed_tasks.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/operations/student/mixed_tasks.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/operations/student/statistics.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/operations/student/statistics.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/operations/student/task_incresed_complexity.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/operations/student/task_incresed_complexity.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/operations/student/task_selection.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/operations/student/task_selection.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/operations/student/text_task.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/operations/student/text_task.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/operations/teacher/addquestions.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/operations/teacher/addquestions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/operations/teacher/home_teacher.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/operations/teacher/home_teacher.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/operations/utils/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/operations/utils/utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/templates/student/home_user.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/student/home_user.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/templates/teacher/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/teacher/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_29_07_2024_2_42__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_29_07_2024_2_42__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,7 +74,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -183,9 +159,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.utils" />
         <item itemvalue="Python.main" />
         <item itemvalue="Python.db" />
-        <item itemvalue="Python.utils" />
       </list>
     </recent_temporary>
   </component>
@@ -246,6 +222,7 @@
       <workItem from="1722600551059" duration="4318000" />
       <workItem from="1722607730774" duration="52000" />
       <workItem from="1722623910740" duration="8037000" />
+      <workItem from="1722657820234" duration="1817000" />
     </task>
     <task id="LOCAL-00001" summary="fix">
       <option name="closed" value="true" />
