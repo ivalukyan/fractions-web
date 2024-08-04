@@ -1,0 +1,9 @@
+#POSTGRESQL
+POSTGRES_DB='web'
+POSTGRES_USER='postgres'
+POSTGRES_PASSWORD='postgres'
+POSTGRES_HOST='product_db'
+
+# WEB
+EMAIL='lukyanov.i.n@mqil.ru'
+PASSWORD='J6Br-1s9G-20UD-wqoA'

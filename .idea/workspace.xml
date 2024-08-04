@@ -5,10 +5,80 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9185646c-6034-4097-b9b4-df3fd645fbd4" name="Changes" comment="fix">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_29_07_2024_2_42__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_29_07_2024_2_42__Changes_.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.prod_conf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/backend/LICENSE" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/database/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/db.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/database/db.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/app.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/env.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/env.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/models/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/models/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/operations/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/operations/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/operations/auth/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/operations/auth/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/operations/auth/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/operations/auth/auth.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/operations/student/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/operations/student/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/operations/student/arithmetic.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/operations/student/arithmetic.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/operations/student/class_selection.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/operations/student/class_selection.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/operations/student/count_select.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/operations/student/count_select.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/operations/student/equation.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/operations/student/equation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/operations/student/geometry.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/operations/student/geometry.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/operations/student/home_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/operations/student/home_user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/operations/student/mixed_tasks.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/operations/student/mixed_tasks.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/operations/student/statistics.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/operations/student/statistics.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/operations/student/task_incresed_complexity.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/operations/student/task_incresed_complexity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/operations/student/task_selection.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/operations/student/task_selection.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/operations/student/text_task.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/operations/student/text_task.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/operations/teacher/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/operations/teacher/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/operations/teacher/addquestions.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/operations/teacher/addquestions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/operations/teacher/home_teacher.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/operations/teacher/home_teacher.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/operations/utils/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/operations/utils/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/operations/utils/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/operations/utils/utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/static/css/auth/auth_page.css" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/static/css/auth/auth_page.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/static/css/student/account_pg.css" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/static/css/student/account_pg.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/static/css/student/answer.css" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/static/css/student/answer.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/static/css/student/arithmetic.css" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/static/css/student/arithmetic.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/static/css/student/class_selection.css" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/static/css/student/class_selection.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/static/css/student/countselection.css" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/static/css/student/countselection.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/static/css/student/geometry_page.css" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/static/css/student/geometry_page.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/static/css/student/home_user.css" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/static/css/student/home_user.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/static/css/student/statistic_page.css" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/static/css/student/statistic_page.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/static/css/student/task_selection.css" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/static/css/student/task_selection.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/static/css/teacher/addnewteacher_pg.css" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/static/css/teacher/addnewteacher_pg.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/static/css/teacher/addquestions_pg.css" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/static/css/teacher/addquestions_pg.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/static/css/teacher/addstudent_pg.css" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/static/css/teacher/addstudent_pg.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/static/css/teacher/delstudent_pg.css" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/static/css/teacher/delstudent_pg.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/static/css/teacher/home_pg.css" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/static/css/teacher/home_pg.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/static/css/teacher/viewquestions.css" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/static/css/teacher/viewquestions.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/static/css/teacher/viewteachers.css" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/static/css/teacher/viewteachers.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/static/scripts/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/static/scripts/auth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/static/scripts/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/static/scripts/script.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/auth/auth.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/templates/auth/auth.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/student/account.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/templates/student/account.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/student/class_selection.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/templates/student/class_selection.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/student/completions/answer_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/templates/student/completions/answer_page.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/student/completions/arithmetic.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/templates/student/completions/arithmetic.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/student/completions/geometry.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/templates/student/completions/geometry.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/student/count_selection.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/templates/student/count_selection.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/student/home_user.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/templates/student/home_user.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/student/statistic_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/templates/student/statistic_page.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/student/task_selection.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/templates/student/task_selection.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/teacher/addnewteacher.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/templates/teacher/addnewteacher.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/teacher/addquestions.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/templates/teacher/addquestions.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/teacher/addstudent.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/templates/teacher/addstudent.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/teacher/delstudent.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/templates/teacher/delstudent.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/teacher/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/templates/teacher/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/teacher/viewquestions.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/templates/teacher/viewquestions.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/teacher/viewteachers.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/templates/teacher/viewteachers.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,8 +91,8 @@
         <option value="JavaScript File" />
         <option value="HTML File" />
         <option value="CSS File" />
-        <option value="Python Script" />
         <option value="Dockerfile" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -53,39 +123,44 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "Python.database.executor": "Run",
-    "Python.db (1).executor": "Run",
-    "Python.db.executor": "Run",
-    "Python.main (1).executor": "Run",
-    "Python.main.executor": "Run",
-    "Python.utils.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "deletionFromPopupRequiresConfirmation": "false",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "ignore_missing_gitignore": "true",
-    "last_opened_file_path": "D:/Code/fractions",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;Python.database.executor&quot;: &quot;Run&quot;,
+    &quot;Python.db (1).executor&quot;: &quot;Run&quot;,
+    &quot;Python.db.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main (1).executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.utils.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;deletionFromPopupRequiresConfirmation&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;ignore_missing_gitignore&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Code/fractions&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.tabs&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\CODE\fractions-web" />
+      <recent name="D:\CODE\fractions-web\backend" />
+      <recent name="D:\CODE\fractions-web\src" />
       <recent name="D:\Code\fractions\src" />
       <recent name="D:\Code\fractions" />
-      <recent name="D:\Code\fractions\backend" />
-      <recent name="D:\Code\fractions\src\static\css\auth" />
-      <recent name="D:\Code\fractions\src\static\css" />
     </key>
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="Ubuntu-22.04" />
+    </option>
   </component>
   <component name="RunManager" selected="Python.main">
     <configuration name="db" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
@@ -222,7 +297,9 @@
       <workItem from="1722600551059" duration="4318000" />
       <workItem from="1722607730774" duration="52000" />
       <workItem from="1722623910740" duration="8037000" />
-      <workItem from="1722657820234" duration="1817000" />
+      <workItem from="1722657820234" duration="2065000" />
+      <workItem from="1722721006788" duration="2839000" />
+      <workItem from="1722772341864" duration="5773000" />
     </task>
     <task id="LOCAL-00001" summary="fix">
       <option name="closed" value="true" />
