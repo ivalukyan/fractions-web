@@ -41,5 +41,25 @@ app.include_router(home_teacher_router)
 app.include_router(home_user_router)
 app.include_router(auth_router)
 
+
+from fastapi.templating import Jinja2Templates
+from fastapi.staticfiles import StaticFiles
+
+templates = Jinja2Templates(directory="app/templates")
+# app.mount("/static", StaticFiles(directory="static"), name="static")
+
+@app.exception_handler(404)
+async def custom_404_handler(request, __):
+    return templates.TemplateResponse("exception_handler/404.html", {"request": request})
+
+@app.exception_handler(500)
+async def custom_500_handler(request, __):
+    return templates.TemplateResponse("exception_handler/500.html", {"request": request})
+
+@app.exception_handler(400)
+async def custom_400_handler(request, __):
+    return templates.TemplateResponse("exception_handler/400.html", {"request": request})
+
+
 if __name__ == '__main__':
     uvicorn.run(app, host='localhost', port=8000, workers=1, log_level='info')

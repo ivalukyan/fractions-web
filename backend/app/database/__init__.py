@@ -13,5 +13,9 @@ Base = declarative_base()
 
 postgres = Postgres()
 
-engine = create_engine(f'postgresql://{postgres.user}:{postgres.password}@{postgres.host}/{postgres.db}')
+connection_string = f'postgresql://{postgres.user}:{postgres.password}@{postgres.host}/{postgres.db}'
+
+print(f"Connecting to\n{connection_string}")
+
+engine = create_engine(connection_string)
 Session = sessionmaker(bind=engine)

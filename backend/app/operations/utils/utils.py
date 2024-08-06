@@ -48,7 +48,7 @@ async def academic_performance(email: str):
     for _ in percent:
         count += _[0]
 
-    if len(percent) == 0:
+    if len(percent) == 0 or count == 0:
         return 0
 
     return round(count / len(percent))
@@ -68,10 +68,19 @@ async def completed_tasks(email: str):
     for _ in all_the_time:
         count += _[0]
 
-    if len(all_the_time) == 0:
+    if len(all_the_time) == 0 or count == 0:
         return 0
+    print(all_the_time)
+    print(len(all_the_time))
+    print(count)
 
-    return round(round(count / len(all_the_time)) / count * 100)
+    print(f"{count} / {len(all_the_time)} / {count} * 100")
+
+    try:
+        return round(round(count / len(all_the_time)) / count * 100)
+    except Exception as e:
+        print(e)
+        return 0
 
 
 async def gold_stars(email: str):
@@ -88,7 +97,13 @@ async def gold_stars(email: str):
     for _ in all_gold_stars:
         count += _[0]
 
-    if len(all_gold_stars) == 0:
+    if len(all_gold_stars) == 0 or count == 0:
         return 0
 
-    return round(round(count / len(all_gold_stars)) / count * 100)
+    print(f"{count} / {len(all_gold_stars)} / {count} * 100")
+
+    try:
+        return round(round(count / len(all_gold_stars)) / count * 100)
+    except Exception as e:
+            print(e)
+            return 0
