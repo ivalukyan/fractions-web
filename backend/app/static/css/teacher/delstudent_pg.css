@@ -1,0 +1,85 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+body{
+    background-color: #1d1d1d;
+}
+
+.container{
+    margin: 200px auto;
+    width: 440px;
+    padding: 40px 32px;
+    border-radius: 16px;
+    background-color: #5a68a4;
+    box-shadow: rgba(0, 0, 0, 0.25) 0 7px 15px 0;
+}
+
+.container form label{
+    color: #f0f0f0;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 0.03rem;
+    display: block;
+    margin-top: 12px;
+}
+
+.container form .custom-input{
+    width: 100%;
+    position: relative;
+}
+
+.container form .custom-input input{
+    color: #bebebe;
+    font-size: 16px;
+    font-weight: 500;
+    width: 100%;
+    height: 46px;
+    letter-spacing: 0.03rem;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    text-indent: 10px;
+    margin-top: 6px;
+    transition: all 0.3s ease;
+    background-color: #f0f0f0;
+    box-shadow: rgba(100, 100, 111, 0.2) 0 5px 29px 0
+}
+
+.container form .but-del{
+    margin-top: 25px;
+    padding: 10px;
+    width: 100%;
+    border-radius: 10px;
+    border: none;
+    background-color: #232325;
+    font-size: 18px;
+    font-weight: 500;
+    color: #f0f0f0;
+    box-shadow: rgba(0, 0, 0, 0.25) 0 5px 15px 0;
+}
+
+.container form .but-del:hover{
+    background-color: #7e2727;
+}
+
+.container a{
+    display: flex;
+    margin-top: 30px;
+    padding: 10px;
+    background-color: #232325;
+    text-decoration: none;
+    justify-content: center;
+    border-radius: 10px;
+    color: #f0f0f0;
+    font-size: 18px;
+    font-weight: 700;
+    box-shadow: rgba(0, 0, 0, 0.25) 0 5px 15px 0;;
+}
+
+.container a:hover{
+    background-color: #cdc554;
+}

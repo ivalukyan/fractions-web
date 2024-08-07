@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="{{ url_for('static', path='/css/teacher/delstudent_pg.css') }}" rel="stylesheet">
+    <title>Add student</title>
+</head>
+<body>
+<div class="container">
+    <div class="form-delete">
+        <h2>Форма удаления ученика</h2>
+        <form method="post">
+            <div class="custom-input">
+                <label>Email</label>
+                <input type="email" placeholder="email" name="email_delete">
+            </div>
+            <button type="submit" class="but-del">Удалить</button>
+        </form>
+    </div>
+    <a href="/home_teacher/{{ email_teacher }}">Назад</a>
+</div>
+</body>
+</html>

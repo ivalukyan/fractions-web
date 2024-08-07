@@ -1,0 +1,155 @@
+<!-- <!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/teacher/addquestions_pg.css') }}">
+    <title>Add question</title>
+</head>
+<body>
+<div class="container">
+    <h3>Добавление вопросов</h3>
+    <form method="post">
+
+        <label>Выберите класс</label>
+        <div class="custom-input">
+            <select name="class_student">
+                <option selected="selected">Класс</option>
+                <option value="first">1-й класс</option>
+                <option value="second">2-й класс</option>
+                <option value="third">3-й класс</option>
+                <option value="four">4-й класс</option>
+            </select>
+        </div>
+
+        <label>Выберите задание</label>
+        <div class="custom-input">
+            <select name="type_task">
+                <option selected="selected">Задание</option>
+                <option value="arithmetic_operation">Арифметическое задание</option>
+                <option value="equations">Уравнения</option>
+                <option value="geometry">Геометрия</option>
+                <option value="text_tasks">Текстовые задачи</option>
+                <option value="task_increased_complexity">Задачи повышенной сложности</option>
+            </select>
+        </div>
+
+
+        <label>Вопрос/Задача</label>
+        <div class="custom-input">
+            <textarea name="question" type="text" placeholder="ваш вопрос или задание"></textarea>
+        </div>
+
+        <label>URL</label>
+        <div class="custom-input">
+            <input name="url" type="text" placeholder="URL - для задач геометрии с катринками">
+        </div>
+
+        <label>Варианты ответов</label>
+        <div class="custom-input">
+            <input name="var_ans" type="text" placeholder="запишите через ПРОБЕЛ варианты">
+        </div>
+
+        <label>Ответ</label>
+        <div class="custom-input">
+            <input name="answer" type="text" placeholder="ваш ответ">
+        </div>
+
+        <label>Объяснение</label>
+        <div class="custom-input">
+            <textarea name="explanation" placeholder="ваше объяснение"></textarea>
+        </div>
+        <button class="add" type="submit">Добавить</button>
+    </form>
+    <a href="/home_teacher/{{ email }}">Назад</a>
+</div>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #343a40;
+            color: #fff;
+        }
+        .form-label {
+            margin-bottom: 0.5rem;
+        }
+        .form-control, .form-select {
+            height: auto;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.9rem;
+        }
+        textarea.form-control {
+            height: 100px;
+        }
+        .container {
+            max-width: 600px;
+        }
+        .btn {
+            font-size: 0.9rem;
+            padding: 0.5rem 1rem;
+        }
+    </style>
+    <title>Add question</title>
+</head>
+<body>
+<div class="container mt-5">
+    <h3 class="text-center mb-4">Добавление вопросов</h3>
+    <form method="post">
+        <div class="mb-3">
+            <label for="class_student" class="form-label">Выберите класс</label>
+            <select class="form-select" id="class_student" name="class_student">
+                <option selected>Класс</option>
+                <option value="first">1-й класс</option>
+                <option value="second">2-й класс</option>
+                <option value="third">3-й класс</option>
+                <option value="four">4-й класс</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="type_task" class="form-label">Выберите задание</label>
+            <select class="form-select" id="type_task" name="type_task">
+                <option selected>Задание</option>
+                <option value="arithmetic_operation">Арифметическое задание</option>
+                <option value="equations">Уравнения</option>
+                <option value="geometry">Геометрия</option>
+                <option value="text_tasks">Текстовые задачи</option>
+                <option value="task_increased_complexity">Задачи повышенной сложности</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="question" class="form-label">Вопрос/Задача</label>
+            <textarea class="form-control" id="question" name="question" placeholder="ваш вопрос или задание"></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="url" class="form-label">URL</label>
+            <input type="text" class="form-control" id="url" name="url" placeholder="URL - для задач геометрии с картинками">
+        </div>
+        <div class="mb-3">
+            <label for="var_ans" class="form-label">Варианты ответов</label>
+            <input type="text" class="form-control" id="var_ans" name="var_ans" placeholder="запишите через ПРОБЕЛ варианты">
+        </div>
+        <div class="mb-3">
+            <label for="answer" class="form-label">Ответ</label>
+            <input type="text" class="form-control" id="answer" name="answer" placeholder="ваш ответ">
+        </div>
+        <div class="mb-3">
+            <label for="explanation" class="form-label">Объяснение</label>
+            <textarea class="form-control" id="explanation" name="explanation" placeholder="ваше объяснение"></textarea>
+        </div>
+        <button type="submit" class="btn btn-success w-100">Добавить</button>
+    </form>
+    <div class="text-center mt-3">
+        <a href="/home_teacher/{{ email }}" class="btn btn-outline-light">Назад</a>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,128 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+body{
+    background-color: #161617;
+}
+
+.container{
+    margin: 200px auto;
+    width: 440px;
+    padding: 40px 32px;
+    border-radius: 16px;
+    background-color: #232325;
+    box-shadow: rgba(0, 0, 0, 0.25) 0 7px 15px 0;
+}
+
+h3{
+    font-size: 20px;
+    font-weight: 500;
+    color: #f0f0f0;
+}
+
+.container form label{
+    color: #f0f0f0;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.03rem;
+    display: block;
+    margin-top: 12px;
+}
+
+.container form .custom-input{
+    position: relative;
+}
+
+.container form .custom-input input{
+    color: #1d1d1d;
+    font-size: 14px;
+    font-weight: 500;
+    width: 100%;
+    height: 46px;
+    letter-spacing: 0.03rem;
+    border: none;
+    background-color: #f0f0f0;
+    outline: none;
+    border-radius: 10px;
+    text-indent: 10px;
+    margin-top: 6px;
+    transition: all 0.3s ease;
+    box-shadow: rgba(100, 100, 111, 0.2) 0 5px 29px 0
+}
+
+.container form .custom-input textarea{
+    color: #1d1d1d;
+    font-size: 14px;
+    font-weight: 500;
+    width: 100%;
+    height: 46px;
+    letter-spacing: 0.03rem;
+    border: none;
+    background-color: #f0f0f0;
+    outline: none;
+    border-radius: 10px;
+    text-indent: 10px;
+    margin-top: 6px;
+    max-height: 200px;
+    max-width: 380px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0 5px 29px 0;
+}
+
+.container form .add{
+    width: 100%;
+    margin-top: 20px;
+    background: #62aafd;
+    color: #f0f0f0;
+    border: none;
+    line-height: 50px;
+    font-size: 18px;
+    letter-spacing: 0.025em;
+    cursor: pointer;
+    font-weight: 500;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px rgba(0,0,0, 0.15);
+    transition: all 0.3s ease;
+}
+
+.container form .add:hover{
+    background-color: #00a456;
+}
+
+
+.container form select{
+    width: 100%;
+    border: none;
+    font-size: 16px;
+    border-radius: 10px;
+    padding: 6px;
+    outline: none;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 5px 29px 0
+}
+
+.container a{
+    font-size: 16px;
+    font-weight: 500;
+    display: flex;
+    padding: 10px;
+    background-color: #232325;
+    border-radius: 10px;
+    margin-top: 30px;
+    text-decoration: none;
+    color: #FFFFFF;
+    height: 40px;
+    width: 100%;
+    justify-content: center;
+    box-shadow: rgba(0, 0, 0, 0.25) 0 5px 15px 0;
+}
+
+.container a:hover{
+    font-size: 16px;
+    font-weight: 500;
+    background-color: #ffe604;
+    color: #1d1d1d;
+    box-shadow: rgba(0, 0, 0, 0.25) 0 5px 15px 0;
+}

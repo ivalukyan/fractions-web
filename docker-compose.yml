@@ -1,0 +1,51 @@
+version: "3.7"
+
+networks:
+  my-network:
+    driver: bridge
+
+services:
+
+  product_db:
+    image: postgres:16-alpine
+    restart: always
+    container_name: db
+    env_file:
+      - .prod_conf
+    environment:
+      POSTGRES_USER: 'postgres'
+      POSTGRES_PASSWORD: 'postgres'
+      POSTGRES_DB: 'web'
+    ports:
+      - '5432:5432'
+    networks:
+      - my-network
+
+  web:
+    build:
+      context: backend
+    container_name: web
+    command: >
+      sh -c "uvicorn main:app --host 0.0.0.0 --port 8000"
+    volumes:
+      - .:/app
+    env_file:
+      - .prod_conf
+    ports:
+      - '8000:8000'
+    depends_on:
+      - product_db
+    networks:
+      - my-network
+
+  nginx:
+    container_name: nginx
+    image: nginx:alpine
+    depends_on:
+      - web
+    ports:
+      - '8080:80'
+    volumes:
+      - /etc/nginx/conf.d
+    networks:
+      - my-network

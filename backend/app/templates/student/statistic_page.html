@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/student/statistic_page.css') }}">
+    <title>Statistic</title>
+</head>
+<body>
+<div class="title">
+    <a href="/home_user/{{ email }}/">{{ task_type }}</a>
+</div>
+<div class="container">
+    <h2>Отслеживание прогреса</h2>
+    <div class="custom-item">
+        <p>Процент правильных ответов: {{ percent }}%</p>
+        <div class="line" style="background-color: {{ color }}; width: {{ percent }}%"></div>
+    </div>
+
+    <div class="custom-item">
+        <h4>Статистика:</h4>
+        <p>Всего: {{ total_count }}</p>
+    </div>
+    <div class="custom-item">
+        <p>Правильные ответы: {{ correct_count }}</p>
+        <p>Среднее время: {{ average_time }}</p>
+    </div>
+    <div class="custom-item">
+        <h4>Достижения</h4>
+        <img src={{ img_url }}>
+    </div>
+
+    <div class="custom-item">
+        <a href="/home_user/{{ email }}/">Вернуться в меню</a>
+    </div>
+
+</div>
+</body>
+</html>

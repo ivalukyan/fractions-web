@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link href="{{ url_for('static', path='/css/teacher/addstudent_pg.css') }}" rel="stylesheet">
+    <title>Add student</title>
+</head>
+<body>
+<div class="container">
+    <div class="form-add">
+        <h2>Форма добавления ученика</h2>
+        <form method="post">
+            <div class="custom-input">
+                <label>Имя</label>
+                <input type="text" placeholder="name" name="name">
+            </div>
+            <div class="custom-input">
+                <label>Email</label>
+                <input type="email" placeholder="email" name="email">
+            </div>
+            <div class="custom-input">
+                <label>Пароль</label>
+                <input type="password" placeholder="password" name="password">
+            </div>
+            <div class="custom-input">
+                <label>Класс ученика</label>
+                <select name="class_select">
+                    <option selected="selected">Выберите класс</option>
+                    <option value="first">1-й класс</option>
+                    <option value="second">2-й класс</option>
+                    <option value="third">3-й класс</option>
+                    <option value="four">4-й класс</option>
+                </select>
+            </div>
+            <input type="hidden" value="{{ email_teach }}" name="email_teacher">
+            <button type="submit" class="but-add">Добавить</button>
+        </form>
+    </div>
+    <a href="/home_teacher/{{ email_teach }}">Назад</a>
+</div>
+</body>
+</html>

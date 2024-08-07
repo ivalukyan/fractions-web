@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link href="{{ url_for('static', path='/css/student/answer.css') }}" rel="stylesheet">
+    <title>Answer</title>
+</head>
+<body>
+<div class="head">
+    <a href="/home_user/{{ email }}/">Задание: {{ title }}</a>
+</div>
+<div class="container">
+    <div class="card">
+        <h3>{{ is_correct }}</h3>
+        <br>
+        <h4>Ваш ответ: {{ answer }}</h4>
+        <div class="correct-answer">
+            <p>Правильный ответ: {{ correct_answer }}</p>
+        </div>
+        <div class="text-answer">
+            <p> {{ exp }}</p>
+        </div>
+        <div class="but">
+            <a href="/task_selection/{{ email }}/{{ class_id }}/{{ type_task }}/{{ task_id }}/{{ correct }}/{{ count_task }}">Далee</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

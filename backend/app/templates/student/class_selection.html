@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/student/class_selection.css') }}">
+    <title>Class Selection</title>
+</head>
+<body>
+<div class="logo">
+    <a href="/home_user/{{ email }}/">Дроби</a>
+</div>
+<div class="container">
+    <div class="card">
+        <h2>Программа изучения дробей</h2><br>
+        <div class="form-sel">
+            <form method="post">
+                <div class="sel">
+                    <label>
+                        <select name="class_id">
+                            <option selected="selected">Выберите ваш текущий класс</option>
+                            <option value="first">1-й класс</option>
+                            <option value="second">2-й класс</option>
+                            <option value="third">3-й класс</option>
+                            <option value="four">4-й класс</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="but-sub">
+                    <button type="submit">Далее</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
