@@ -9,6 +9,7 @@ from fastapi import Request, HTTPException, Form, APIRouter
 from starlette.responses import RedirectResponse
 
 from app.operations.student.__init__ import templates
+from app.utils.utils import answer_check
 
 router = APIRouter(tags=['equations'])
 
@@ -62,58 +63,75 @@ async def arithmetic_operations(request: Request, class_id: str, task_id: int, c
 @router.post('/task_selection/{email}/{class_id}/equations/{task_id}/{correct}/{count_task}')
 async def arithmetic_operations(request: Request, class_id: str, answer: Annotated[str, Form()], task_id: int,
                                 correct: int, email: str, count_task: int):
-    try:
+    if answer_check(answer):
+
+        try:
+            db_session = Session()
+            db_task = db_session.query(Task).filter(Task.class_student == class_id,
+                                                    Task.type_task == 'equations').all()
+        except HTTPException:
+            raise HTTPException(status_code=400, detail='Bad Request')
+
+        if len(db_task) > task_id and task_id is not None:
+
+            task = db_task[task_id]
+
+            if task is None:
+                raise HTTPException(status_code=404, detail='Task not found')
+            else:
+
+                if answer == task.answer:
+                    is_correct = 'Правильно'
+                    explanation = ''
+                    task_id += 1
+                    correct += 1
+                    count_task += 1
+                    return templates.TemplateResponse("student/completions/answer_page.html",
+                                                      {'request': request,
+                                                       'class_id': class_id,
+                                                       'is_correct': is_correct,
+                                                       'answer': answer,
+                                                       'correct_answer': task.answer,
+                                                       'title': 'Уравнения',
+                                                       'type_task': 'equations',
+                                                       'explanation': explanation,
+                                                       'task_id': task_id,
+                                                       'correct': correct,
+                                                       'count_task': count_task,
+                                                       'email': email})
+                else:
+                    is_correct = 'Неправильно'
+                    explanation = task.explanation
+                    task_id += 1
+                    count_task += 1
+                    return templates.TemplateResponse("student/completions/answer_page.html",
+                                                      {'request': request,
+                                                       'class_id': class_id,
+                                                       'is_correct': is_correct,
+                                                       'answer': answer,
+                                                       'correct_answer': task.answer,
+                                                       'title': 'Уравнения',
+                                                       'type_task': 'equations',
+                                                       'exp': explanation,
+                                                       'task_id': task_id,
+                                                       'correct': correct,
+                                                       'count_task': count_task,
+                                                       'email': email})
+        else:
+            redirect_url = request.url_for('statistic', task_type='equations', count_correct=correct)
+            return RedirectResponse(redirect_url)
+    else:
         db_session = Session()
         db_task = db_session.query(Task).filter(Task.class_student == class_id,
                                                 Task.type_task == 'equations').all()
-    except HTTPException:
-        raise HTTPException(status_code=400, detail='Bad Request')
-
-    if len(db_task) > task_id and task_id is not None:
 
         task = db_task[task_id]
 
-        if task is None:
-            raise HTTPException(status_code=404, detail='Task not found')
-        else:
-
-            if answer == task.answer:
-                is_correct = 'Правильно'
-                explanation = ''
-                task_id += 1
-                correct += 1
-                count_task += 1
-                return templates.TemplateResponse("student/completions/answer_page.html",
-                                                  {'request': request,
-                                                   'class_id': class_id,
-                                                   'is_correct': is_correct,
-                                                   'answer': answer,
-                                                   'correct_answer': task.answer,
-                                                   'title': 'Уравнения',
-                                                   'type_task': 'equations',
-                                                   'explanation': explanation,
-                                                   'task_id': task_id,
-                                                   'correct': correct,
-                                                   'count_task': count_task,
-                                                   'email': email})
-            else:
-                is_correct = 'Неправильно'
-                explanation = task.explanation
-                task_id += 1
-                count_task += 1
-                return templates.TemplateResponse("student/completions/answer_page.html",
-                                                  {'request': request,
-                                                   'class_id': class_id,
-                                                   'is_correct': is_correct,
-                                                   'answer': answer,
-                                                   'correct_answer': task.answer,
-                                                   'title': 'Уравнения',
-                                                   'type_task': 'equations',
-                                                   'exp': explanation,
-                                                   'task_id': task_id,
-                                                   'correct': correct,
-                                                   'count_task': count_task,
-                                                   'email': email})
-    else:
-        redirect_url = request.url_for('statistic', task_type='equations', count_correct=correct)
-        return RedirectResponse(redirect_url)
+        return templates.TemplateResponse("student/completions/arithmetic.html", {'request': request,
+                                                                                  'class_id': class_id,
+                                                                                  'arithmetic_operations': 'Уравнения',
+                                                                                  'task': task.question,
+                                                                                  'task_id': task_id,
+                                                                                  'correct': correct,
+                                                                                  'count_task': count_task,
+                                                                                  'email': email})
