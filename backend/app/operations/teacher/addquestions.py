@@ -7,6 +7,7 @@ from app.database.db import Task
 from app.database.__init__ import Session
 
 from app.operations.teacher.__init__ import templates
+from app.utils.utils import question_check, email_check, password_check, answer_check
 
 router = APIRouter(prefix='/addquestions', tags=['addquestions'])
 
@@ -21,10 +22,14 @@ async def addquestions(request: Request, email: str, class_student: Annotated[st
                        question: Annotated[str, Form()], url: Annotated[str, Form()] | None = None,
                        var_ans: Annotated[str, Form()] | None = None, answer: Annotated[str, Form()] = None,
                        explanation: Annotated[str, Form()] = None):
-    db_session = Session()
-    new_task = Task(class_student=class_student, type_task=type_task, question=question, url=url, var_ans=var_ans,
-                    answer=answer, explanation=explanation)
-    db_session.add(new_task)
-    db_session.commit()
+    if question_check(question) and answer_check(var_ans) and answer_check(answer) and question_check(explanation):
 
-    return templates.TemplateResponse("teacher/home.html", {'request': request, 'email_teacher': email})
+        db_session = Session()
+        new_task = Task(class_student=class_student, type_task=type_task, question=question, url=url, var_ans=var_ans,
+                        answer=answer, explanation=explanation)
+        db_session.add(new_task)
+        db_session.commit()
+
+        return templates.TemplateResponse("teacher/home.html", {'request': request, 'email_teacher': email})
+    else:
+        return templates.TemplateResponse("teacher/addquestion.html", {'request': request, 'email': email})
