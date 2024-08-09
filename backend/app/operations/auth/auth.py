@@ -47,7 +47,7 @@ async def auth_student(request: Request, email: Annotated[str, Form()], password
 @router.post("/auth_teacher")
 async def auth_teacher(request: Request, email: Annotated[str, Form()], password: Annotated[str, Form()]):
 
-    if email_check(email) and password_check(email):
+    if email_check(email) and password_check(password):
 
         db_session = Session()
         teacher = db_session.query(Teacher).filter(Teacher.email == email).first()

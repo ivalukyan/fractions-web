@@ -7,7 +7,7 @@ from app.database.__init__ import Session
 from app.database.db import Student, Test, Task, Teacher
 from app.operations.teacher import templates
 from app.operations.utils.utils import academic_performance, completed_tasks, gold_stars
-from app.utils.utils import email_check, password_check, name_check, username_check
+from app.utils.utils import email_check, password_check, name_check, username_check, is_exist_teacher, is_exist_student
 
 from env import Admin
 
@@ -88,21 +88,24 @@ async def add_student(request: Request, name: Annotated[str, Form()], email: Ann
                       password: Annotated[str, Form()], class_select: Annotated[str, Form()],
                       email_teacher: Annotated[str, Form()], email_teach: str):
     if email_check(email) and password_check(password) and name_check(name):
+        if is_exist_student(email):
 
-        db_session = Session()
-        student = Student(name=name, email=email, password=password, email_teacher=email_teacher,
-                          class_student=class_select)
-        test = Test(email=email)
+            db_session = Session()
+            student = Student(name=name, email=email, password=password, email_teacher=email_teacher,
+                              class_student=class_select)
+            test = Test(email=email)
 
-        db_session.add(student)
-        db_session.add(test)
+            db_session.add(student)
+            db_session.add(test)
 
-        db_session.commit()
+            db_session.commit()
 
-        redirect_url = request.url_for("home_teacher", email_teacher=email_teach)
-        return RedirectResponse(redirect_url)
+            redirect_url = request.url_for("home_teacher", email_teacher=email_teach)
+            return RedirectResponse(redirect_url)
+        else:
+            return templates.TemplateResponse("teacher/addstudent.html", {'request': request, 'email_teacher': email_teach})
     else:
-        return templates.TemplateResponse("teacher/addstudent.html", {'request': request, 'email_teacher': email_teacher})
+        return templates.TemplateResponse("teacher/addstudent.html", {'request': request, 'email_teacher': email_teach})
 
 
 @router.get("/{email_teacher}/deletestudent/")
@@ -114,14 +117,16 @@ async def delete_student(request: Request, email_teacher: str):
 async def delete_student(request: Request, email_delete: Annotated[str, Form()], email_teacher: str):
 
     if email_check(email_delete):
+        if is_exist_teacher(email_delete):
+            return templates.TemplateResponse("teacher/delstudent.html", {'request': request, 'email_teacher': email_teacher})
+        else:
+            db_session = Session()
+            student = db_session.query(Student).filter_by(email=email_delete).first()
+            db_session.delete(student)
+            db_session.commit()
 
-        db_session = Session()
-        student = db_session.query(Student).filter_by(email=email_delete).first()
-        db_session.delete(student)
-        db_session.commit()
-
-        redirect_url = request.url_for("home_teacher", email_teacher=email_teacher)
-        return RedirectResponse(redirect_url)
+            redirect_url = request.url_for("home_teacher", email_teacher=email_teacher)
+            return RedirectResponse(redirect_url)
     else:
         return templates.TemplateResponse("teacher/delteacher.html", {'request': request, 'email_teacher': email_teacher})
 
@@ -155,13 +160,16 @@ async def add_teacher(request: Request, email_teacher: str, username: Annotated[
                       is_superuser: Annotated[bool, Form()]):
 
     if email_check(email) and password_check(password) and username_check(username):
+        if is_exist_teacher(email):
 
-        db_session = Session()
-        teacher = Teacher(name=username, email=email, password=password, is_superuser=is_superuser)
-        db_session.add(teacher)
-        db_session.commit()
+            db_session = Session()
+            teacher = Teacher(name=username, email=email, password=password, is_superuser=is_superuser)
+            db_session.add(teacher)
+            db_session.commit()
 
-        redirect_url = request.url_for("home_teacher", email_teacher=email_teacher)
-        return RedirectResponse(redirect_url)
+            redirect_url = request.url_for("home_teacher", email_teacher=email_teacher)
+            return RedirectResponse(redirect_url)
+        else:
+            return templates.TemplateResponse("teacher/addnewteacher.html", {'request': request, 'email_teacher': email})
     else:
         return templates.TemplateResponse("teacher/addnewteacher.html", {'request': request, 'email_teacher': email})

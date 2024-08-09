@@ -1,6 +1,6 @@
 import re
-from backend.app.database.__init__ import Session
-from backend.app.database.db import Student, Teacher
+from app.database.__init__ import Session
+from app.database.db import Student, Teacher
 
 
 def answer_check(answer: str) -> bool:
@@ -47,11 +47,19 @@ def username_check(username: str) -> bool:
 
 def is_exist_student(email: str) -> bool:
     db_session = Session()
-    student = db_session.query(Student).filter(Student.email == email).first
+    student = db_session.query(Student).filter(Student.email == email).first()
     if student is not None and len(student) != 0:
-        return True
-    return False
+        return False
+    return True
 
 
-if __name__ == '__main__':
-    print(username_check("ivalkn70"))
+def is_exist_teacher(email: str) -> bool:
+    db_session = Session()
+    teacher = db_session.query(Teacher).filter(Teacher.email == email).first()
+    if teacher is not None and len(teacher) != 0:
+        return False
+    return True
+
+
+# if __name__ == '__main__':
+#     print(email_check("lukyanov.i.n@mail.ru"))
