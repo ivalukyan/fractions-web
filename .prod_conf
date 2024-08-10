@@ -1,9 +1,0 @@
-#POSTGRESQL
-POSTGRES_USER='gen_user'
-POSTGRES_PASSWORD='#>#vHG&j3f\|Go'
-POSTGRES_HOST='147.45.105.54:5432'
-POSTGRES_DB='default_db'
-
-#WEB
-EMAIL='lukyanov.i.n@mail.ru'
-PASSWORD='J6Br-1s9G-20UD-wqoA'
