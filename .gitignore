@@ -3,7 +3,3 @@ __pycache__
 .idea
 /__pycahce__
 __pycache__/
-
-.env
-
-.prod_conf
