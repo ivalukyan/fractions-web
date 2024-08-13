@@ -22,7 +22,7 @@ nav {
 }
 
 
-.toolbar{
+.toolbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -30,7 +30,7 @@ nav {
 }
 
 
-.logotype{
+.logotype {
     display: flex;
     align-items: center;
     gap: 15px;
@@ -136,7 +136,7 @@ nav {
 }
 
 
-.but{
+.but {
     padding: 10px;
     border-radius: 10px;
     background-color: #232325;
@@ -145,16 +145,15 @@ nav {
     transition: transform 0.4s ease;
 }
 
-.but:hover{
+.but:hover {
     transform: scale(1.1);
 }
 
-.but a{
+.but a {
     color: #62aafd;
     font-size: 18px;
     font-weight: 500;
 }
-
 
 
 .statistics {
@@ -166,7 +165,6 @@ nav {
     margin-top: 7vh;
     gap: 60px;
 }
-
 
 
 .stats-card {
@@ -181,7 +179,7 @@ nav {
     transition: transform 0.4s ease-in-out;
 }
 
-.stats-card:hover{
+.stats-card:hover {
     transform: scale(1.1);
 }
 
@@ -208,7 +206,7 @@ nav {
     text-align: center;
 }
 
-.crud-student .add:hover{
+.crud-student .add:hover {
     background-color: #53a475;
 }
 
@@ -227,7 +225,7 @@ nav {
     text-align: center;
 }
 
-.crud-student .del:hover{
+.crud-student .del:hover {
     background-color: #a45a5a;
 }
 
@@ -275,4 +273,22 @@ nav {
     font-weight: 600;
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.25) 0 7px 15px 0;
+}
+
+.students table .url {
+    padding: 8px;
+    border-radius: 10px;
+    background-color: #276f55;
+    box-shadow: rgba(0, 0, 0, 0.25) 0 7px 15px 0;
+}
+
+.students table .url:hover {
+    background-color: #53a475;
+}
+
+.students table .url a {
+    text-decoration: none;
+    color: #1d1d1d;
+    font-size: 14px;
+    font-weight: 600;
 }

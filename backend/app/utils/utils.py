@@ -25,7 +25,7 @@ def password_check(password: str) -> bool:
 
 
 def question_check(question: str) -> bool:
-    valid = r"^[а-яА-Я0-9\s]+$"
+    valid = r"^[=+-/*а-яА-Я0-9\s]+$"
     if re.match(valid, question):
         return True
     return False
@@ -62,4 +62,4 @@ def is_exist_teacher(email: str) -> bool:
 
 
 # if __name__ == '__main__':
-#     print(email_check("lukyanov.i.n@mail.ru"))
+#     print(question_check("2+2"))

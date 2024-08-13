@@ -1,5 +1,5 @@
 import uvicorn
-from fastapi import FastAPI
+from fastapi import FastAPI, Request, HTTPException
 from fastapi.staticfiles import StaticFiles
 from starlette.templating import Jinja2Templates
 
@@ -15,20 +15,18 @@ from app.operations.student.statistics import router as statistics_router
 from app.operations.student.task_incresed_complexity import router as task_incresed_complexity_router
 from app.operations.student.task_selection import router as task_selection_router
 from app.operations.student.text_task import router as text_task_router
-from app.operations.teacher.addquestions import router as addquestions_router
 from app.operations.teacher.home_teacher import router as home_teacher_router
 
 app = FastAPI(
-    title="Fractions Web API"
+    title="Fractions Web API",
 )
 
-templates = Jinja2Templates(directory="templates")
+templates = Jinja2Templates(directory="app/templates")
 
 app.mount("/static", StaticFiles(directory='app/static'), name='static')
 
 app.include_router(class_selection_router)
 app.include_router(task_selection_router)
-app.include_router(addquestions_router)
 app.include_router(arithmetic_router)
 app.include_router(equation_router)
 app.include_router(statistics_router)
@@ -41,24 +39,22 @@ app.include_router(home_teacher_router)
 app.include_router(home_user_router)
 app.include_router(auth_router)
 
-
-from fastapi.templating import Jinja2Templates
-from fastapi.staticfiles import StaticFiles
-
-templates = Jinja2Templates(directory="app/templates")
 # app.mount("/static", StaticFiles(directory="static"), name="static")
 
+
 @app.exception_handler(404)
-async def custom_404_handler(request, __):
-    return templates.TemplateResponse("exception_handler/404.html", {"request": request})
+async def custom_404_handler(request: Request, exp: HTTPException):
+    return templates.TemplateResponse("exception_handler/404.html", {"request": request, 'exception': exp})
+
 
 @app.exception_handler(500)
-async def custom_500_handler(request, __):
-    return templates.TemplateResponse("exception_handler/500.html", {"request": request})
+async def custom_500_handler(request: Request, exp: HTTPException):
+    return templates.TemplateResponse("exception_handler/500.html", {"request": request, 'exception': exp})
+
 
 @app.exception_handler(400)
-async def custom_400_handler(request, __):
-    return templates.TemplateResponse("exception_handler/400.html", {"request": request})
+async def custom_400_handler(request: Request, exp: HTTPException):
+    return templates.TemplateResponse("exception_handler/400.html", {"request": request, 'exception': exp})
 
 
 if __name__ == '__main__':

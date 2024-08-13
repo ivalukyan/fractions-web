@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <link href="{{ url_for('static', path='/css/teacher/viewquestions.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', path='/css/teacher/viewquestions_pg.css') }}" rel="stylesheet">
     <title>Questions</title>
 </head>
 <body>
@@ -23,13 +23,16 @@
                 <td>{{ el.question }}</td>
                 <td>{{ el.answer }}</td>
                 <td>{{ el.explanation }}</td>
+                <td class="url"><a href="/home_teacher/refactor/{{ email_teacher }}/{{ el.id }}">Редактировать</a></td>
+                <td class="url-del"><a href="/home_teacher/delquestions/{{ email_teacher }}/{{ el.id }}">Удалить</a></td>
             </tr>
             {% endfor %}
         </table>
     </div>
     <div class="back-but">
         <div class="but">
-            <a href="/home_teacher/{{ email_teacher }}">Назад</a>
+            <a class="add" href="/home_teacher/addquestions/{{ email_teacher }}">Добавление вопросов</a>
+            <a class="back" href="/home_teacher/{{ email_teacher }}">Назад</a>
         </div>
     </div>
 </div>

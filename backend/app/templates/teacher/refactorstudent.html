@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link href="{{ url_for('static', path='/css/teacher/addstudent_pg.css') }}" rel="stylesheet">
+    <title>Refactor student</title>
+</head>
+<body>
+<div class="container">
+    <div class="form-add">
+        <h2>Форма редактирования ученика</h2>
+        <form method="post" action="/home_teacher/refactorstudent/{{ email }}/{{ id }}">
+            <div class="custom-input">
+                <label>Имя</label>
+                <input type="text" placeholder="{{ student.name }}" value='{{ student.name }}' name="name">
+            </div>
+            <div class="custom-input">
+                <label>Email</label>
+                <input type="email" placeholder="{{ student.email }}" value="{{ student.email }}" name="email_student">
+            </div>
+            <div class="custom-input">
+                <label>Пароль</label>
+                <input type="password" placeholder="{{ student.password }}" value="{{ student.password }}" name="password">
+            </div>
+            <div class="custom-input">
+                <label>Класс ученика</label>
+                <select name="class_select">
+                    <option selected="selected">Выберите класс</option>
+                    <option value="first">1-й класс</option>
+                    <option value="second">2-й класс</option>
+                    <option value="third">3-й класс</option>
+                    <option value="four">4-й класс</option>
+                </select>
+            </div>
+            <input type="hidden" value="{{ student.email_teacher }}" name="email_teacher">
+            <button type="submit" class="but-add">Редактировать</button>
+        </form>
+    </div>
+    <a href="/home_teacher/{{ email_teach }}">Назад</a>
+</div>
+</body>
+</html>

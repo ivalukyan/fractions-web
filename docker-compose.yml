@@ -12,10 +12,6 @@ services:
     container_name: db
     env_file:
       - .prod_conf
-    environment:
-      POSTGRES_USER: 'postgres'
-      POSTGRES_PASSWORD: 'postgres'
-      POSTGRES_DB: 'web'
     ports:
       - '5432:5432'
     networks:
