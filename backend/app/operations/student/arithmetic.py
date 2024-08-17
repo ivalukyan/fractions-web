@@ -21,12 +21,12 @@ async def arithmetic_operations(request: Request, class_id: str, task_id: int, c
         db_task = db_session.query(Task).filter(Task.class_student == class_id,
                                                 Task.type_task == 'arithmetic_operation').all()
 
-        cnt_tsk = db_session.query(Questions).first()
+        question = db_session.query(Questions).filter(Questions.email == email).first()
 
     except HTTPException:
         raise HTTPException(status_code=400, detail='Bad Request')
 
-    if len(db_task) > task_id and task_id is not None and cnt_tsk.count_task >= count_task:
+    if len(db_task) > task_id and question.count_task >= count_task:
 
         task = db_task[task_id]
 
@@ -42,7 +42,7 @@ async def arithmetic_operations(request: Request, class_id: str, task_id: int, c
                                                                                   'email': email})
     else:
 
-        db_session.query(Questions).filter(Questions.end_time == None).update({'end_time': datetime.now()})
+        db_session.query(Questions).filter(Questions.email == email).update({'end_time': datetime.now()})
         db_session.commit()
 
         student = db_session.query(Student).filter(Student.email == email).first()
@@ -59,7 +59,7 @@ async def arithmetic_operations(request: Request, class_id: str, task_id: int, c
             db_session.commit()
 
         redirect_url = request.url_for('statistic', task_type='arithmetic_operation', count_correct=correct,
-                                       email=email)
+                                       email=email, total_count=count_task)
         return RedirectResponse(redirect_url)
 
 

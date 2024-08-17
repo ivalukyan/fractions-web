@@ -70,11 +70,11 @@ async def completed_tasks(email: str):
 
     if len(all_the_time) == 0 or count == 0:
         return 0
-    print(all_the_time)
-    print(len(all_the_time))
-    print(count)
+    # print(all_the_time)
+    # print(len(all_the_time))
+    # print(count)
 
-    print(f"{count} / {len(all_the_time)} / {count} * 100")
+    # print(f"{count} / {len(all_the_time)} / {count} * 100")
 
     try:
         return round(round(count / len(all_the_time)) / count * 100)

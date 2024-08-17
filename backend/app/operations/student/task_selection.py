@@ -18,7 +18,7 @@ async def task_selection(request: Request, class_id: str, email: str):
     count_task = 0
 
     db_session = Session()
-    db_session.query(Questions).filter(Questions.start_time == None).update({'start_time': datetime.now()})
+    db_session.query(Questions).filter(Questions.email == email).update({'start_time': datetime.now()})
     db_session.commit()
 
     return templates.TemplateResponse("student/task_selection.html", {'request': request, 'class_id': class_id,

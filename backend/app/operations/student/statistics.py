@@ -11,8 +11,8 @@ from app.operations.utils.utils import add_test
 router = APIRouter(prefix='/statistic', tags=['statistic'])
 
 
-@router.get('/{email}/{task_type}/count/{count_correct}')
-async def statistic(request: Request, task_type: str, count_correct: int, email: str):
+@router.get('/{email}/{task_type}/count/{count_correct}/{total_count}')
+async def statistic(request: Request, task_type: str, count_correct: int, email: str, total_count: int):
     try:
         db_session = Session()
         if task_type == 'mixed_tasks':
@@ -20,11 +20,11 @@ async def statistic(request: Request, task_type: str, count_correct: int, email:
         else:
             db_task = db_session.query(Task).filter(Task.type_task == task_type).all()
 
-        db_question = db_session.query(Questions).first()
+        db_question = db_session.query(Questions).filter(Questions.email == email).first()
     except HTTPException:
         raise HTTPException(status_code=400, detail="Bad Request")
 
-    total_count = len(db_task)
+    all_count = db_question.count_task
 
     hour = db_question.end_time.hour - db_question.start_time.hour
     minute = db_question.end_time.minute - db_question.start_time.minute
@@ -37,7 +37,7 @@ async def statistic(request: Request, task_type: str, count_correct: int, email:
 
     average_time = f'{hour_} : {minute_} : {second_}'
 
-    percent = round(count_correct * 100 / total_count)
+    percent = round(count_correct * 100 / all_count)
 
     if task_type == 'arithmetic_operation':
         if 90 < percent <= 100:

@@ -35,9 +35,19 @@ async def class_selection(request: Request, email: str):
 async def class_selection(request: Request, class_id: Annotated[str, Form()], email: str):
 
     db_session = Session()
-    count_tasks = Questions(count_task=10)
-    db_session.add(count_tasks)
-    db_session.commit()
+    user = db_session.query(Questions).filter(Questions.email == email).first()
+    if not user:
+        count_tasks = Questions(email=email, count_task=10)
+        db_session.add(count_tasks)
+        db_session.commit()
+    else:
+        if not user.email:
+            db_session.query(Questions).filter(Questions.email == email).update({'count_task': 15})
+            db_session.commit()
+        else:
+            count_tasks = Questions(email=email, count_task=10)
+            db_session.add(count_tasks)
+            db_session.commit()
 
     redirect_url = request.url_for("task_selection", class_id=class_id, email=email)
     return RedirectResponse(redirect_url)
@@ -47,9 +57,19 @@ async def class_selection(request: Request, class_id: Annotated[str, Form()], em
 async def class_selection(request: Request, class_id: Annotated[str, Form()], email: str):
 
     db_session = Session()
-    count_tasks = Questions(count_task=15)
-    db_session.add(count_tasks)
-    db_session.commit()
+    user = db_session.query(Questions).filter(Questions.email == email).first()
+    if not user:
+        count_tasks = Questions(email=email, count_task=15)
+        db_session.add(count_tasks)
+        db_session.commit()
+    else:
+        if not user.email:
+            db_session.query(Questions).filter(Questions.email == email).update({'count_task': 15})
+            db_session.commit()
+        else:
+            count_tasks = Questions(email=email, count_task=15)
+            db_session.add(count_tasks)
+            db_session.commit()
 
     redirect_url = request.url_for("task_selection", class_id=class_id, email=email)
     return RedirectResponse(redirect_url)
@@ -59,9 +79,19 @@ async def class_selection(request: Request, class_id: Annotated[str, Form()], em
 async def class_selection(request: Request, class_id: Annotated[str, Form()], email: str):
 
     db_session = Session()
-    count_tasks = Questions(count_task=20)
-    db_session.add(count_tasks)
-    db_session.commit()
+    user = db_session.query(Questions).filter(Questions.email == email).first()
+    if not user:
+        count_tasks = Questions(email=email, count_task=20)
+        db_session.add(count_tasks)
+        db_session.commit()
+    else:
+        if not user.email:
+            db_session.query(Questions).filter(Questions.email == email).update({'count_task': 15})
+            db_session.commit()
+        else:
+            count_tasks = Questions(email=email, count_task=20)
+            db_session.add(count_tasks)
+            db_session.commit()
 
     redirect_url = request.url_for("task_selection", class_id=class_id, email=email)
     return RedirectResponse(redirect_url)
@@ -71,9 +101,19 @@ async def class_selection(request: Request, class_id: Annotated[str, Form()], em
 async def class_selection(request: Request, class_id: Annotated[str, Form()], email: str):
 
     db_session = Session()
-    count_tasks = Questions(count_task=25)
-    db_session.add(count_tasks)
-    db_session.commit()
+    user = db_session.query(Questions).filter(Questions.email == email).first()
+    if not user:
+        count_tasks = Questions(email=email, count_task=25)
+        db_session.add(count_tasks)
+        db_session.commit()
+    else:
+        if not user.email:
+            db_session.query(Questions).filter(Questions.email == email).update({'count_task': 25})
+            db_session.commit()
+        else:
+            count_tasks = Questions(email=email, count_task=15)
+            db_session.add(count_tasks)
+            db_session.commit()
 
     redirect_url = request.url_for("task_selection", class_id=class_id, email=email)
     return RedirectResponse(redirect_url)

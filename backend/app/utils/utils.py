@@ -48,7 +48,7 @@ def username_check(username: str) -> bool:
 def is_exist_student(email: str) -> bool:
     db_session = Session()
     student = db_session.query(Student).filter(Student.email == email).first()
-    if student is not None and len(student) != 0:
+    if student is not None:
         return False
     return True
 
@@ -56,10 +56,10 @@ def is_exist_student(email: str) -> bool:
 def is_exist_teacher(email: str) -> bool:
     db_session = Session()
     teacher = db_session.query(Teacher).filter(Teacher.email == email).first()
-    if teacher is not None and len(teacher) != 0:
+    if teacher is not None:
         return False
     return True
 
 
-# if __name__ == '__main__':
-#     print(question_check("2+2"))
+if __name__ == '__main__':
+    print(question_check("2+2"))

@@ -1,41 +1,133 @@
+{#<!DOCTYPE html>#}
+{#<html lang="ru">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <link rel="stylesheet" href="{{ url_for('static', path='/css/teacher/addnewteacher_pg.css') }}">#}
+{#    <title>Add question</title>#}
+{#</head>#}
+{#<body>#}
+{#<div class="container">#}
+{#    <h3>Добавление вопросов</h3>#}
+{#    <form method="post" action="/home_teacher/addnewteacher/{{ email_teacher }}">#}
+{##}
+{#        <label>Имя учителя</label>#}
+{#        <div class="custom-input">#}
+{#            <input name="username" type="text" placeholder="Имя пользователя">#}
+{#        </div>#}
+{##}
+{#        <label>Email</label>#}
+{#        <div class="custom-input">#}
+{#            <input name="email" type="email" placeholder="Email пользователя">#}
+{#        </div>#}
+{##}
+{#        <label>Пароль</label>#}
+{#        <div class="custom-input">#}
+{#            <input name="password" type="password" placeholder="password">#}
+{#        </div>#}
+{##}
+{#        <label>Суперпользователь</label>#}
+{#        <div class="custom-input">#}
+{#            <select name="is_superuser">#}
+{#                <option selected="selected">Да/Нет</option>#}
+{#                <option value="True">Да</option>#}
+{#                <option value="False">Нет</option>#}
+{#            </select>#}
+{#        </div>#}
+{#        <button class="add" type="submit">Добавить</button>#}
+{#    </form>#}
+{#    <span>{{ exp }}</span>#}
+{#    <a href="/home_teacher/viewteachers/{{ email_teacher }}">Назад</a>#}
+{#</div>#}
+{#</body>#}
+{#</html>#}
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="{{ url_for('static', path='/css/teacher/addnewteacher_pg.css') }}">
-    <title>Add question</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Add teacher</title>
 </head>
+<style>
+    body {
+        background-color: #1d1d1d;
+        font-family: 'Roboto', sans-serif;
+        color: #f0f0f0;
+    }
+
+    .container-sm {
+        margin-top: 15vh;
+        padding: 10vh;
+        width: 600px;
+        border-radius: 8px;
+        box-shadow: rgba(0, 0, 0, 0.25) 0 7px 15px 0;
+    }
+
+    .form-text {
+        color: #f0f0f0;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .mb-3 {
+        width: 450px;
+    }
+
+    .mb-3 input {
+        width: 100%;
+    }
+
+    button {
+        width: 450px;
+    }
+
+    .form-text {
+        color: #ff7c66;
+    }
+
+</style>
 <body>
-<div class="container">
-    <h3>Добавление вопросов</h3>
-    <form method="post" action="/home_teacher/addnewteacher/{{ email_teacher }}">
-
-        <label>Имя учителя</label>
-        <div class="custom-input">
-            <input name="username" type="text" placeholder="Имя пользователя">
-        </div>
-
-        <label>Email</label>
-        <div class="custom-input">
-            <input name="email" type="email" placeholder="Email пользователя">
-        </div>
-
-        <label>Пароль</label>
-        <div class="custom-input">
-            <input name="password" type="password" placeholder="password">
-        </div>
-
-        <label>Суперпользователь</label>
-        <div class="custom-input">
-            <select name="is_superuser">
-                <option selected="selected">Да/Нет</option>
-                <option value="True">Да</option>
-                <option value="False">Нет</option>
-            </select>
-        </div>
-        <button class="add" type="submit">Добавить</button>
-    </form>
-    <a href="/home_teacher/{{ email_teacher }}">Назад</a>
+<div class="container-sm">
+    <h2 class="text-center mb-5">Форма добавления учителя</h2>
+    <div class="container">
+        <form method="post" action="/home_teacher/refactorteacher/{{ email }}/{{ id }}">
+            <div class="mb-3">
+                <label class="form-label">Имя</label>
+                <input class="form-control" placeholder="Имя" name="name" type="text">
+                <span class="form-text">
+            *Используйте только символы кириллицы
+        </span>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input class="form-control" placeholder="Почта" name="teacher_email" type="email">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Password</label>
+                <input class="form-control" placeholder="Пароль" name="password" type="password">
+            </div>
+            <div class="mb-3">
+                <select class="form-select" aria-label="Суперпользователь" name="is_superuser">
+                    <option selected>Да/Нет</option>
+                    <option value="True">Да</option>
+                    <option value="False">Нет</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <span class="form-text">
+                    {{ exp }}
+                </span>
+            </div>
+            <button type="submit" class="btn btn-success">Добавить</button>
+        </form>
+        <a class="btn btn-warning" href="/home_teacher/viewteachers/{{ email }}" role="button"
+           style="width: 450px; margin-top: 10px">Назад</a>
+    </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
