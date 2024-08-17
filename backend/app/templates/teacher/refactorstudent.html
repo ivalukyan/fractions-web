@@ -113,13 +113,16 @@
             </div>
             <div class="mb-3">
                 <label class="form-label">Email</label>
-                <input class="form-control" placeholder="Почта" name="teacher_email" type="email"
+                <input class="form-control" placeholder="Почта" name="email_student" type="email"
                        value="{{ student.email }}">
             </div>
             <div class="mb-3">
                 <label class="form-label">Password</label>
                 <input class="form-control" placeholder="Пароль" name="password" type="password"
                        value="{{ student.password }}">
+            </div>
+            <div class="mb-3">
+                <input class="form-control" type="hidden" value="{{ student.email_teacher }}" name="email_teacher">
             </div>
             <div class="mb-3">
                 <span class="form-text">

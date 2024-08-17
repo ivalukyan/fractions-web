@@ -1,4 +1,5 @@
 import re
+import bcrypt
 from app.database.__init__ import Session
 from app.database.db import Student, Teacher
 
@@ -48,7 +49,7 @@ def username_check(username: str) -> bool:
 def is_exist_student(email: str) -> bool:
     db_session = Session()
     student = db_session.query(Student).filter(Student.email == email).first()
-    if student is not None:
+    if not student:
         return False
     return True
 
@@ -56,10 +57,30 @@ def is_exist_student(email: str) -> bool:
 def is_exist_teacher(email: str) -> bool:
     db_session = Session()
     teacher = db_session.query(Teacher).filter(Teacher.email == email).first()
-    if teacher is not None:
+    if not teacher:
         return False
     return True
 
 
-if __name__ == '__main__':
-    print(question_check("2+2"))
+def hashed(password: str) -> bytes:
+    hash_password = bcrypt.hashpw(password.encode(), bcrypt.gensalt())
+    return hash_password
+
+
+def equal_password(password: str, hashed_password: bytes) -> bool:
+    valid = bcrypt.checkpw(password.encode(), hashed_password)
+    return valid
+
+
+def is_superuser(email: str) -> bool:
+    db_session = Session()
+    teacher = db_session.query(Teacher).filter(Teacher.email == email).first()
+
+    if not teacher:
+        return False
+    return teacher.is_superuser
+
+
+# if __name__ == '__main__':
+#     print(hashed("admin123456"))
+#     print(check_password("admin123456", hashed("admin123456")))

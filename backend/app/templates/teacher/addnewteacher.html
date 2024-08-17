@@ -94,7 +94,7 @@
 <div class="container-sm">
     <h2 class="text-center mb-5">Форма добавления учителя</h2>
     <div class="container">
-        <form method="post" action="/home_teacher/refactorteacher/{{ email }}/{{ id }}">
+        <form method="post" action="/home_teacher/addnewteacher/{{ email_teacher }}">
             <div class="mb-3">
                 <label class="form-label">Имя</label>
                 <input class="form-control" placeholder="Имя" name="name" type="text">
@@ -104,7 +104,7 @@
             </div>
             <div class="mb-3">
                 <label class="form-label">Email</label>
-                <input class="form-control" placeholder="Почта" name="teacher_email" type="email">
+                <input class="form-control" placeholder="Почта" name="email" type="email">
             </div>
             <div class="mb-3">
                 <label class="form-label">Password</label>
@@ -124,7 +124,7 @@
             </div>
             <button type="submit" class="btn btn-success">Добавить</button>
         </form>
-        <a class="btn btn-warning" href="/home_teacher/viewteachers/{{ email }}" role="button"
+        <a class="btn btn-warning" href="/home_teacher/viewteachers/{{ email_teacher }}" role="button"
            style="width: 450px; margin-top: 10px">Назад</a>
     </div>
 </div>

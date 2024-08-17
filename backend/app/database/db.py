@@ -1,6 +1,6 @@
 from uuid import uuid4
 
-from sqlalchemy import Column, Integer, String, DateTime, UUID, Boolean
+from sqlalchemy import Column, Integer, String, DateTime, UUID, Boolean, LargeBinary
 
 from app.database.__init__ import Base, engine
 
@@ -34,7 +34,7 @@ class Student(Base):
     id = Column(UUID, primary_key=True, default=uuid4)
     name = Column(String, nullable=False)
     email = Column(String, nullable=False)
-    password = Column(String, nullable=False)
+    password = Column(LargeBinary, nullable=False)
     class_student = Column(String, nullable=True)
     percent = Column(Integer, nullable=True, default=0)
     all_times_tasks = Column(Integer, nullable=True, default=0)
@@ -60,7 +60,7 @@ class Teacher(Base):
     id = Column(UUID, primary_key=True, default=uuid4)
     name = Column(String, nullable=False)
     email = Column(String, nullable=False)
-    password = Column(String, nullable=False)
+    password = Column(LargeBinary, nullable=False)
     is_superuser = Column(Boolean, nullable=False, default=False)
 
 

@@ -123,6 +123,7 @@ async def arithmetic_operations(request: Request, class_id: str, answer: Annotat
             redirect_url = request.url_for('statistic', task_type='equations', count_correct=correct)
             return RedirectResponse(redirect_url)
     else:
+        exp = "Некорректный ввод!"
         db_session = Session()
         db_task = db_session.query(Task).filter(Task.class_student == class_id,
                                                 Task.type_task == 'equations').all()
@@ -136,4 +137,5 @@ async def arithmetic_operations(request: Request, class_id: str, answer: Annotat
                                                                                   'task_id': task_id,
                                                                                   'correct': correct,
                                                                                   'count_task': count_task,
-                                                                                  'email': email})
+                                                                                  'email': email,
+                                                                                  'exp': exp})

@@ -12,7 +12,7 @@ from app.utils.utils import email_check, password_check, name_check, username_ch
 
 from env import Admin
 
-from app.utils.utils import question_check, answer_check
+from app.utils.utils import question_check, answer_check, hashed, equal_password, is_superuser
 
 router = APIRouter(prefix='/home_teacher', tags=['Home Teacher'])
 
@@ -88,11 +88,15 @@ async def add_student(request: Request, email_teach: str):
 async def add_student(request: Request, name: Annotated[str, Form()], email: Annotated[str, Form()],
                       password: Annotated[str, Form()], class_select: Annotated[str, Form()],
                       email_teacher: Annotated[str, Form()], email_teach: str):
-    if email_check(email) and password_check(password) and name_check(name):
+    if email_check(email) and name_check(name):
         if is_exist_student(email):
-
+            exp = "Пользователь уже существует!"
+            return templates.TemplateResponse("teacher/addstudent.html",
+                                              {'request': request, 'email_teach': email_teach, 'exp': exp})
+        else:
+            hashandsalt = hashed(password)
             db_session = Session()
-            student = Student(name=name, email=email, password=password, email_teacher=email_teacher,
+            student = Student(name=name, email=email, password=hashandsalt, email_teacher=email_teacher,
                               class_student=class_select)
             test = Test(email=email)
 
@@ -103,11 +107,10 @@ async def add_student(request: Request, name: Annotated[str, Form()], email: Ann
 
             redirect_url = request.url_for("home_teacher", email_teacher=email_teach)
             return RedirectResponse(redirect_url)
-        else:
-            return templates.TemplateResponse("teacher/addstudent.html",
-                                              {'request': request, 'email_teach': email_teach})
     else:
-        return templates.TemplateResponse("teacher/addstudent.html", {'request': request, 'email_teach': email_teach})
+        exp = "Данные введены некорректно!"
+        return templates.TemplateResponse("teacher/addstudent.html", {'request': request, 'email_teach': email_teach,
+                                                                      'exp': exp})
 
 
 @router.get("/deletestudent/{email_teacher}")
@@ -133,8 +136,9 @@ async def delete_student(request: Request, email_delete: Annotated[str, Form()],
             return templates.TemplateResponse("teacher/delstudent.html",
                                               {'request': request, 'email_teacher': email_teacher, 'exp': exp})
     else:
+        exp = "Данные введены некорректно!"
         return templates.TemplateResponse("teacher/delteacher.html",
-                                          {'request': request, 'email_teacher': email_teacher})
+                                          {'request': request, 'email_teacher': email_teacher, 'exp': exp})
 
 
 @router.get("/viewquestions/{email}")
@@ -150,6 +154,7 @@ async def view_questions(request: Request, email: str):
 async def view_teachers(request: Request, email: str):
     db_session = Session()
     teacher = db_session.query(Teacher).all()
+    print(teacher)
 
     return templates.TemplateResponse('teacher/viewteachers.html', {"request": request, 'email_teacher': email,
                                                                     'data': teacher})
@@ -167,31 +172,36 @@ async def view_teachers(request: Request, email: str):
 
 @router.get("/addnewteacher/{email}")
 async def add_teacher(request: Request, email: str):
-    return templates.TemplateResponse('teacher/addnewteacher.html', {"request": request, 'email_teacher': email})
+    if is_superuser(email) or email == admin.username:
+        return templates.TemplateResponse('teacher/addnewteacher.html', {"request": request, 'email_teacher': email})
+    else:
+        redirect_url = request.url_for("view_teachers", email=email)
+        return RedirectResponse(redirect_url)
 
 
 @router.post("/addnewteacher/{email_teacher}")
 async def add_teacher(request: Request, email_teacher: str, name: Annotated[str, Form()],
                       email: Annotated[str, Form()], password: Annotated[str, Form()],
                       is_superuser: Annotated[bool, Form()]):
-    if email_check(email) and password_check(password) and name_check(name):
+    if email_check(email) and name_check(name):
         if is_exist_teacher(email):
+            exp = "Пользователь уже существует"
+            return templates.TemplateResponse("teacher/addnewteacher.html",
+                                              {'request': request, 'email_teacher': email,
+                                               'exp': exp})
+        else:
+            hashandsalt = hashed(password)
 
             db_session = Session()
-            teacher = Teacher(name=name, email=email, password=password, is_superuser=is_superuser)
+            teacher = Teacher(name=name, email=email, password=hashandsalt, is_superuser=is_superuser)
             db_session.add(teacher)
             db_session.commit()
 
             redirect_url = request.url_for("view_teachers", email=email_teacher)
             return RedirectResponse(redirect_url)
-        else:
-            exp = "Пользователь уже существует"
-            return templates.TemplateResponse("teacher/addnewteacher.html",
-                                              {'request': request, 'email_teacher': email,
-                                               'exp': exp})
     else:
-        exp = f"Введите корректно поле!"
-        return templates.TemplateResponse("teacher/addnewteacher.html", {'request': request, 'email_teacher': email,
+        exp = "Данные введены некорректно!"
+        return templates.TemplateResponse("teacher/addnewteacher.html", {'request': request, 'email_teacher': email_teacher,
                                                                          'exp': exp})
 
 
@@ -220,7 +230,8 @@ async def addquestions(request: Request, email: str, class_student: Annotated[st
                                                                          'email_teacher': email,
                                                                          'data': data})
     else:
-        return templates.TemplateResponse("teacher/addquestions.html", {'request': request, 'email': email})
+        exp = "Данные введены некорректно!"
+        return templates.TemplateResponse("teacher/addquestions.html", {'request': request, 'email': email, 'exp': exp})
 
 
 @router.get("/delquestions/{email}/{id}")
@@ -249,19 +260,27 @@ async def refactoring_question(request: Request, email: str, id: str,
                                question: Annotated[str, Form()], url: Annotated[str, Form()] | None = "",
                                var_ans: Annotated[str, Form()] | None = "", answer: Annotated[str, Form()] = "",
                                explanation: Annotated[str, Form()] = ""):
-    db_session = Session()
-    db_session.query(Task).filter(Task.id == id).update({'question': question,
-                                                         'url': url,
-                                                         'var_ans': var_ans,
-                                                         'answer': answer,
-                                                         'explanation': explanation})
-    db_session.commit()
+    if question_check(question) and answer_check(var_ans) and answer_check(answer) and question_check(explanation):
+        db_session = Session()
+        db_session.query(Task).filter(Task.id == id).update({'question': question,
+                                                             'url': url,
+                                                             'var_ans': var_ans,
+                                                             'answer': answer,
+                                                             'explanation': explanation})
+        db_session.commit()
 
-    data = db_session.query(Task).all()
+        data = db_session.query(Task).all()
 
-    return templates.TemplateResponse("teacher/viewquestions.html", {'request': request,
-                                                                     'email_teacher': email,
-                                                                     'data': data})
+        return templates.TemplateResponse("teacher/viewquestions.html", {'request': request,
+                                                                         'email_teacher': email,
+                                                                         'data': data})
+    else:
+        exp = "Данные введены некорректно!"
+        db_session = Session()
+        task = db_session.query(Task).filter(Task.id == id).first()
+        return templates.TemplateResponse("teacher/refractorquestion.html", {'request': request,
+                                                                             'email': email, 'id': id, 'task': task,
+                                                                             'exp': exp})
 
 
 @router.get("/refactorstudent/{email}/{id}")
@@ -278,24 +297,33 @@ async def refactoring_student(request: Request, email: str, id: str):
 @router.post("/refactorstudent/{email}/{id}")
 async def refactoring_student(request: Request, email: str, id: str, name: Annotated[str, Form()],
                               email_student: Annotated[str, Form()],
-                              password: Annotated[str, Form()], class_select: Annotated[str, Form()],
+                              password: Annotated[str, Form()],
                               email_teacher: Annotated[str, Form()]):
+    if name_check(name) and email_check(email_student) and password_check(password):
 
-    db_session = Session()
-    db_session.query(Student).filter(Student.id == id).update({'name': name,
-                                                               'email': email_student,
-                                                               'password': password,
-                                                               'class_student': class_select,
-                                                               'email_teacher': email_teacher})
-    db_session.commit()
+        hashandsalt = hashed(password)
+        db_session = Session()
+        db_session.query(Student).filter(Student.id == id).update({'name': name,
+                                                                   'email': email_student,
+                                                                   'password': hashandsalt,
+                                                                   'email_teacher': email_teacher})
+        db_session.commit()
 
-    redirect_url = request.url_for("home_teacher", email_teacher=email)
-    return RedirectResponse(redirect_url)
+        redirect_url = request.url_for("home_teacher", email_teacher=email)
+        return RedirectResponse(redirect_url)
+    else:
+        exp = "Данные введены некорректно!"
+        db_session = Session()
+        student = db_session.query(Student).filter(Student.id == id).first()
+        return templates.TemplateResponse("teacher/refactorstudent.html", {'request': request,
+                                                                           'email': email,
+                                                                           'id': id,
+                                                                           'student': student,
+                                                                           'exp': exp})
 
 
 @router.get("/delteacher/{email}/{id}")
 async def delete_teacher(request: Request, email: str, id: str):
-
     db_session = Session()
     teacher = db_session.query(Teacher).filter(Teacher.id == id).first()
     db_session.delete(teacher)
@@ -307,7 +335,6 @@ async def delete_teacher(request: Request, email: str, id: str):
 
 @router.get("/refactorteacher/{email}/{id}")
 async def refactoring_teacher(request: Request, email: str, id: str):
-
     db_session = Session()
     teacher = db_session.query(Teacher).filter(Teacher.id == id).first()
 
@@ -320,14 +347,25 @@ async def refactoring_teacher(request: Request, email: str, id: str):
 @router.post("/refactorteacher/{email}/{id}")
 async def refactoring_teacher(request: Request, email: str, id: str, name: Annotated[str, Form()],
                               teacher_email: Annotated[str, Form()], password: Annotated[str, Form()]):
+    if name_check(name) and email_check(teacher_email) and password_check(password):
 
-    db_session = Session()
-    db_session.query(Teacher).filter(Teacher.id == id).update({'name': name,
-                                                               'email': teacher_email,
-                                                               'password': password})
-    db_session.commit()
+        hasandsalt = hashed(password)
+        db_session = Session()
+        db_session.query(Teacher).filter(Teacher.id == id).update({'name': name,
+                                                                   'email': teacher_email,
+                                                                   'password': hasandsalt})
+        db_session.commit()
 
-    teacher = db_session.query(Teacher).all()
+        teacher = db_session.query(Teacher).all()
 
-    return templates.TemplateResponse('teacher/viewteachers.html', {"request": request, 'email_teacher': email,
-                                                                    'data': teacher})
+        return templates.TemplateResponse('teacher/viewteachers.html', {"request": request, 'email_teacher': email,
+                                                                        'data': teacher})
+    else:
+        exp = "Данные введены некорретно!"
+        db_session = Session()
+        teacher = db_session.query(Teacher).filter(Teacher.id == id).first()
+        return templates.TemplateResponse("teacher/refactorteacher.html", {'request': request,
+                                                                           'email': email,
+                                                                           'id': id,
+                                                                           'teacher': teacher,
+                                                                           'exp': exp})
