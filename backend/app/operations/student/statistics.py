@@ -35,14 +35,12 @@ async def statistic(request: Request, task_type: str, count_correct: int, email:
     minute_ = floor((average_time_second - hour_ * 3600) / 60)
     second_ = average_time_second - minute_ * 60
 
-    average_time = f'{hour_} : {minute_} : {second_}'
+    average_time = f'{hour_} ч : {minute_} мин : {second_} сек'
 
-    percent = round(count_correct * 100 / all_count)
+    percent = round(count_correct * 100 / total_count)
 
     if task_type == 'arithmetic_operation':
         if 90 < percent <= 100:
-            db_session.delete(db_question)
-            db_session.commit()
 
             student = db_session.query(Student).filter(Student.email == email).first()
             if student is not None:
@@ -64,8 +62,6 @@ async def statistic(request: Request, task_type: str, count_correct: int, email:
                                                                               'color': '#32CD32',
                                                                               'email': email})
         elif 60 < percent <= 89:
-            db_session.delete(db_question)
-            db_session.commit()
 
             student = db_session.query(Student).filter(Student.email == email).first()
             if student is not None:
@@ -87,8 +83,6 @@ async def statistic(request: Request, task_type: str, count_correct: int, email:
                                                                               'color': '#652f27',
                                                                               'email': email})
         else:
-            db_session.delete(db_question)
-            db_session.commit()
 
             student = db_session.query(Student).filter(Student.email == email).first()
             if student is not None:
@@ -111,8 +105,6 @@ async def statistic(request: Request, task_type: str, count_correct: int, email:
                                                                               'email': email})
     elif task_type == 'equations':
         if 90 < percent <= 100:
-            db_session.delete(db_question)
-            db_session.commit()
 
             student = db_session.query(Student).filter(Student.email == email).first()
             if student is not None:
@@ -134,8 +126,6 @@ async def statistic(request: Request, task_type: str, count_correct: int, email:
                                                                               'color': '#32CD32',
                                                                               'email': email})
         elif 60 < percent <= 89:
-            db_session.delete(db_question)
-            db_session.commit()
 
             student = db_session.query(Student).filter(Student.email == email).first()
             if student is not None:
@@ -157,8 +147,6 @@ async def statistic(request: Request, task_type: str, count_correct: int, email:
                                                                               'color': '#652f27',
                                                                               'email': email})
         else:
-            db_session.delete(db_question)
-            db_session.commit()
 
             student = db_session.query(Student).filter(Student.email == email).first()
             if student is not None:
@@ -181,8 +169,6 @@ async def statistic(request: Request, task_type: str, count_correct: int, email:
                                                                               'email': email})
     elif task_type == 'text_tasks':
         if 90 < percent <= 100:
-            db_session.delete(db_question)
-            db_session.commit()
 
             student = db_session.query(Student).filter(Student.email == email).first()
             if student is not None:
@@ -204,8 +190,6 @@ async def statistic(request: Request, task_type: str, count_correct: int, email:
                                                                               'color': '#32CD32',
                                                                               'email': email})
         elif 60 < percent <= 89:
-            db_session.delete(db_question)
-            db_session.commit()
 
             student = db_session.query(Student).filter(Student.email == email).first()
             if student is not None:
@@ -227,8 +211,6 @@ async def statistic(request: Request, task_type: str, count_correct: int, email:
                                                                               'color': '#652f27',
                                                                               'email': email})
         else:
-            db_session.delete(db_question)
-            db_session.commit()
 
             student = db_session.query(Student).filter(Student.email == email).first()
             if student is not None:
@@ -251,8 +233,6 @@ async def statistic(request: Request, task_type: str, count_correct: int, email:
                                                                               'email': email})
     elif task_type == 'task_increased_complexity':
         if 90 < percent <= 100:
-            db_session.delete(db_question)
-            db_session.commit()
 
             student = db_session.query(Student).filter(Student.email == email).first()
             if student is not None:
@@ -274,8 +254,6 @@ async def statistic(request: Request, task_type: str, count_correct: int, email:
                                                                               'color': '#32CD32',
                                                                               'email': email})
         elif 60 < percent <= 89:
-            db_session.delete(db_question)
-            db_session.commit()
 
             student = db_session.query(Student).filter(Student.email == email).first()
             if student is not None:
@@ -297,8 +275,6 @@ async def statistic(request: Request, task_type: str, count_correct: int, email:
                                                                               'color': '#652f27',
                                                                               'email': email})
         else:
-            db_session.delete(db_question)
-            db_session.commit()
 
             student = db_session.query(Student).filter(Student.email == email).first()
             if student is not None:
@@ -322,8 +298,6 @@ async def statistic(request: Request, task_type: str, count_correct: int, email:
 
     elif task_type == 'mixed_tasks':
         if 90 < percent <= 100:
-            db_session.delete(db_question)
-            db_session.commit()
 
             student = db_session.query(Student).filter(Student.email == email).first()
             if student is not None:
@@ -345,8 +319,6 @@ async def statistic(request: Request, task_type: str, count_correct: int, email:
                                                                               'color': '#32CD32',
                                                                               'email': email})
         elif 60 < percent <= 89:
-            db_session.delete(db_question)
-            db_session.commit()
 
             student = db_session.query(Student).filter(Student.email == email).first()
             if student is not None:
@@ -368,8 +340,6 @@ async def statistic(request: Request, task_type: str, count_correct: int, email:
                                                                               'color': '#652f27',
                                                                               'email': email})
         else:
-            db_session.delete(db_question)
-            db_session.commit()
 
             student = db_session.query(Student).filter(Student.email == email).first()
             if student is not None:
@@ -393,8 +363,6 @@ async def statistic(request: Request, task_type: str, count_correct: int, email:
 
     elif task_type == 'geometry':
         if 90 < percent <= 100:
-            db_session.delete(db_question)
-            db_session.commit()
 
             student = db_session.query(Student).filter(Student.email == email).first()
             if student is not None:
@@ -416,8 +384,6 @@ async def statistic(request: Request, task_type: str, count_correct: int, email:
                                                                               'color': '#32CD32',
                                                                               'email': email})
         elif 60 < percent <= 89:
-            db_session.delete(db_question)
-            db_session.commit()
 
             student = db_session.query(Student).filter(Student.email == email).first()
             if student is not None:
@@ -439,8 +405,6 @@ async def statistic(request: Request, task_type: str, count_correct: int, email:
                                                                               'color': '#652f27',
                                                                               'email': email})
         else:
-            db_session.delete(db_question)
-            db_session.commit()
 
             student = db_session.query(Student).filter(Student.email == email).first()
             if student is not None:

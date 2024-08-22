@@ -26,7 +26,10 @@ async def arithmetic_operations(request: Request, class_id: str, task_id: int, c
     except HTTPException:
         raise HTTPException(status_code=400, detail='Bad Request')
 
-    if len(db_task) > task_id and question.count_task >= count_task:
+    if len(db_task) > task_id and question.count_task > count_task:
+
+        print(question.count_task)
+        print(count_task)
 
         task = db_task[task_id]
 
