@@ -5,7 +5,7 @@ from app.database.db import Student, Teacher
 
 
 def answer_check(answer: str) -> bool:
-    valid = r"^([А-ЯЁ]*[а-яё]*|\s*|[0-9]*)$"
+    valid = r"^[=+-/*а-яА-Я0-9\s]+$"
     if re.match(valid, answer):
         return True
     return False
@@ -26,7 +26,7 @@ def password_check(password: str) -> bool:
 
 
 def question_check(question: str) -> bool:
-    valid = r"^[=+-/*а-яА-Я0-9\s]+$"
+    valid = r"^[?=+-/*а-яА-Я0-9\s]+$"
     if re.match(valid, question):
         return True
     return False
@@ -81,6 +81,5 @@ def is_superuser(email: str) -> bool:
     return teacher.is_superuser
 
 
-# if __name__ == '__main__':
-#     print(hashed("admin123456"))
-#     print(check_password("admin123456", hashed("admin123456")))
+if __name__ == '__main__':
+    print(answer_check("1/4 1/5 1/2 1/6"))

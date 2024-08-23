@@ -154,7 +154,6 @@ async def view_questions(request: Request, email: str):
 async def view_teachers(request: Request, email: str):
     db_session = Session()
     teacher = db_session.query(Teacher).all()
-    print(teacher)
 
     return templates.TemplateResponse('teacher/viewteachers.html', {"request": request, 'email_teacher': email,
                                                                     'data': teacher})
@@ -213,13 +212,13 @@ async def addquestions(request: Request, email: str):
 @router.post("/addquestions/{email}")
 async def addquestions(request: Request, email: str, class_student: Annotated[str, Form()],
                        type_task: Annotated[str, Form()],
-                       question: Annotated[str, Form()], url: Annotated[str, Form()] | None = "",
-                       var_ans: Annotated[str, Form()] | None = "", answer: Annotated[str, Form()] = "",
+                       question: Annotated[str, Form()], url: Annotated[str, Form()] = " ",
+                       variation_answer: Annotated[str, Form()] = " ", answer: Annotated[str, Form()] = "",
                        explanation: Annotated[str, Form()] = ""):
-    if question_check(question) and answer_check(var_ans) and answer_check(answer) and question_check(explanation):
+    if question_check(question) and answer_check(variation_answer) and answer_check(answer) and question_check(explanation):
 
         db_session = Session()
-        new_task = Task(class_student=class_student, type_task=type_task, question=question, url=url, var_ans=var_ans,
+        new_task = Task(class_student=class_student, type_task=type_task, question=question, url=url, var_ans=variation_answer,
                         answer=answer, explanation=explanation)
         db_session.add(new_task)
         db_session.commit()
@@ -231,6 +230,7 @@ async def addquestions(request: Request, email: str, class_student: Annotated[st
                                                                          'data': data})
     else:
         exp = "Данные введены некорректно!"
+        print(variation_answer)
         return templates.TemplateResponse("teacher/addquestions.html", {'request': request, 'email': email, 'exp': exp})
 
 
@@ -324,13 +324,18 @@ async def refactoring_student(request: Request, email: str, id: str, name: Annot
 
 @router.get("/delteacher/{email}/{id}")
 async def delete_teacher(request: Request, email: str, id: str):
-    db_session = Session()
-    teacher = db_session.query(Teacher).filter(Teacher.id == id).first()
-    db_session.delete(teacher)
-    db_session.commit()
 
-    redirect_url = request.url_for("view_teachers", email=email)
-    return RedirectResponse(redirect_url)
+    if is_superuser(email) or email == admin.username:
+        db_session = Session()
+        teacher = db_session.query(Teacher).filter(Teacher.id == id).first()
+        db_session.delete(teacher)
+        db_session.commit()
+
+        redirect_url = request.url_for("view_teachers", email=email)
+        return RedirectResponse(redirect_url)
+    else:
+        redirect_url = request.url_for("view_teachers", email=email)
+        return RedirectResponse(redirect_url)
 
 
 @router.get("/refactorteacher/{email}/{id}")
@@ -338,10 +343,15 @@ async def refactoring_teacher(request: Request, email: str, id: str):
     db_session = Session()
     teacher = db_session.query(Teacher).filter(Teacher.id == id).first()
 
-    return templates.TemplateResponse("teacher/refactorteacher.html", {'request': request,
+    if is_superuser(email) or email == admin.username:
+
+        return templates.TemplateResponse("teacher/refactorteacher.html", {'request': request,
                                                                        'email': email,
                                                                        'id': id,
                                                                        'teacher': teacher})
+    else:
+        redirect_url = request.url_for("view_teachers", email=email)
+        return RedirectResponse(redirect_url)
 
 
 @router.post("/refactorteacher/{email}/{id}")
