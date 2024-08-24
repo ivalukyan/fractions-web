@@ -51,12 +51,6 @@ async def arithmetic_operations(request: Request, class_id: str, task_id: int, c
 
                 list_ans = task.var_ans.split()
 
-                print(task.url)
-                if task.url == "url":
-                    print(True)
-                else:
-                    print(False)
-
                 if task.url == "url":
                     return templates.TemplateResponse("student/completions/geometry_without_url.html", {'request': request,
                                                                                         'class_id': class_id,
