@@ -212,8 +212,8 @@ async def addquestions(request: Request, email: str):
 @router.post("/addquestions/{email}")
 async def addquestions(request: Request, email: str, class_student: Annotated[str, Form()],
                        type_task: Annotated[str, Form()],
-                       question: Annotated[str, Form()], url: Annotated[str, Form()] = " ",
-                       variation_answer: Annotated[str, Form()] = " ", answer: Annotated[str, Form()] = "",
+                       question: Annotated[str, Form()], url: Annotated[str, Form()] = "url",
+                       variation_answer: Annotated[str, Form()] = None, answer: Annotated[str, Form()] = "",
                        explanation: Annotated[str, Form()] = ""):
     if question_check(question) and answer_check(variation_answer) and answer_check(answer) and question_check(explanation):
 

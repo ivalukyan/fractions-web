@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+	<link rel="stylesheet" href="{{ url_for('static', path='/css/student/geometry_page.css') }}">
+    <title>Geometry</title>
+</head>
+<body>
+    <div class="logo">
+        <a href="/home_user/{{ email }}/">Задание: {{ arithmetic_operations }}</a>
+    </div>
+	<div class="container">
+        <h3>{{ task }}</h3>
+        <form method="post">
+
+            <div id="initialContainer" class="draggable-container">
+                {% for el in list_ans %}
+                <p draggable="true" id="{{ el }}" class="draggable-item" ondragstart="dragstart_handler(event)">
+                    {{ el }}
+                </p>
+                {% endfor %}
+            </div>
+            <div class="upload-zone-dragover" id="target" ondrop="drop_handler(event)" ondragover="dragover_handler(event)">
+                Перетащите элемент сюда
+            </div>
+            <input type="hidden" id="droppedElements" name="answer" value="">
+            <button type="submit" class="form-upload-submit">Отправить</button>
+        </form>
+	</div>
+<script src="{{ url_for('static', path='/scripts/script.js') }}"></script>
+</body>
+</html>

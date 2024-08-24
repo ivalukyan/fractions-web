@@ -51,16 +51,33 @@ async def arithmetic_operations(request: Request, class_id: str, task_id: int, c
 
                 list_ans = task.var_ans.split()
 
-                return templates.TemplateResponse("student/completions/geometry.html", {'request': request,
+                print(task.url)
+                if task.url == "url":
+                    print(True)
+                else:
+                    print(False)
+
+                if task.url == "url":
+                    return templates.TemplateResponse("student/completions/geometry_without_url.html", {'request': request,
                                                                                         'class_id': class_id,
                                                                                         'arithmetic_operations': 'Геометрия',
                                                                                         'task': task.question,
                                                                                         'task_id': task_id,
                                                                                         'correct': correct,
-                                                                                        'url': task.url,
                                                                                         'list_ans': list_ans,
                                                                                         'count_task': count_task,
                                                                                         'email': email})
+                else:
+                    return templates.TemplateResponse("student/completions/geometry.html", {'request': request,
+                                                                                            'class_id': class_id,
+                                                                                            'arithmetic_operations': 'Геометрия',
+                                                                                            'task': task.question,
+                                                                                            'task_id': task_id,
+                                                                                            'correct': correct,
+                                                                                            'url': task.url,
+                                                                                            'list_ans': list_ans,
+                                                                                            'count_task': count_task,
+                                                                                            'email': email})
     else:
 
         db_session.query(Questions).filter(Questions.email == email).update({'end_time': datetime.now()})
